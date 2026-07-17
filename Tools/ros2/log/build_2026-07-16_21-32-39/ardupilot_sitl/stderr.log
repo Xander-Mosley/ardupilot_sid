@@ -1,0 +1,5 @@
+[33minvalid lock file in /develop_ws/ardupilot[0m
+[01;31mCommand ['/usr/bin/git', 'rev-parse', '--short=16', 'HEAD'] returned 128[0m
+gmake[2]: *** [CMakeFiles/ardupilot_build.dir/build.make:70: CMakeFiles/ardupilot_build] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:168: CMakeFiles/ardupilot_build.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

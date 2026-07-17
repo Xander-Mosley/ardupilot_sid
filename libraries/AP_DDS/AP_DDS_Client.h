@@ -47,6 +47,9 @@
 #if AP_DDS_RC_PUB_ENABLED
 #include "ardupilot_msgs/msg/Rc.h"
 #endif // AP_DDS_RC_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+#include "ardupilot_msgs/msg/RcOut.h"
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_GEOPOSE_PUB_ENABLED
 #include "geographic_msgs/msg/GeoPoseStamped.h"
 #endif // AP_DDS_GEOPOSE_PUB_ENABLED
@@ -172,6 +175,15 @@ private:
     void write_tx_local_rc_topic();
     static bool update_topic(ardupilot_msgs_msg_Rc& msg);
 #endif //AP_DDS_RC_PUB_ENABLED
+
+#if AP_DDS_RCOUT_PUB_ENABLED
+    ardupilot_msgs_msg_RcOut tx_local_rcout_topic;
+    // The last ms timestamp AP_DDS wrote a rcout message
+    uint64_t last_rcout_time_ms;
+    //! @brief Serialize the current local rcout and publish to the IO stream(s)
+    void write_tx_local_rcout_topic();
+    static bool update_topic(ardupilot_msgs_msg_RcOut& msg);
+#endif //AP_DDS_RCOUT_PUB_ENABLED
 
 #if AP_DDS_BATTERY_STATE_PUB_ENABLED
     sensor_msgs_msg_BatteryState battery_state_topic;

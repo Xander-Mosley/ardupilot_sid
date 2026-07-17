@@ -1,0 +1,840 @@
+[0.000000] (-) TimerEvent: {}
+[0.000203] (ardupilot_msgs) JobQueued: {'identifier': 'ardupilot_msgs', 'dependencies': OrderedDict()}
+[0.000255] (ardupilot_sitl) JobQueued: {'identifier': 'ardupilot_sitl', 'dependencies': OrderedDict([('ardupilot_msgs', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs')])}
+[0.000277] (ardupilot_dds_tests) JobQueued: {'identifier': 'ardupilot_dds_tests', 'dependencies': OrderedDict([('ardupilot_msgs', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs'), ('ardupilot_sitl', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_sitl')])}
+[0.001113] (ardupilot_msgs) JobStarted: {'identifier': 'ardupilot_msgs'}
+[0.010846] (ardupilot_msgs) JobProgress: {'identifier': 'ardupilot_msgs', 'progress': 'cmake'}
+[0.012660] (ardupilot_msgs) Command: {'cmd': ['/usr/bin/cmake', '/develop_ws/ardupilot/Tools/ros2/ardupilot_msgs', '-DCMAKE_INSTALL_PREFIX=/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs'], 'cwd': '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs', 'env': OrderedDict([('PIP_ROOT_USER_ACTION', 'ignore'), ('HOSTNAME', 'KC-MIDE-6ZWJ243'), ('DDS_AGENT_PORT', '2019'), ('SHLVL', '1'), ('PYTHON_PIP_VERSION', '26.1.2'), ('LD_LIBRARY_PATH', '/opt/micro_ros_agent_ws/install/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/develop_ws/ardupilot'), ('PYTHONUNBUFFERED', '1'), ('ROS_PYTHON_VERSION', '3'), ('ROS_IP', '10.223.1.1'), ('COLCON_PREFIX_PATH', '/develop_ws/install:/opt/micro_ros_agent_ws/install'), ('ROS_DISTRO', 'humble'), ('PYTHONDONTWRITEBYTECODE', '1'), ('PIP_DISABLE_PIP_VERSION_CHECK', 'on'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('BUILDLOGS', '/tmp/buildlogs'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('PIP_BREAK_SYSTEM_PACKAGES', '1'), ('PYTHON_GET_PIP_URL', 'https://bootstrap.pypa.io/get-pip.py'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/lib/ccache:/dds-gen/scripts:/opt/gcc-arm-none-eabi-10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('MICRO_ROS_AGENT_WS', '/opt/micro_ros_agent_ws'), ('ROS_SETUP', '/opt/ros/humble/setup.bash'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('DISABLE_MAVNATIVE', 'True'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/opt/micro_ros_agent_ws/install:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('PYTHON_SETUPTOOLS_VERSION', '78.1.0'), ('BASH_ENV', '/usr/local/bin/ros_env.sh'), ('PWD', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/opt/micro_ros_agent_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('TZ', 'UTC'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/micro_ros_agent_ws/install:/opt/ros/humble')]), 'shell': False}
+[0.072814] (ardupilot_msgs) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.099968] (-) TimerEvent: {}
+[0.129161] (ardupilot_msgs) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.137347] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.194353] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.200081] (-) TimerEvent: {}
+[0.200919] (ardupilot_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /usr/lib/ccache/cc - skipped\n'}
+[0.201183] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.201522] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.204177] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.272649] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.280206] (ardupilot_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped\n'}
+[0.280527] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.281005] (ardupilot_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.283459] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.300206] (-) TimerEvent: {}
+[0.400719] (-) TimerEvent: {}
+[0.503104] (-) TimerEvent: {}
+[0.603673] (-) TimerEvent: {}
+[0.704041] (-) TimerEvent: {}
+[0.804717] (-) TimerEvent: {}
+[0.848051] (ardupilot_msgs) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.904876] (-) TimerEvent: {}
+[0.932063] (ardupilot_msgs) StdoutLine: {'line': b'-- Found geometry_msgs: 4.9.1 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[0.966706] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.971916] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.980872] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.993762] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.005072] (-) TimerEvent: {}
+[1.008900] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.049476] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.1 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[1.105274] (-) TimerEvent: {}
+[1.205613] (-) TimerEvent: {}
+[1.305993] (-) TimerEvent: {}
+[1.401548] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_cppcheck: 0.12.15 (/opt/ros/humble/share/ament_cmake_cppcheck/cmake)\n'}
+[1.403637] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_cpplint: 0.12.15 (/opt/ros/humble/share/ament_cmake_cpplint/cmake)\n'}
+[1.405506] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_uncrustify: 0.12.15 (/opt/ros/humble/share/ament_cmake_uncrustify/cmake)\n'}
+[1.406189] (-) TimerEvent: {}
+[1.407603] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[1.507637] (-) TimerEvent: {}
+[1.608038] (-) TimerEvent: {}
+[1.708371] (-) TimerEvent: {}
+[1.774595] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.808641] (-) TimerEvent: {}
+[1.908992] (-) TimerEvent: {}
+[1.920192] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.938267] (ardupilot_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[1.939475] (ardupilot_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[1.956915] (ardupilot_msgs) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[1.957073] (ardupilot_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.957127] (ardupilot_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[1.957176] (ardupilot_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[1.972529] (ardupilot_msgs) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[2.009410] (-) TimerEvent: {}
+[2.106041] (ardupilot_msgs) StdoutLine: {'line': b'-- Using numpy include directory: /usr/local/lib/python3.10/dist-packages/numpy/_core/include\n'}
+[2.109621] (-) TimerEvent: {}
+[2.116784] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_flake8: 0.12.15 (/opt/ros/humble/share/ament_cmake_flake8/cmake)\n'}
+[2.119559] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_pep257: 0.12.15 (/opt/ros/humble/share/ament_cmake_pep257/cmake)\n'}
+[2.197323] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[2.208054] (ardupilot_msgs) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.208703] (ardupilot_msgs) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.209772] (-) TimerEvent: {}
+[2.211853] (ardupilot_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.280757] (ardupilot_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[2.297538] (ardupilot_msgs) StdoutLine: {'line': b'-- Build files have been written to: /develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs\n'}
+[2.306046] (ardupilot_msgs) CommandEnded: {'returncode': 0}
+[2.306665] (ardupilot_msgs) JobProgress: {'identifier': 'ardupilot_msgs', 'progress': 'build'}
+[2.308313] (ardupilot_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs', '--', '-j8', '-l8'], 'cwd': '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs', 'env': OrderedDict([('PIP_ROOT_USER_ACTION', 'ignore'), ('HOSTNAME', 'KC-MIDE-6ZWJ243'), ('DDS_AGENT_PORT', '2019'), ('SHLVL', '1'), ('PYTHON_PIP_VERSION', '26.1.2'), ('LD_LIBRARY_PATH', '/opt/micro_ros_agent_ws/install/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/develop_ws/ardupilot'), ('PYTHONUNBUFFERED', '1'), ('ROS_PYTHON_VERSION', '3'), ('ROS_IP', '10.223.1.1'), ('COLCON_PREFIX_PATH', '/develop_ws/install:/opt/micro_ros_agent_ws/install'), ('ROS_DISTRO', 'humble'), ('PYTHONDONTWRITEBYTECODE', '1'), ('PIP_DISABLE_PIP_VERSION_CHECK', 'on'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('BUILDLOGS', '/tmp/buildlogs'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('PIP_BREAK_SYSTEM_PACKAGES', '1'), ('PYTHON_GET_PIP_URL', 'https://bootstrap.pypa.io/get-pip.py'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/lib/ccache:/dds-gen/scripts:/opt/gcc-arm-none-eabi-10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('MICRO_ROS_AGENT_WS', '/opt/micro_ros_agent_ws'), ('ROS_SETUP', '/opt/ros/humble/setup.bash'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('DISABLE_MAVNATIVE', 'True'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/opt/micro_ros_agent_ws/install:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('PYTHON_SETUPTOOLS_VERSION', '78.1.0'), ('BASH_ENV', '/usr/local/bin/ros_env.sh'), ('PWD', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/opt/micro_ros_agent_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('TZ', 'UTC'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/micro_ros_agent_ws/install:/opt/ros/humble')]), 'shell': False}
+[2.309980] (-) TimerEvent: {}
+[2.332857] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.410196] (-) TimerEvent: {}
+[2.445441] (ardupilot_msgs) StdoutLine: {'line': b'-- Found geometry_msgs: 4.9.1 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[2.466882] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.469213] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.475080] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.484914] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.496641] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.510828] (-) TimerEvent: {}
+[2.533736] (ardupilot_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.1 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[2.611119] (-) TimerEvent: {}
+[2.712387] (-) TimerEvent: {}
+[2.813808] (-) TimerEvent: {}
+[2.864397] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_cppcheck: 0.12.15 (/opt/ros/humble/share/ament_cmake_cppcheck/cmake)\n'}
+[2.865064] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_cpplint: 0.12.15 (/opt/ros/humble/share/ament_cmake_cpplint/cmake)\n'}
+[2.865864] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_uncrustify: 0.12.15 (/opt/ros/humble/share/ament_cmake_uncrustify/cmake)\n'}
+[2.866977] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[2.914943] (-) TimerEvent: {}
+[3.015518] (-) TimerEvent: {}
+[3.116016] (-) TimerEvent: {}
+[3.216615] (-) TimerEvent: {}
+[3.230251] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[3.316879] (-) TimerEvent: {}
+[3.374829] (ardupilot_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[3.393879] (ardupilot_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[3.410230] (ardupilot_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[3.410385] (ardupilot_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[3.410445] (ardupilot_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[3.416975] (-) TimerEvent: {}
+[3.517635] (-) TimerEvent: {}
+[3.519529] (ardupilot_msgs) StdoutLine: {'line': b'-- Using numpy include directory: /usr/local/lib/python3.10/dist-packages/numpy/_core/include\n'}
+[3.529195] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_flake8: 0.12.15 (/opt/ros/humble/share/ament_cmake_flake8/cmake)\n'}
+[3.529829] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_cmake_pep257: 0.12.15 (/opt/ros/humble/share/ament_cmake_pep257/cmake)\n'}
+[3.602670] (ardupilot_msgs) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[3.610194] (ardupilot_msgs) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[3.610481] (ardupilot_msgs) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[3.612035] (ardupilot_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.617774] (-) TimerEvent: {}
+[3.666284] (ardupilot_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[3.681989] (ardupilot_msgs) StdoutLine: {'line': b'-- Build files have been written to: /develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs\n'}
+[3.708300] (ardupilot_msgs) StdoutLine: {'line': b'[  1%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[3.718040] (-) TimerEvent: {}
+[3.718434] (ardupilot_msgs) StdoutLine: {'line': b'[  2%] \x1b[34m\x1b[1mGenerating Rust code for ROS interfaces\x1b[0m\n'}
+[3.718617] (ardupilot_msgs) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[3.728152] (ardupilot_msgs) StdoutLine: {'line': b'[  3%] Built target ament_cmake_python_copy_ardupilot_msgs\n'}
+[3.818293] (-) TimerEvent: {}
+[3.918650] (-) TimerEvent: {}
+[4.019106] (-) TimerEvent: {}
+[4.030257] (ardupilot_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[4.031239] (ardupilot_msgs) StdoutLine: {'line': b'creating ardupilot_msgs.egg-info\n'}
+[4.044268] (ardupilot_msgs) StdoutLine: {'line': b'writing ardupilot_msgs.egg-info/PKG-INFO\n'}
+[4.044524] (ardupilot_msgs) StdoutLine: {'line': b'writing dependency_links to ardupilot_msgs.egg-info/dependency_links.txt\n'}
+[4.044751] (ardupilot_msgs) StdoutLine: {'line': b'writing top-level names to ardupilot_msgs.egg-info/top_level.txt\n'}
+[4.044911] (ardupilot_msgs) StdoutLine: {'line': b"writing manifest file 'ardupilot_msgs.egg-info/SOURCES.txt'\n"}
+[4.079926] (ardupilot_msgs) StdoutLine: {'line': b"reading manifest file 'ardupilot_msgs.egg-info/SOURCES.txt'\n"}
+[4.080456] (ardupilot_msgs) StdoutLine: {'line': b"writing manifest file 'ardupilot_msgs.egg-info/SOURCES.txt'\n"}
+[4.120537] (-) TimerEvent: {}
+[4.126307] (ardupilot_msgs) StdoutLine: {'line': b'[  3%] Built target ament_cmake_python_build_ardupilot_msgs_egg\n'}
+[4.220832] (-) TimerEvent: {}
+[4.321754] (-) TimerEvent: {}
+[4.424467] (-) TimerEvent: {}
+[4.452879] (ardupilot_msgs) StdoutLine: {'line': b'[  3%] Built target ardupilot_msgs__rs\n'}
+[4.524595] (-) TimerEvent: {}
+[4.624976] (-) TimerEvent: {}
+[4.726483] (-) TimerEvent: {}
+[4.826879] (-) TimerEvent: {}
+[4.844149] (ardupilot_msgs) StdoutLine: {'line': b'[  3%] Built target ardupilot_msgs__cpp\n'}
+[4.859197] (ardupilot_msgs) StdoutLine: {'line': b'[  4%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[4.863936] (ardupilot_msgs) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[4.865319] (ardupilot_msgs) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[4.898797] (ardupilot_msgs) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/msg/detail/global_position__functions.c.o\x1b[0m\n'}
+[4.899090] (ardupilot_msgs) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/msg/detail/status__functions.c.o\x1b[0m\n'}
+[4.906148] (ardupilot_msgs) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/msg/detail/rc__functions.c.o\x1b[0m\n'}
+[4.906346] (ardupilot_msgs) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/msg/detail/airspeed__functions.c.o\x1b[0m\n'}
+[4.913107] (ardupilot_msgs) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/msg/detail/rc_out__functions.c.o\x1b[0m\n'}
+[4.927498] (-) TimerEvent: {}
+[4.943683] (ardupilot_msgs) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/srv/detail/arm_motors__functions.c.o\x1b[0m\n'}
+[4.954305] (ardupilot_msgs) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/srv/detail/mode_switch__functions.c.o\x1b[0m\n'}
+[4.958968] (ardupilot_msgs) StdoutLine: {'line': b'[ 15%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_c.dir/rosidl_generator_c/ardupilot_msgs/srv/detail/takeoff__functions.c.o\x1b[0m\n'}
+[4.996979] (ardupilot_msgs) StdoutLine: {'line': b'[ 17%] \x1b[32m\x1b[1mLinking C shared library libardupilot_msgs__rosidl_generator_c.so\x1b[0m\n'}
+[5.027695] (-) TimerEvent: {}
+[5.043578] (ardupilot_msgs) StdoutLine: {'line': b'[ 17%] Built target ardupilot_msgs__rosidl_generator_c\n'}
+[5.060011] (ardupilot_msgs) StdoutLine: {'line': b'[ 18%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[5.060183] (ardupilot_msgs) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[5.060945] (ardupilot_msgs) StdoutLine: {'line': b'[ 20%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[5.127942] (-) TimerEvent: {}
+[5.228251] (-) TimerEvent: {}
+[5.328575] (-) TimerEvent: {}
+[5.428891] (-) TimerEvent: {}
+[5.529192] (-) TimerEvent: {}
+[5.629538] (-) TimerEvent: {}
+[5.730529] (-) TimerEvent: {}
+[5.779941] (ardupilot_msgs) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/msg/rc__type_support.cpp.o\x1b[0m\n'}
+[5.781737] (ardupilot_msgs) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/msg/global_position__type_support.cpp.o\x1b[0m\n'}
+[5.791299] (ardupilot_msgs) StdoutLine: {'line': b'[ 23%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/msg/status__type_support.cpp.o\x1b[0m\n'}
+[5.805708] (ardupilot_msgs) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/msg/airspeed__type_support.cpp.o\x1b[0m\n'}
+[5.807608] (ardupilot_msgs) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/msg/rc_out__type_support.cpp.o\x1b[0m\n'}
+[5.817410] (ardupilot_msgs) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/srv/arm_motors__type_support.cpp.o\x1b[0m\n'}
+[5.830721] (-) TimerEvent: {}
+[5.843135] (ardupilot_msgs) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/srv/mode_switch__type_support.cpp.o\x1b[0m\n'}
+[5.855967] (ardupilot_msgs) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/ardupilot_msgs/srv/takeoff__type_support.cpp.o\x1b[0m\n'}
+[5.870299] (ardupilot_msgs) StdoutLine: {'line': b'[ 30%] \x1b[32m\x1b[1mLinking CXX shared library libardupilot_msgs__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[5.923950] (ardupilot_msgs) StdoutLine: {'line': b'[ 30%] Built target ardupilot_msgs__rosidl_typesupport_cpp\n'}
+[5.933489] (-) TimerEvent: {}
+[5.945899] (ardupilot_msgs) StdoutLine: {'line': b'[ 31%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/msg/detail/rc__type_support.cpp.o\x1b[0m\n'}
+[5.950027] (ardupilot_msgs) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/msg/detail/status__type_support.cpp.o\x1b[0m\n'}
+[5.950192] (ardupilot_msgs) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/msg/detail/global_position__type_support.cpp.o\x1b[0m\n'}
+[5.959697] (ardupilot_msgs) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/msg/global_position__type_support.cpp.o\x1b[0m\n'}
+[5.978136] (ardupilot_msgs) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/msg/detail/airspeed__type_support.cpp.o\x1b[0m\n'}
+[5.978339] (ardupilot_msgs) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/msg/rc__type_support.cpp.o\x1b[0m\n'}
+[5.980150] (ardupilot_msgs) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/srv/detail/arm_motors__type_support.cpp.o\x1b[0m\n'}
+[5.980318] (ardupilot_msgs) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/msg/detail/rc_out__type_support.cpp.o\x1b[0m\n'}
+[5.988391] (ardupilot_msgs) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/msg/status__type_support.cpp.o\x1b[0m\n'}
+[5.998696] (ardupilot_msgs) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/srv/detail/mode_switch__type_support.cpp.o\x1b[0m\n'}
+[6.003762] (ardupilot_msgs) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/ardupilot_msgs/srv/detail/takeoff__type_support.cpp.o\x1b[0m\n'}
+[6.003939] (ardupilot_msgs) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/msg/airspeed__type_support.cpp.o\x1b[0m\n'}
+[6.009952] (ardupilot_msgs) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/msg/detail/dds_fastrtps/global_position__type_support.cpp.o\x1b[0m\n'}
+[6.013248] (ardupilot_msgs) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/msg/rc_out__type_support.cpp.o\x1b[0m\n'}
+[6.016658] (ardupilot_msgs) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/msg/detail/dds_fastrtps/rc__type_support.cpp.o\x1b[0m\n'}
+[6.020338] (ardupilot_msgs) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/msg/detail/dds_fastrtps/status__type_support.cpp.o\x1b[0m\n'}
+[6.020664] (ardupilot_msgs) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/srv/arm_motors__type_support.cpp.o\x1b[0m\n'}
+[6.033051] (ardupilot_msgs) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/srv/mode_switch__type_support.cpp.o\x1b[0m\n'}
+[6.033928] (-) TimerEvent: {}
+[6.034249] (ardupilot_msgs) StdoutLine: {'line': b'[ 53%] \x1b[32m\x1b[1mLinking CXX shared library libardupilot_msgs__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[6.034785] (ardupilot_msgs) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/ardupilot_msgs/srv/takeoff__type_support.cpp.o\x1b[0m\n'}
+[6.038298] (ardupilot_msgs) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/msg/detail/dds_fastrtps/airspeed__type_support.cpp.o\x1b[0m\n'}
+[6.042887] (ardupilot_msgs) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/msg/detail/dds_fastrtps/rc_out__type_support.cpp.o\x1b[0m\n'}
+[6.047798] (ardupilot_msgs) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/srv/detail/dds_fastrtps/arm_motors__type_support.cpp.o\x1b[0m\n'}
+[6.048429] (ardupilot_msgs) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/srv/detail/dds_fastrtps/mode_switch__type_support.cpp.o\x1b[0m\n'}
+[6.052334] (ardupilot_msgs) StdoutLine: {'line': b'[ 59%] \x1b[32m\x1b[1mLinking CXX shared library libardupilot_msgs__rosidl_typesupport_c.so\x1b[0m\n'}
+[6.064207] (ardupilot_msgs) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/ardupilot_msgs/srv/detail/dds_fastrtps/takeoff__type_support.cpp.o\x1b[0m\n'}
+[6.123003] (ardupilot_msgs) StdoutLine: {'line': b'[ 60%] Built target ardupilot_msgs__rosidl_typesupport_c\n'}
+[6.134120] (-) TimerEvent: {}
+[6.150214] (ardupilot_msgs) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/msg/detail/global_position__type_support.c.o\x1b[0m\n'}
+[6.151217] (ardupilot_msgs) StdoutLine: {'line': b'[ 61%] Built target ardupilot_msgs__rosidl_typesupport_introspection_cpp\n'}
+[6.159934] (ardupilot_msgs) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/msg/detail/rc__type_support.c.o\x1b[0m\n'}
+[6.163930] (ardupilot_msgs) StdoutLine: {'line': b'[ 63%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/msg/detail/status__type_support.c.o\x1b[0m\n'}
+[6.164179] (ardupilot_msgs) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/msg/detail/airspeed__type_support.c.o\x1b[0m\n'}
+[6.170096] (ardupilot_msgs) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/srv/detail/arm_motors__type_support.c.o\x1b[0m\n'}
+[6.170292] (ardupilot_msgs) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/msg/detail/rc_out__type_support.c.o\x1b[0m\n'}
+[6.172247] (ardupilot_msgs) StdoutLine: {'line': b'[ 69%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/srv/detail/mode_switch__type_support.c.o\x1b[0m\n'}
+[6.174721] (ardupilot_msgs) StdoutLine: {'line': b'[ 69%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/ardupilot_msgs/srv/detail/takeoff__type_support.c.o\x1b[0m\n'}
+[6.187932] (ardupilot_msgs) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libardupilot_msgs__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[6.188392] (ardupilot_msgs) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/msg/detail/status__type_support_c.cpp.o\x1b[0m\n'}
+[6.189806] (ardupilot_msgs) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/msg/detail/global_position__type_support_c.cpp.o\x1b[0m\n'}
+[6.190020] (ardupilot_msgs) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/msg/detail/rc__type_support_c.cpp.o\x1b[0m\n'}
+[6.203127] (ardupilot_msgs) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/msg/detail/airspeed__type_support_c.cpp.o\x1b[0m\n'}
+[6.205780] (ardupilot_msgs) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/msg/detail/rc_out__type_support_c.cpp.o\x1b[0m\n'}
+[6.206189] (ardupilot_msgs) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/srv/detail/arm_motors__type_support_c.cpp.o\x1b[0m\n'}
+[6.208114] (ardupilot_msgs) StdoutLine: {'line': b'[ 79%] \x1b[32m\x1b[1mLinking C shared library libardupilot_msgs__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[6.208319] (ardupilot_msgs) StdoutLine: {'line': b'[ 79%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/srv/detail/mode_switch__type_support_c.cpp.o\x1b[0m\n'}
+[6.215975] (ardupilot_msgs) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/ardupilot_msgs/srv/detail/takeoff__type_support_c.cpp.o\x1b[0m\n'}
+[6.234305] (-) TimerEvent: {}
+[6.251422] (ardupilot_msgs) StdoutLine: {'line': b'[ 80%] Built target ardupilot_msgs__rosidl_typesupport_introspection_c\n'}
+[6.287593] (ardupilot_msgs) StdoutLine: {'line': b'[ 80%] Built target ardupilot_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[6.304954] (ardupilot_msgs) StdoutLine: {'line': b'[ 81%] \x1b[32m\x1b[1mLinking CXX shared library libardupilot_msgs__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[6.334539] (-) TimerEvent: {}
+[6.388134] (ardupilot_msgs) StdoutLine: {'line': b'[ 81%] Built target ardupilot_msgs__rosidl_typesupport_fastrtps_c\n'}
+[6.408322] (ardupilot_msgs) StdoutLine: {'line': b'[ 81%] Built target ardupilot_msgs\n'}
+[6.428617] (ardupilot_msgs) StdoutLine: {'line': b'[ 82%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[6.434745] (-) TimerEvent: {}
+[6.535196] (-) TimerEvent: {}
+[6.635726] (-) TimerEvent: {}
+[6.736195] (-) TimerEvent: {}
+[6.836538] (-) TimerEvent: {}
+[6.937032] (-) TimerEvent: {}
+[7.037409] (-) TimerEvent: {}
+[7.137795] (-) TimerEvent: {}
+[7.238322] (-) TimerEvent: {}
+[7.338742] (-) TimerEvent: {}
+[7.439178] (-) TimerEvent: {}
+[7.539601] (-) TimerEvent: {}
+[7.639921] (-) TimerEvent: {}
+[7.740251] (-) TimerEvent: {}
+[7.840622] (-) TimerEvent: {}
+[7.940990] (-) TimerEvent: {}
+[8.041375] (-) TimerEvent: {}
+[8.141689] (-) TimerEvent: {}
+[8.215811] (ardupilot_msgs) StdoutLine: {'line': b'[ 82%] Built target ardupilot_msgs__py\n'}
+[8.238705] (ardupilot_msgs) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/msg/_rc_out_s.c.o\x1b[0m\n'}
+[8.239034] (ardupilot_msgs) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/msg/_airspeed_s.c.o\x1b[0m\n'}
+[8.239118] (ardupilot_msgs) StdoutLine: {'line': b'[ 86%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/msg/_rc_s.c.o\x1b[0m\n'}
+[8.240652] (ardupilot_msgs) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/msg/_status_s.c.o\x1b[0m\n'}
+[8.241845] (-) TimerEvent: {}
+[8.244561] (ardupilot_msgs) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/srv/_mode_switch_s.c.o\x1b[0m\n'}
+[8.245354] (ardupilot_msgs) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/srv/_arm_motors_s.c.o\x1b[0m\n'}
+[8.245679] (ardupilot_msgs) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/msg/_global_position_s.c.o\x1b[0m\n'}
+[8.248193] (ardupilot_msgs) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_generator_py.dir/rosidl_generator_py/ardupilot_msgs/srv/_takeoff_s.c.o\x1b[0m\n'}
+[8.267944] (ardupilot_msgs) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/ardupilot_msgs/libardupilot_msgs__rosidl_generator_py.so\x1b[0m\n'}
+[8.318177] (ardupilot_msgs) StdoutLine: {'line': b'[ 93%] Built target ardupilot_msgs__rosidl_generator_py\n'}
+[8.341196] (ardupilot_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/ardupilot_msgs/_ardupilot_msgs_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[8.341424] (ardupilot_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/ardupilot_msgs/_ardupilot_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[8.341563] (ardupilot_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding C object CMakeFiles/ardupilot_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/ardupilot_msgs/_ardupilot_msgs_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[8.342044] (-) TimerEvent: {}
+[8.358733] (ardupilot_msgs) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[8.359161] (ardupilot_msgs) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[8.361065] (ardupilot_msgs) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[8.413868] (ardupilot_msgs) StdoutLine: {'line': b'[100%] Built target ardupilot_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[8.417091] (ardupilot_msgs) StdoutLine: {'line': b'[100%] Built target ardupilot_msgs__rosidl_typesupport_c__pyext\n'}
+[8.424245] (ardupilot_msgs) StdoutLine: {'line': b'[100%] Built target ardupilot_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[8.440565] (ardupilot_msgs) CommandEnded: {'returncode': 0}
+[8.440925] (ardupilot_msgs) JobProgress: {'identifier': 'ardupilot_msgs', 'progress': 'install'}
+[8.442203] (-) TimerEvent: {}
+[8.450192] (ardupilot_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs'], 'cwd': '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs', 'env': OrderedDict([('PIP_ROOT_USER_ACTION', 'ignore'), ('HOSTNAME', 'KC-MIDE-6ZWJ243'), ('DDS_AGENT_PORT', '2019'), ('SHLVL', '1'), ('PYTHON_PIP_VERSION', '26.1.2'), ('LD_LIBRARY_PATH', '/opt/micro_ros_agent_ws/install/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/develop_ws/ardupilot'), ('PYTHONUNBUFFERED', '1'), ('ROS_PYTHON_VERSION', '3'), ('ROS_IP', '10.223.1.1'), ('COLCON_PREFIX_PATH', '/develop_ws/install:/opt/micro_ros_agent_ws/install'), ('ROS_DISTRO', 'humble'), ('PYTHONDONTWRITEBYTECODE', '1'), ('PIP_DISABLE_PIP_VERSION_CHECK', 'on'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('BUILDLOGS', '/tmp/buildlogs'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('PIP_BREAK_SYSTEM_PACKAGES', '1'), ('PYTHON_GET_PIP_URL', 'https://bootstrap.pypa.io/get-pip.py'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/lib/ccache:/dds-gen/scripts:/opt/gcc-arm-none-eabi-10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('MICRO_ROS_AGENT_WS', '/opt/micro_ros_agent_ws'), ('ROS_SETUP', '/opt/ros/humble/setup.bash'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('DISABLE_MAVNATIVE', 'True'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/opt/micro_ros_agent_ws/install:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('PYTHON_SETUPTOOLS_VERSION', '78.1.0'), ('BASH_ENV', '/usr/local/bin/ros_env.sh'), ('PWD', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/opt/micro_ros_agent_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('TZ', 'UTC'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/micro_ros_agent_ws/install:/opt/ros/humble')]), 'shell': False}
+[8.459654] (ardupilot_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[8.459883] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ament_index/resource_index/rosidl_interfaces/ardupilot_msgs\n'}
+[8.459956] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs\n'}
+[8.461444] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv\n'}
+[8.461706] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail\n'}
+[8.462028] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__type_support.h\n'}
+[8.462263] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__type_support.h\n'}
+[8.462494] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__struct.h\n'}
+[8.462870] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__functions.h\n'}
+[8.463036] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__struct.h\n'}
+[8.463123] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__functions.h\n'}
+[8.463338] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__functions.h\n'}
+[8.463568] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__struct.h\n'}
+[8.463643] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__functions.c\n'}
+[8.463702] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__type_support.h\n'}
+[8.463860] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__functions.c\n'}
+[8.464041] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__functions.c\n'}
+[8.464309] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/arm_motors.h\n'}
+[8.464550] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/takeoff.h\n'}
+[8.464735] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/mode_switch.h\n'}
+[8.464936] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg\n'}
+[8.465361] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rc.h\n'}
+[8.465538] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail\n'}
+[8.465875] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__struct.h\n'}
+[8.466051] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__functions.h\n'}
+[8.466247] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__struct.h\n'}
+[8.466383] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__functions.c\n'}
+[8.466552] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__functions.c\n'}
+[8.466718] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__type_support.h\n'}
+[8.466876] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__type_support.h\n'}
+[8.467036] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__functions.h\n'}
+[8.467203] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__type_support.h\n'}
+[8.467363] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__struct.h\n'}
+[8.467521] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__struct.h\n'}
+[8.467685] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__functions.c\n'}
+[8.467900] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__type_support.h\n'}
+[8.468116] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__functions.h\n'}
+[8.468264] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__struct.h\n'}
+[8.468418] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__functions.h\n'}
+[8.468586] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__functions.c\n'}
+[8.468750] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__functions.h\n'}
+[8.468917] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__type_support.h\n'}
+[8.469081] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__functions.c\n'}
+[8.469245] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/global_position.h\n'}
+[8.469402] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rc_out.h\n'}
+[8.469564] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/status.h\n'}
+[8.469726] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[8.469883] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/airspeed.h\n'}
+[8.470585] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/library_path.sh\n'}
+[8.470791] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/library_path.dsv\n'}
+[8.471207] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_generator_c.so\n'}
+[8.471633] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_generator_c.so" to ""\n'}
+[8.471777] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs\n'}
+[8.472005] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv\n'}
+[8.472061] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail\n'}
+[8.472195] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__rosidl_typesupport_fastrtps_c.h\n'}
+[8.472499] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__rosidl_typesupport_fastrtps_c.h\n'}
+[8.472564] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__rosidl_typesupport_fastrtps_c.h\n'}
+[8.472724] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg\n'}
+[8.472883] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail\n'}
+[8.473220] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__rosidl_typesupport_fastrtps_c.h\n'}
+[8.473375] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__rosidl_typesupport_fastrtps_c.h\n'}
+[8.473548] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__rosidl_typesupport_fastrtps_c.h\n'}
+[8.473717] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__rosidl_typesupport_fastrtps_c.h\n'}
+[8.473947] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__rosidl_typesupport_fastrtps_c.h\n'}
+[8.474011] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[8.474152] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[8.474437] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[8.474511] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs\n'}
+[8.474651] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv\n'}
+[8.474817] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail\n'}
+[8.474983] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__struct.hpp\n'}
+[8.475269] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__builder.hpp\n'}
+[8.475336] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__type_support.hpp\n'}
+[8.475474] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__type_support.hpp\n'}
+[8.475641] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__struct.hpp\n'}
+[8.475815] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__type_support.hpp\n'}
+[8.476149] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__traits.hpp\n'}
+[8.476218] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__traits.hpp\n'}
+[8.476269] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__builder.hpp\n'}
+[8.476317] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__struct.hpp\n'}
+[8.476461] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__builder.hpp\n'}
+[8.476624] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__traits.hpp\n'}
+[8.476794] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/takeoff.hpp\n'}
+[8.476954] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/mode_switch.hpp\n'}
+[8.477117] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/arm_motors.hpp\n'}
+[8.477270] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg\n'}
+[8.477437] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rc.hpp\n'}
+[8.477697] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail\n'}
+[8.477764] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__builder.hpp\n'}
+[8.478021] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__struct.hpp\n'}
+[8.478223] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__traits.hpp\n'}
+[8.478540] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__struct.hpp\n'}
+[8.478626] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__type_support.hpp\n'}
+[8.478731] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__struct.hpp\n'}
+[8.478980] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__traits.hpp\n'}
+[8.479200] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__builder.hpp\n'}
+[8.479519] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__type_support.hpp\n'}
+[8.479872] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__type_support.hpp\n'}
+[8.480276] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__type_support.hpp\n'}
+[8.480412] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__builder.hpp\n'}
+[8.480538] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__builder.hpp\n'}
+[8.480719] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__struct.hpp\n'}
+[8.480937] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__traits.hpp\n'}
+[8.481121] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__type_support.hpp\n'}
+[8.481358] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__traits.hpp\n'}
+[8.481657] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__traits.hpp\n'}
+[8.481847] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__builder.hpp\n'}
+[8.482010] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__struct.hpp\n'}
+[8.482190] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[8.482351] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/airspeed.hpp\n'}
+[8.482511] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rc_out.hpp\n'}
+[8.482675] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/global_position.hpp\n'}
+[8.482833] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/status.hpp\n'}
+[8.483052] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs\n'}
+[8.483261] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv\n'}
+[8.483327] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail\n'}
+[8.483378] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.483499] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.483664] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/dds_fastrtps\n'}
+[8.484124] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.484289] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg\n'}
+[8.484546] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail\n'}
+[8.484694] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.484989] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.485056] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.485221] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.485491] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/dds_fastrtps\n'}
+[8.485564] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.485836] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[8.485902] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[8.486366] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[8.486629] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs\n'}
+[8.486695] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv\n'}
+[8.486746] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail\n'}
+[8.486794] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__rosidl_typesupport_introspection_c.h\n'}
+[8.486904] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__type_support.c\n'}
+[8.487115] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__type_support.c\n'}
+[8.487393] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__type_support.c\n'}
+[8.487461] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__rosidl_typesupport_introspection_c.h\n'}
+[8.487603] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__rosidl_typesupport_introspection_c.h\n'}
+[8.487716] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg\n'}
+[8.488021] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail\n'}
+[8.488094] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__rosidl_typesupport_introspection_c.h\n'}
+[8.488146] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__type_support.c\n'}
+[8.488258] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__type_support.c\n'}
+[8.488431] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__rosidl_typesupport_introspection_c.h\n'}
+[8.488592] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__type_support.c\n'}
+[8.488796] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__rosidl_typesupport_introspection_c.h\n'}
+[8.488932] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__rosidl_typesupport_introspection_c.h\n'}
+[8.489089] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__rosidl_typesupport_introspection_c.h\n'}
+[8.489252] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__type_support.c\n'}
+[8.489424] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__type_support.c\n'}
+[8.489631] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[8.489860] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_introspection_c.so\n'}
+[8.490275] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_introspection_c.so" to ""\n'}
+[8.490555] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_c.so\n'}
+[8.490701] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_c.so" to ""\n'}
+[8.491000] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs\n'}
+[8.491069] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv\n'}
+[8.491123] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail\n'}
+[8.491261] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__type_support.cpp\n'}
+[8.491539] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.491606] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__type_support.cpp\n'}
+[8.491657] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/arm_motors__type_support.cpp\n'}
+[8.491788] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/mode_switch__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.492048] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/srv/detail/takeoff__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.492310] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg\n'}
+[8.492376] (ardupilot_msgs) StdoutLine: {'line': b'-- Up-to-date: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail\n'}
+[8.492523] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.492803] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__type_support.cpp\n'}
+[8.492869] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc_out__type_support.cpp\n'}
+[8.492921] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__type_support.cpp\n'}
+[8.493197] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.493263] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/status__type_support.cpp\n'}
+[8.493539] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/rc__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.493604] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.493884] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/airspeed__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.493949] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/include/ardupilot_msgs/ardupilot_msgs/msg/detail/global_position__type_support.cpp\n'}
+[8.494114] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[8.494534] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[8.494699] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_cpp.so\n'}
+[8.494986] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_typesupport_cpp.so" to ""\n'}
+[8.495320] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/pythonpath.sh\n'}
+[8.495479] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/pythonpath.dsv\n'}
+[8.495714] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs-0.0.0-py3.10.egg-info\n'}
+[8.497397] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[8.497673] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[8.498040] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[8.498154] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[8.498306] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs\n'}
+[8.498522] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv\n'}
+[8.498799] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_mode_switch.py\n'}
+[8.498982] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_arm_motors.py\n'}
+[8.499154] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_takeoff_s.c\n'}
+[8.499325] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_arm_motors_s.c\n'}
+[8.499494] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_mode_switch_s.c\n'}
+[8.499661] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/__init__.py\n'}
+[8.499880] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_takeoff.py\n'}
+[8.500056] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg\n'}
+[8.500351] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_global_position.py\n'}
+[8.500498] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_airspeed.py\n'}
+[8.500794] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_rc_out.py\n'}
+[8.500976] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_global_position_s.c\n'}
+[8.501177] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_airspeed_s.c\n'}
+[8.501355] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_status_s.c\n'}
+[8.501561] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_rc.py\n'}
+[8.501746] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_rc_out_s.c\n'}
+[8.501947] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_status.py\n'}
+[8.502148] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_rc_s.c\n'}
+[8.502379] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/__init__.py\n'}
+[8.502569] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/_ardupilot_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[8.502802] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/_ardupilot_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[8.503055] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.503289] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.503544] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.503810] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/__init__.py\n'}
+[8.504035] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/libardupilot_msgs__rosidl_generator_py.so\n'}
+[8.504248] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/_ardupilot_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[8.533854] (ardupilot_msgs) StdoutLine: {'line': b"Listing '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs'...\n"}
+[8.533998] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/__init__.py'...\n"}
+[8.535244] (ardupilot_msgs) StdoutLine: {'line': b"Listing '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg'...\n"}
+[8.535474] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/__init__.py'...\n"}
+[8.535824] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_airspeed.py'...\n"}
+[8.537046] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_global_position.py'...\n"}
+[8.539738] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_rc.py'...\n"}
+[8.540951] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_rc_out.py'...\n"}
+[8.542349] (-) TimerEvent: {}
+[8.544162] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/msg/_status.py'...\n"}
+[8.544621] (ardupilot_msgs) StdoutLine: {'line': b"Listing '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv'...\n"}
+[8.544716] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/__init__.py'...\n"}
+[8.545209] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_arm_motors.py'...\n"}
+[8.546586] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_mode_switch.py'...\n"}
+[8.548600] (ardupilot_msgs) StdoutLine: {'line': b"Compiling '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/srv/_takeoff.py'...\n"}
+[8.555229] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.555625] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[8.555902] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.556321] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[8.556520] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.556947] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages/ardupilot_msgs/ardupilot_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[8.557199] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_generator_py.so\n'}
+[8.557545] (ardupilot_msgs) StdoutLine: {'line': b'-- Set runtime path of "/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib/libardupilot_msgs__rosidl_generator_py.so" to ""\n'}
+[8.557964] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ament_index/resource_index/rust_packages/ardupilot_msgs\n'}
+[8.558153] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust\n'}
+[8.558418] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src\n'}
+[8.558596] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src/srv\n'}
+[8.558818] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src/srv/rmw.rs\n'}
+[8.558950] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src/srv.rs\n'}
+[8.559071] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src/msg\n'}
+[8.559294] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src/msg/rmw.rs\n'}
+[8.559440] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src/msg.rs\n'}
+[8.559598] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/src/lib.rs\n'}
+[8.559816] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/Cargo.toml\n'}
+[8.559984] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/rust/build.rs\n'}
+[8.560307] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/GlobalPosition.idl\n'}
+[8.560546] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/Rc.idl\n'}
+[8.560836] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/Status.idl\n'}
+[8.561126] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/Airspeed.idl\n'}
+[8.561200] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/RcOut.idl\n'}
+[8.561461] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ArmMotors.idl\n'}
+[8.561633] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ModeSwitch.idl\n'}
+[8.561774] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/Takeoff.idl\n'}
+[8.561889] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/GlobalPosition.msg\n'}
+[8.562097] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/Rc.msg\n'}
+[8.562307] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/Status.msg\n'}
+[8.562639] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/Airspeed.msg\n'}
+[8.562719] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/msg/RcOut.msg\n'}
+[8.562900] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ArmMotors.srv\n'}
+[8.563174] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ArmMotors_Request.msg\n'}
+[8.563493] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ArmMotors_Response.msg\n'}
+[8.563859] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ModeSwitch.srv\n'}
+[8.564177] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ModeSwitch_Request.msg\n'}
+[8.564408] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/ModeSwitch_Response.msg\n'}
+[8.564520] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/Takeoff.srv\n'}
+[8.564791] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/Takeoff_Request.msg\n'}
+[8.564904] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/srv/Takeoff_Response.msg\n'}
+[8.565560] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ament_index/resource_index/package_run_dependencies/ardupilot_msgs\n'}
+[8.566255] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ament_index/resource_index/parent_prefix_path/ardupilot_msgs\n'}
+[8.566558] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/ament_prefix_path.sh\n'}
+[8.566880] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/ament_prefix_path.dsv\n'}
+[8.567063] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/path.sh\n'}
+[8.567305] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/environment/path.dsv\n'}
+[8.567498] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/local_setup.bash\n'}
+[8.567670] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/local_setup.sh\n'}
+[8.567867] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/local_setup.zsh\n'}
+[8.568082] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/local_setup.dsv\n'}
+[8.568217] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/package.dsv\n'}
+[8.568812] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ament_index/resource_index/packages/ardupilot_msgs\n'}
+[8.569109] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_generator_cExport.cmake\n'}
+[8.569296] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[8.569476] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[8.569642] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[8.569813] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_generator_cppExport.cmake\n'}
+[8.569994] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[8.570166] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[8.570340] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[8.570503] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[8.570685] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_cExport.cmake\n'}
+[8.570854] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[8.571032] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[8.571194] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[8.571358] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[8.571523] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[8.571695] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_generator_pyExport.cmake\n'}
+[8.571935] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/export_ardupilot_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[8.572120] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[8.572301] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[8.572472] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[8.572633] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[8.572794] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[8.572954] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[8.573115] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[8.573268] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgsConfig.cmake\n'}
+[8.573393] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/cmake/ardupilot_msgsConfig-version.cmake\n'}
+[8.573601] (ardupilot_msgs) StdoutLine: {'line': b'-- Installing: /develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/share/ardupilot_msgs/package.xml\n'}
+[8.576516] (ardupilot_msgs) CommandEnded: {'returncode': 0}
+[8.601313] (ardupilot_msgs) JobEnded: {'identifier': 'ardupilot_msgs', 'rc': 0}
+[8.603455] (ardupilot_sitl) JobStarted: {'identifier': 'ardupilot_sitl'}
+[8.612376] (ardupilot_sitl) JobProgress: {'identifier': 'ardupilot_sitl', 'progress': 'cmake'}
+[8.614081] (ardupilot_sitl) Command: {'cmd': ['/usr/bin/cmake', '/develop_ws/ardupilot/Tools/ros2/ardupilot_sitl', '-DCMAKE_INSTALL_PREFIX=/develop_ws/ardupilot/Tools/ros2/install/ardupilot_sitl'], 'cwd': '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_sitl', 'env': OrderedDict([('PIP_ROOT_USER_ACTION', 'ignore'), ('HOSTNAME', 'KC-MIDE-6ZWJ243'), ('DDS_AGENT_PORT', '2019'), ('SHLVL', '1'), ('PYTHON_PIP_VERSION', '26.1.2'), ('LD_LIBRARY_PATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib:/opt/micro_ros_agent_ws/install/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/develop_ws/ardupilot'), ('PYTHONUNBUFFERED', '1'), ('ROS_PYTHON_VERSION', '3'), ('ROS_IP', '10.223.1.1'), ('COLCON_PREFIX_PATH', '/develop_ws/install:/opt/micro_ros_agent_ws/install'), ('ROS_DISTRO', 'humble'), ('PYTHONDONTWRITEBYTECODE', '1'), ('PIP_DISABLE_PIP_VERSION_CHECK', 'on'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('BUILDLOGS', '/tmp/buildlogs'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('PIP_BREAK_SYSTEM_PACKAGES', '1'), ('PYTHON_GET_PIP_URL', 'https://bootstrap.pypa.io/get-pip.py'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/lib/ccache:/dds-gen/scripts:/opt/gcc-arm-none-eabi-10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('MICRO_ROS_AGENT_WS', '/opt/micro_ros_agent_ws'), ('ROS_SETUP', '/opt/ros/humble/setup.bash'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('DISABLE_MAVNATIVE', 'True'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs:/opt/micro_ros_agent_ws/install:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('PYTHON_SETUPTOOLS_VERSION', '78.1.0'), ('BASH_ENV', '/usr/local/bin/ros_env.sh'), ('PWD', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_sitl'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages:/opt/micro_ros_agent_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('TZ', 'UTC'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs:/opt/micro_ros_agent_ws/install:/opt/ros/humble')]), 'shell': False}
+[8.642598] (-) TimerEvent: {}
+[8.674374] (ardupilot_sitl) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[8.734145] (ardupilot_sitl) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[8.742620] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[8.742784] (-) TimerEvent: {}
+[8.808186] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[8.810600] (ardupilot_sitl) StdoutLine: {'line': b'-- Check for working C compiler: /usr/lib/ccache/cc - skipped\n'}
+[8.810800] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[8.811169] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[8.813906] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[8.843089] (-) TimerEvent: {}
+[8.887485] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[8.894931] (ardupilot_sitl) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped\n'}
+[8.895185] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[8.895648] (ardupilot_sitl) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[8.897925] (ardupilot_sitl) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[8.943385] (-) TimerEvent: {}
+[9.043850] (-) TimerEvent: {}
+[9.144209] (-) TimerEvent: {}
+[9.244639] (-) TimerEvent: {}
+[9.344981] (-) TimerEvent: {}
+[9.445378] (-) TimerEvent: {}
+[9.519321] (ardupilot_sitl) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[9.545646] (-) TimerEvent: {}
+[9.606677] (ardupilot_sitl) StdoutLine: {'line': b'-- WAF_COMMAND: /develop_ws/ardupilot/waf\n'}
+[9.645848] (-) TimerEvent: {}
+[9.721630] (ardupilot_sitl) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[9.746024] (-) TimerEvent: {}
+[9.835058] (ardupilot_sitl) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[9.836145] (ardupilot_sitl) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[9.836928] (ardupilot_sitl) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[9.838398] (ardupilot_sitl) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[9.839969] (ardupilot_sitl) StdoutLine: {'line': b'-- Configuring done\n'}
+[9.846243] (-) TimerEvent: {}
+[9.849310] (ardupilot_sitl) StdoutLine: {'line': b'-- Generating done\n'}
+[9.854157] (ardupilot_sitl) StdoutLine: {'line': b'-- Build files have been written to: /develop_ws/ardupilot/Tools/ros2/build/ardupilot_sitl\n'}
+[9.859882] (ardupilot_sitl) CommandEnded: {'returncode': 0}
+[9.861316] (ardupilot_sitl) JobProgress: {'identifier': 'ardupilot_sitl', 'progress': 'build'}
+[9.861380] (ardupilot_sitl) Command: {'cmd': ['/usr/bin/cmake', '--build', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_sitl', '--', '-j8', '-l8'], 'cwd': '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_sitl', 'env': OrderedDict([('PIP_ROOT_USER_ACTION', 'ignore'), ('HOSTNAME', 'KC-MIDE-6ZWJ243'), ('DDS_AGENT_PORT', '2019'), ('SHLVL', '1'), ('PYTHON_PIP_VERSION', '26.1.2'), ('LD_LIBRARY_PATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/lib:/opt/micro_ros_agent_ws/install/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/develop_ws/ardupilot'), ('PYTHONUNBUFFERED', '1'), ('ROS_PYTHON_VERSION', '3'), ('ROS_IP', '10.223.1.1'), ('COLCON_PREFIX_PATH', '/develop_ws/install:/opt/micro_ros_agent_ws/install'), ('ROS_DISTRO', 'humble'), ('PYTHONDONTWRITEBYTECODE', '1'), ('PIP_DISABLE_PIP_VERSION_CHECK', 'on'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('BUILDLOGS', '/tmp/buildlogs'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('PIP_BREAK_SYSTEM_PACKAGES', '1'), ('PYTHON_GET_PIP_URL', 'https://bootstrap.pypa.io/get-pip.py'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/lib/ccache:/dds-gen/scripts:/opt/gcc-arm-none-eabi-10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('MICRO_ROS_AGENT_WS', '/opt/micro_ros_agent_ws'), ('ROS_SETUP', '/opt/ros/humble/setup.bash'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('DISABLE_MAVNATIVE', 'True'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs:/opt/micro_ros_agent_ws/install:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('PYTHON_SETUPTOOLS_VERSION', '78.1.0'), ('BASH_ENV', '/usr/local/bin/ros_env.sh'), ('PWD', '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_sitl'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs/local/lib/python3.10/dist-packages:/opt/micro_ros_agent_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('TZ', 'UTC'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/develop_ws/ardupilot/Tools/ros2/install/ardupilot_msgs:/opt/micro_ros_agent_ws/install:/opt/ros/humble')]), 'shell': False}
+[9.922998] (ardupilot_sitl) StdoutLine: {'line': b'Built target ament_cmake_python_copy_ardupilot_sitl\n'}
+[9.946449] (-) TimerEvent: {}
+[10.046880] (-) TimerEvent: {}
+[10.150909] (-) TimerEvent: {}
+[10.248786] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mSetting top to                           :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/develop_ws/ardupilot\x1b[0m \x1b[0m\n'}
+[10.249036] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mSetting out to                           :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/develop_ws/ardupilot/build\x1b[0m \x1b[0m\n'}
+[10.251683] (-) TimerEvent: {}
+[10.256056] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mAutoconfiguration                        :\x1b[0m \x1b[0m\x1b[32m\x1b[32menabled\x1b[0m \x1b[0m\n'}
+[10.256252] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for program 'python'            :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/usr/bin/python3\x1b[0m \x1b[0m\n"}
+[10.270769] (ardupilot_sitl) StdoutLine: {'line': b'running egg_info\n'}
+[10.271931] (ardupilot_sitl) StdoutLine: {'line': b'creating ardupilot_sitl.egg-info\n'}
+[10.284982] (ardupilot_sitl) StdoutLine: {'line': b'writing ardupilot_sitl.egg-info/PKG-INFO\n'}
+[10.285656] (ardupilot_sitl) StdoutLine: {'line': b'writing dependency_links to ardupilot_sitl.egg-info/dependency_links.txt\n'}
+[10.286858] (ardupilot_sitl) StdoutLine: {'line': b'writing top-level names to ardupilot_sitl.egg-info/top_level.txt\n'}
+[10.287063] (ardupilot_sitl) StdoutLine: {'line': b"writing manifest file 'ardupilot_sitl.egg-info/SOURCES.txt'\n"}
+[10.325306] (ardupilot_sitl) StdoutLine: {'line': b"reading manifest file 'ardupilot_sitl.egg-info/SOURCES.txt'\n"}
+[10.325813] (ardupilot_sitl) StdoutLine: {'line': b"writing manifest file 'ardupilot_sitl.egg-info/SOURCES.txt'\n"}
+[10.352016] (-) TimerEvent: {}
+[10.383918] (ardupilot_sitl) StdoutLine: {'line': b'Built target ament_cmake_python_build_ardupilot_sitl_egg\n'}
+[10.452131] (-) TimerEvent: {}
+[10.552447] (-) TimerEvent: {}
+[10.653731] (-) TimerEvent: {}
+[10.760113] (-) TimerEvent: {}
+[10.860736] (-) TimerEvent: {}
+[10.868925] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for python version >= 3.9.0     :\x1b[0m \x1b[0m\x1b[32m\x1b[32m3.10.12\x1b[0m \x1b[0m\n'}
+[10.875647] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mSetting board to                         :\x1b[0m \x1b[0m\x1b[32m\x1b[32msitl\x1b[0m \x1b[0m\n'}
+[10.877181] (ardupilot_sitl) StdoutLine: {'line': b'Processing /develop_ws/ardupilot/libraries/AP_HAL_SITL/hwdef/sitl/hwdef.dat\n'}
+[10.878394] (ardupilot_sitl) StdoutLine: {'line': b'Writing hwdef setup in /develop_ws/ardupilot/build/sitl/hwdef.h\n'}
+[10.880057] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mUsing toolchain                          :\x1b[0m \x1b[0m\x1b[32m\x1b[32mnative\x1b[0m \x1b[0m\n'}
+[10.906058] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for 'g++' (C++ compiler)        :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/usr/lib/ccache/g++\x1b[0m \x1b[0m\n"}
+[10.929024] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for 'gcc' (C compiler)          :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/usr/lib/ccache/gcc\x1b[0m \x1b[0m\n"}
+[10.939626] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for c flags '-MMD'              :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n"}
+[10.946634] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for cxx flags '-MMD'            :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n"}
+[10.947998] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mCXX Compiler                             :\x1b[0m \x1b[0m\x1b[32m\x1b[32mg++ 11.4.0\x1b[0m \x1b[0m\n'}
+[10.960936] (-) TimerEvent: {}
+[10.986951] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for need to link with librt     :\x1b[0m \x1b[0m\x1b[32m\x1b[32mnot necessary\x1b[0m \x1b[0m\n'}
+[11.033074] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for feenableexcept              :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.033865] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mEnabling -Werror                         :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.034094] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mEnabled OpenDroneID                      :\x1b[0m \x1b[0m\x1b[32m\x1b[33mno\x1b[0m \x1b[0m\n'}
+[11.034275] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mEnabled firmware ID checking             :\x1b[0m \x1b[0m\x1b[32m\x1b[33mno\x1b[0m \x1b[0m\n'}
+[11.034454] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mGPS Debug Logging                        :\x1b[0m \x1b[0m\x1b[32m\x1b[33mno\x1b[0m \x1b[0m\n'}
+[11.034902] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mEnabled DDS                              :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.061078] (-) TimerEvent: {}
+[11.081426] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for HAVE_CMATH_ISFINITE         :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.124334] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for HAVE_CMATH_ISINF            :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.161298] (-) TimerEvent: {}
+[11.163549] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for HAVE_CMATH_ISNAN            :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.207562] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for NEED_CMATH_ISFINITE_STD_NAMESPACE :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.250104] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for NEED_CMATH_ISINF_STD_NAMESPACE    :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.261496] (-) TimerEvent: {}
+[11.293510] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for NEED_CMATH_ISNAN_STD_NAMESPACE    :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.337204] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for header endian.h                   :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.361679] (-) TimerEvent: {}
+[11.377547] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for header byteswap.h                 :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.418611] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mChecking for HAVE_MEMRCHR                      :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.418900] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mConfigured VSCode Intellisense:                :\x1b[0m \x1b[0m\x1b[32m\x1b[33mno\x1b[0m \x1b[0m\n'}
+[11.423679] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mDC_DSDL compiler in                            :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/develop_ws/ardupilot/modules/DroneCAN/dronecan_dsdlc\x1b[0m \x1b[0m\n'}
+[11.424182] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mSource is git repository                       :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.424448] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mUpdate submodules                              :\x1b[0m \x1b[0m\x1b[32m\x1b[32myes\x1b[0m \x1b[0m\n'}
+[11.426237] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for program 'git'                     :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/usr/bin/git\x1b[0m \x1b[0m\n"}
+[11.427036] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mLittlefs                                       :\x1b[0m \x1b[0m\x1b[32m\x1b[33mdisabled\x1b[0m \x1b[0m\n'}
+[11.428107] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for program 'size'                    :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/usr/bin/size\x1b[0m \x1b[0m\n"}
+[11.428417] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mBenchmarks                                     :\x1b[0m \x1b[0m\x1b[32m\x1b[33mdisabled\x1b[0m \x1b[0m\n'}
+[11.428676] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mUnit tests                                     :\x1b[0m \x1b[0m\x1b[32m\x1b[32menabled\x1b[0m \x1b[0m\n'}
+[11.428945] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mScripting                                      :\x1b[0m \x1b[0m\x1b[32m\x1b[32mmaybe\x1b[0m \x1b[0m\n'}
+[11.442822] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for program 'microxrceddsgen'         :\x1b[0m \x1b[0m\x1b[32m\x1b[32m/dds-gen/scripts/microxrceddsgen\x1b[0m \x1b[0m\n"}
+[11.454772] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mScripting runtime checks                       :\x1b[0m \x1b[0m\x1b[32m\x1b[32menabled\x1b[0m \x1b[0m\n'}
+[11.455237] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mDebug build                                    :\x1b[0m \x1b[0m\x1b[32m\x1b[33mdisabled\x1b[0m \x1b[0m\n'}
+[11.455616] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mCoverage build                                 :\x1b[0m \x1b[0m\x1b[32m\x1b[33mdisabled\x1b[0m \x1b[0m\n'}
+[11.456018] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mConsistent build                               :\x1b[0m \x1b[0m\x1b[32m\x1b[33mdisabled\x1b[0m \x1b[0m\n'}
+[11.456114] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32m\x1b[0mForce 32-bit build                             :\x1b[0m \x1b[0m\x1b[32m\x1b[33mdisabled\x1b[0m \x1b[0m\n'}
+[11.456511] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m\x1b[0mChecking for program 'rsync'                   :\x1b[0m \x1b[0m\x1b[32m\x1b[33mnot found\x1b[0m \x1b[0m\n"}
+[11.458542] (ardupilot_sitl) StdoutLine: {'line': b'\x1b[32mRemoving target_list file /develop_ws/ardupilot/build/sitl/target_list\x1b[0m\n'}
+[11.461820] (-) TimerEvent: {}
+[11.497151] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32m'configure' finished successfully (1.249s)\x1b[0m\n"}
+[11.525824] (ardupilot_sitl) StdoutLine: {'line': b'Built target ardupilot_configure\n'}
+[11.562016] (-) TimerEvent: {}
+[11.662608] (-) TimerEvent: {}
+[11.763210] (-) TimerEvent: {}
+[11.864071] (-) TimerEvent: {}
+[11.964451] (-) TimerEvent: {}
+[11.979574] (ardupilot_sitl) StdoutLine: {'line': b"\x1b[32mWaf: Entering directory `/develop_ws/ardupilot/build/sitl'\x1b[0m\n"}
+[12.064896] (-) TimerEvent: {}
+[12.130634] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/airsim-quadX.parm:Tools/autotest/default_params/airsim-quadX.parm\n'}
+[12.131137] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/airsim-rover.parm:Tools/autotest/default_params/airsim-rover.parm\n'}
+[12.131456] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/balancebot.parm:Tools/autotest/default_params/balancebot.parm\n'}
+[12.131857] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/blimp-motor.parm:Tools/autotest/default_params/blimp-motor.parm\n'}
+[12.132085] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/blimp.parm:Tools/autotest/default_params/blimp.parm\n'}
+[12.132325] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-X.parm:Tools/autotest/default_params/copter-X.parm\n'}
+[12.133141] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-beacon.parm:Tools/autotest/default_params/copter-beacon.parm\n'}
+[12.133423] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-bfx.parm:Tools/autotest/default_params/copter-bfx.parm\n'}
+[12.133637] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-coax.parm:Tools/autotest/default_params/copter-coax.parm\n'}
+[12.133817] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-cwx.parm:Tools/autotest/default_params/copter-cwx.parm\n'}
+[12.134042] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-deca-cwx.parm:Tools/autotest/default_params/copter-deca-cwx.parm\n'}
+[12.134236] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-deca.parm:Tools/autotest/default_params/copter-deca.parm\n'}
+[12.134598] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-djix.parm:Tools/autotest/default_params/copter-djix.parm\n'}
+[12.134796] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-dodecahexa.parm:Tools/autotest/default_params/copter-dodecahexa.parm\n'}
+[12.134974] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-dotriaconta_octaquad_x.parm:Tools/autotest/default_params/copter-dotriaconta_octaquad_x.parm\n'}
+[12.135169] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-gimbal.parm:Tools/autotest/default_params/copter-gimbal.parm\n'}
+[12.135325] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-gps-for-yaw-nmea.parm:Tools/autotest/default_params/copter-gps-for-yaw-nmea.parm\n'}
+[12.135483] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-gps-for-yaw.parm:Tools/autotest/default_params/copter-gps-for-yaw.parm\n'}
+[12.135639] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-heli-ddfptail.parm:Tools/autotest/default_params/copter-heli-ddfptail.parm\n'}
+[12.135794] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-heli-ddvptail.parm:Tools/autotest/default_params/copter-heli-ddvptail.parm\n'}
+[12.136135] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-heli-dual.parm:Tools/autotest/default_params/copter-heli-dual.parm\n'}
+[12.136203] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-heli-gas.parm:Tools/autotest/default_params/copter-heli-gas.parm\n'}
+[12.136253] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-heli.parm:Tools/autotest/default_params/copter-heli.parm\n'}
+[12.136299] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-heliquad.parm:Tools/autotest/default_params/copter-heliquad.parm\n'}
+[12.136344] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-hexa-cwx.parm:Tools/autotest/default_params/copter-hexa-cwx.parm\n'}
+[12.136397] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-hexa-dji.parm:Tools/autotest/default_params/copter-hexa-dji.parm\n'}
+[12.136441] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-hexa.parm:Tools/autotest/default_params/copter-hexa.parm\n'}
+[12.136486] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-hexadeca_octa.parm:Tools/autotest/default_params/copter-hexadeca_octa.parm\n'}
+[12.136530] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-hexadeca_octa_cwx.parm:Tools/autotest/default_params/copter-hexadeca_octa_cwx.parm\n'}
+[12.136592] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-octa-cwx.parm:Tools/autotest/default_params/copter-octa-cwx.parm\n'}
+[12.136650] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-octa-dji.parm:Tools/autotest/default_params/copter-octa-dji.parm\n'}
+[12.136702] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-octa.parm:Tools/autotest/default_params/copter-octa.parm\n'}
+[12.136749] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-octaquad-cor.parm:Tools/autotest/default_params/copter-octaquad-cor.parm\n'}
+[12.136835] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-octaquad-cw-cor.parm:Tools/autotest/default_params/copter-octaquad-cw-cor.parm\n'}
+[12.136884] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-octaquad-cwx.parm:Tools/autotest/default_params/copter-octaquad-cwx.parm\n'}
+[12.136930] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-octaquad.parm:Tools/autotest/default_params/copter-octaquad.parm\n'}
+[12.136976] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-optflow.parm:Tools/autotest/default_params/copter-optflow.parm\n'}
+[12.137021] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-ppp-periph.parm:Tools/autotest/default_params/copter-ppp-periph.parm\n'}
+[12.137066] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-ppp.parm:Tools/autotest/default_params/copter-ppp.parm\n'}
+[12.137111] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-rangefinder.parm:Tools/autotest/default_params/copter-rangefinder.parm\n'}
+[12.137156] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-single.parm:Tools/autotest/default_params/copter-single.parm\n'}
+[12.137201] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-tri.parm:Tools/autotest/default_params/copter-tri.parm\n'}
+[12.137246] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-vicon.parm:Tools/autotest/default_params/copter-vicon.parm\n'}
+[12.137290] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-winch.parm:Tools/autotest/default_params/copter-winch.parm\n'}
+[12.137335] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-wind-estimates.parm:Tools/autotest/default_params/copter-wind-estimates.parm\n'}
+[12.137379] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter-y6.parm:Tools/autotest/default_params/copter-y6.parm\n'}
+[12.137424] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/copter.parm:Tools/autotest/default_params/copter.parm\n'}
+[12.137468] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/firefly.parm:Tools/autotest/default_params/firefly.parm\n'}
+[12.137512] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/gazebo-iris.parm:Tools/autotest/default_params/gazebo-iris.parm\n'}
+[12.137555] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/gazebo-zephyr.parm:Tools/autotest/default_params/gazebo-zephyr.parm\n'}
+[12.137599] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/glider.parm:Tools/autotest/default_params/glider.parm\n'}
+[12.137642] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/motorboat.parm:Tools/autotest/default_params/motorboat.parm\n'}
+[12.137692] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/msposd.parm:Tools/autotest/default_params/msposd.parm\n'}
+[12.137736] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/periph-ppp.parm:Tools/autotest/default_params/periph-ppp.parm\n'}
+[12.137779] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/periph.parm:Tools/autotest/default_params/periph.parm\n'}
+[12.137823] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-dspoilers.parm:Tools/autotest/default_params/plane-dspoilers.parm\n'}
+[12.137901] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-elevons.parm:Tools/autotest/default_params/plane-elevons.parm\n'}
+[12.137948] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-ice.parm:Tools/autotest/default_params/plane-ice.parm\n'}
+[12.137993] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-jet.parm:Tools/autotest/default_params/plane-jet.parm\n'}
+[12.138038] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-jsbsim.parm:Tools/autotest/default_params/plane-jsbsim.parm\n'}
+[12.138082] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-redundant.parm:Tools/autotest/default_params/plane-redundant.parm\n'}
+[12.138126] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-soaring.parm:Tools/autotest/default_params/plane-soaring.parm\n'}
+[12.138180] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-tailsitter.parm:Tools/autotest/default_params/plane-tailsitter.parm\n'}
+[12.138225] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/plane-vtail.parm:Tools/autotest/default_params/plane-vtail.parm\n'}
+[12.138270] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quad-can.parm:Tools/autotest/default_params/quad-can.parm\n'}
+[12.138315] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quad-periph.parm:Tools/autotest/default_params/quad-periph.parm\n'}
+[12.138359] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-can.parm:Tools/autotest/default_params/quadplane-can.parm\n'}
+[12.138402] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-cl84.parm:Tools/autotest/default_params/quadplane-cl84.parm\n'}
+[12.138447] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-copter_tailsitter.parm:Tools/autotest/default_params/quadplane-copter_tailsitter.parm\n'}
+[12.138491] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-ice.parm:Tools/autotest/default_params/quadplane-ice.parm\n'}
+[12.138539] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-periph.parm:Tools/autotest/default_params/quadplane-periph.parm\n'}
+[12.138585] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-ppp-periph.parm:Tools/autotest/default_params/quadplane-ppp-periph.parm\n'}
+[12.138629] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-ppp.parm:Tools/autotest/default_params/quadplane-ppp.parm\n'}
+[12.138673] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-tilt.parm:Tools/autotest/default_params/quadplane-tilt.parm\n'}
+[12.138717] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-tilthvec.parm:Tools/autotest/default_params/quadplane-tilthvec.parm\n'}
+[12.138762] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-tilttri.parm:Tools/autotest/default_params/quadplane-tilttri.parm\n'}
+[12.138806] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-tilttrivec.parm:Tools/autotest/default_params/quadplane-tilttrivec.parm\n'}
+[12.138850] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane-tri.parm:Tools/autotest/default_params/quadplane-tri.parm\n'}
+[12.138898] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/quadplane.parm:Tools/autotest/default_params/quadplane.parm\n'}
+[12.138942] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/rover-omni3mecanum.parm:Tools/autotest/default_params/rover-omni3mecanum.parm\n'}
+[12.138985] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/rover-skid.parm:Tools/autotest/default_params/rover-skid.parm\n'}
+[12.139029] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/rover-vectored.parm:Tools/autotest/default_params/rover-vectored.parm\n'}
+[12.139073] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/rover.parm:Tools/autotest/default_params/rover.parm\n'}
+[12.139116] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/sailboat-motor.parm:Tools/autotest/default_params/sailboat-motor.parm\n'}
+[12.139297] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/sailboat.parm:Tools/autotest/default_params/sailboat.parm\n'}
+[12.139357] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/stratoblimp.parm:Tools/autotest/default_params/stratoblimp.parm\n'}
+[12.139407] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/sub-6dof.parm:Tools/autotest/default_params/sub-6dof.parm\n'}
+[12.139454] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/sub-gps-for-yaw-nmea.parm:Tools/autotest/default_params/sub-gps-for-yaw-nmea.parm\n'}
+[12.139499] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/sub.parm:Tools/autotest/default_params/sub.parm\n'}
+[12.139544] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file default_params/tracker-gps-for-yaw.parm:Tools/autotest/default_params/tracker-gps-for-yaw.parm\n'}
+[12.139588] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file locations.txt:Tools/autotest/locations.txt\n'}
+[12.139632] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/Callisto.json:Tools/autotest/models/Callisto.json\n'}
+[12.139676] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/Callisto.parm:Tools/autotest/models/Callisto.parm\n'}
+[12.139719] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/freestyle.json:Tools/autotest/models/freestyle.json\n'}
+[12.139845] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/freestyle.parm:Tools/autotest/models/freestyle.parm\n'}
+[12.139898] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/heliquad.json:Tools/autotest/models/heliquad.json\n'}
+[12.139943] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/plane-3d.parm:Tools/autotest/models/plane-3d.parm\n'}
+[12.139987] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/plane.parm:Tools/autotest/models/plane.parm\n'}
+[12.140030] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/skywalker_2013.json:Tools/autotest/models/skywalker_2013.json\n'}
+[12.140075] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/xplane_heli.json:Tools/autotest/models/xplane_heli.json\n'}
+[12.140119] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file models/xplane_plane.json:Tools/autotest/models/xplane_plane.json\n'}
+[12.140163] (ardupilot_sitl) StdoutLine: {'line': b'Embedding file vehicleinfo.json:Tools/autotest/pysim/vehicleinfo.json\n'}
+[12.140207] (ardupilot_sitl) StdoutLine: {'line': b'Building /develop_ws/ardupilot/build/sitl/modules/Micro-XRCE-DDS-Client/include/uxr/client/config.h\n'}
+[12.140250] (ardupilot_sitl) StdoutLine: {'line': b'Building /develop_ws/ardupilot/build/sitl/modules/Micro-CDR/include/ucdr/config.h\n'}
+[12.150906] (ardupilot_sitl) StdoutLine: {'line': b" fatal: detected dubious ownership in repository at '/develop_ws/ardupilot'\n"}
+[12.151057] (ardupilot_sitl) StdoutLine: {'line': b'To add an exception for this directory, call:\n'}
+[12.151114] (ardupilot_sitl) StdoutLine: {'line': b'\n'}
+[12.151164] (ardupilot_sitl) StdoutLine: {'line': b'\tgit config --global --add safe.directory /develop_ws/ardupilot\n'}
+[12.151223] (ardupilot_sitl) StdoutLine: {'line': b'\n'}
+[12.151270] (ardupilot_sitl) StderrLine: {'line': b"\x1b[01;31mCommand ['/usr/bin/git', 'rev-parse', '--short=16', 'HEAD'] returned 128\x1b[0m\n"}
+[12.165093] (-) TimerEvent: {}
+[12.171277] (ardupilot_sitl) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ardupilot_build.dir/build.make:70: CMakeFiles/ardupilot_build] Error 1\n'}
+[12.171614] (ardupilot_sitl) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:168: CMakeFiles/ardupilot_build.dir/all] Error 2\n'}
+[12.171695] (ardupilot_sitl) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[12.174412] (ardupilot_sitl) CommandEnded: {'returncode': 2}
+[12.181002] (ardupilot_sitl) JobEnded: {'identifier': 'ardupilot_sitl', 'rc': 2}
+[12.191925] (ardupilot_dds_tests) JobSkipped: {'identifier': 'ardupilot_dds_tests'}
+[12.195183] (-) EventReactorShutdown: {}

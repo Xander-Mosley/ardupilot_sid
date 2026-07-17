@@ -1,0 +1,168 @@
+Built target ament_cmake_python_copy_ardupilot_sitl
+[32m[0mSetting top to                           :[0m [0m[32m[32m/develop_ws/ardupilot[0m [0m
+[32m[0mSetting out to                           :[0m [0m[32m[32m/develop_ws/ardupilot/build[0m [0m
+[32m[0mAutoconfiguration                        :[0m [0m[32m[32menabled[0m [0m
+[32m[0mChecking for program 'python'            :[0m [0m[32m[32m/usr/bin/python3[0m [0m
+running egg_info
+writing ardupilot_sitl.egg-info/PKG-INFO
+writing dependency_links to ardupilot_sitl.egg-info/dependency_links.txt
+writing top-level names to ardupilot_sitl.egg-info/top_level.txt
+reading manifest file 'ardupilot_sitl.egg-info/SOURCES.txt'
+writing manifest file 'ardupilot_sitl.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_ardupilot_sitl_egg
+[32m[0mChecking for python version >= 3.9.0     :[0m [0m[32m[32m3.10.12[0m [0m
+[32m[0mSetting board to                         :[0m [0m[32m[32msitl[0m [0m
+Processing /develop_ws/ardupilot/libraries/AP_HAL_SITL/hwdef/sitl/hwdef.dat
+Writing hwdef setup in /develop_ws/ardupilot/build/sitl/hwdef.h
+[32m[0mUsing toolchain                          :[0m [0m[32m[32mnative[0m [0m
+[32m[0mChecking for 'g++' (C++ compiler)        :[0m [0m[32m[32m/usr/lib/ccache/g++[0m [0m
+[32m[0mChecking for 'gcc' (C compiler)          :[0m [0m[32m[32m/usr/lib/ccache/gcc[0m [0m
+[32m[0mChecking for c flags '-MMD'              :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for cxx flags '-MMD'            :[0m [0m[32m[32myes[0m [0m
+[32m[0mCXX Compiler                             :[0m [0m[32m[32mg++ 11.4.0[0m [0m
+[32m[0mChecking for need to link with librt     :[0m [0m[32m[32mnot necessary[0m [0m
+[32m[0mChecking for feenableexcept              :[0m [0m[32m[32myes[0m [0m
+[32m[0mEnabling -Werror                         :[0m [0m[32m[32myes[0m [0m
+[32m[0mEnabled OpenDroneID                      :[0m [0m[32m[33mno[0m [0m
+[32m[0mEnabled firmware ID checking             :[0m [0m[32m[33mno[0m [0m
+[32m[0mGPS Debug Logging                        :[0m [0m[32m[33mno[0m [0m
+[32m[0mEnabled DDS                              :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for HAVE_CMATH_ISFINITE         :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for HAVE_CMATH_ISINF            :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for HAVE_CMATH_ISNAN            :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for NEED_CMATH_ISFINITE_STD_NAMESPACE :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for NEED_CMATH_ISINF_STD_NAMESPACE    :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for NEED_CMATH_ISNAN_STD_NAMESPACE    :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for header endian.h                   :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for header byteswap.h                 :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for HAVE_MEMRCHR                      :[0m [0m[32m[32myes[0m [0m
+[32m[0mConfigured VSCode Intellisense:                :[0m [0m[32m[33mno[0m [0m
+[32m[0mDC_DSDL compiler in                            :[0m [0m[32m[32m/develop_ws/ardupilot/modules/DroneCAN/dronecan_dsdlc[0m [0m
+[32m[0mSource is git repository                       :[0m [0m[32m[32myes[0m [0m
+[32m[0mUpdate submodules                              :[0m [0m[32m[32myes[0m [0m
+[32m[0mChecking for program 'git'                     :[0m [0m[32m[32m/usr/bin/git[0m [0m
+[32m[0mLittlefs                                       :[0m [0m[32m[33mdisabled[0m [0m
+[32m[0mChecking for program 'size'                    :[0m [0m[32m[32m/usr/bin/size[0m [0m
+[32m[0mBenchmarks                                     :[0m [0m[32m[33mdisabled[0m [0m
+[32m[0mUnit tests                                     :[0m [0m[32m[32menabled[0m [0m
+[32m[0mScripting                                      :[0m [0m[32m[32mmaybe[0m [0m
+[32m[0mChecking for program 'microxrceddsgen'         :[0m [0m[32m[32m/dds-gen/scripts/microxrceddsgen[0m [0m
+[32m[0mScripting runtime checks                       :[0m [0m[32m[32menabled[0m [0m
+[32m[0mDebug build                                    :[0m [0m[32m[33mdisabled[0m [0m
+[32m[0mCoverage build                                 :[0m [0m[32m[33mdisabled[0m [0m
+[32m[0mConsistent build                               :[0m [0m[32m[33mdisabled[0m [0m
+[32m[0mForce 32-bit build                             :[0m [0m[32m[33mdisabled[0m [0m
+[32m[0mChecking for program 'rsync'                   :[0m [0m[32m[33mnot found[0m [0m
+[32mRemoving target_list file /develop_ws/ardupilot/build/sitl/target_list[0m
+[32m'configure' finished successfully (1.908s)[0m
+Built target ardupilot_configure
+[32mWaf: Entering directory `/develop_ws/ardupilot/build/sitl'[0m
+Embedding file default_params/airsim-quadX.parm:Tools/autotest/default_params/airsim-quadX.parm
+Embedding file default_params/airsim-rover.parm:Tools/autotest/default_params/airsim-rover.parm
+Embedding file default_params/balancebot.parm:Tools/autotest/default_params/balancebot.parm
+Embedding file default_params/blimp-motor.parm:Tools/autotest/default_params/blimp-motor.parm
+Embedding file default_params/blimp.parm:Tools/autotest/default_params/blimp.parm
+Embedding file default_params/copter-X.parm:Tools/autotest/default_params/copter-X.parm
+Embedding file default_params/copter-beacon.parm:Tools/autotest/default_params/copter-beacon.parm
+Embedding file default_params/copter-bfx.parm:Tools/autotest/default_params/copter-bfx.parm
+Embedding file default_params/copter-coax.parm:Tools/autotest/default_params/copter-coax.parm
+Embedding file default_params/copter-cwx.parm:Tools/autotest/default_params/copter-cwx.parm
+Embedding file default_params/copter-deca-cwx.parm:Tools/autotest/default_params/copter-deca-cwx.parm
+Embedding file default_params/copter-deca.parm:Tools/autotest/default_params/copter-deca.parm
+Embedding file default_params/copter-djix.parm:Tools/autotest/default_params/copter-djix.parm
+Embedding file default_params/copter-dodecahexa.parm:Tools/autotest/default_params/copter-dodecahexa.parm
+Embedding file default_params/copter-dotriaconta_octaquad_x.parm:Tools/autotest/default_params/copter-dotriaconta_octaquad_x.parm
+Embedding file default_params/copter-gimbal.parm:Tools/autotest/default_params/copter-gimbal.parm
+Embedding file default_params/copter-gps-for-yaw-nmea.parm:Tools/autotest/default_params/copter-gps-for-yaw-nmea.parm
+Embedding file default_params/copter-gps-for-yaw.parm:Tools/autotest/default_params/copter-gps-for-yaw.parm
+Embedding file default_params/copter-heli-ddfptail.parm:Tools/autotest/default_params/copter-heli-ddfptail.parm
+Embedding file default_params/copter-heli-ddvptail.parm:Tools/autotest/default_params/copter-heli-ddvptail.parm
+Embedding file default_params/copter-heli-dual.parm:Tools/autotest/default_params/copter-heli-dual.parm
+Embedding file default_params/copter-heli-gas.parm:Tools/autotest/default_params/copter-heli-gas.parm
+Embedding file default_params/copter-heli.parm:Tools/autotest/default_params/copter-heli.parm
+Embedding file default_params/copter-heliquad.parm:Tools/autotest/default_params/copter-heliquad.parm
+Embedding file default_params/copter-hexa-cwx.parm:Tools/autotest/default_params/copter-hexa-cwx.parm
+Embedding file default_params/copter-hexa-dji.parm:Tools/autotest/default_params/copter-hexa-dji.parm
+Embedding file default_params/copter-hexa.parm:Tools/autotest/default_params/copter-hexa.parm
+Embedding file default_params/copter-hexadeca_octa.parm:Tools/autotest/default_params/copter-hexadeca_octa.parm
+Embedding file default_params/copter-hexadeca_octa_cwx.parm:Tools/autotest/default_params/copter-hexadeca_octa_cwx.parm
+Embedding file default_params/copter-octa-cwx.parm:Tools/autotest/default_params/copter-octa-cwx.parm
+Embedding file default_params/copter-octa-dji.parm:Tools/autotest/default_params/copter-octa-dji.parm
+Embedding file default_params/copter-octa.parm:Tools/autotest/default_params/copter-octa.parm
+Embedding file default_params/copter-octaquad-cor.parm:Tools/autotest/default_params/copter-octaquad-cor.parm
+Embedding file default_params/copter-octaquad-cw-cor.parm:Tools/autotest/default_params/copter-octaquad-cw-cor.parm
+Embedding file default_params/copter-octaquad-cwx.parm:Tools/autotest/default_params/copter-octaquad-cwx.parm
+Embedding file default_params/copter-octaquad.parm:Tools/autotest/default_params/copter-octaquad.parm
+Embedding file default_params/copter-optflow.parm:Tools/autotest/default_params/copter-optflow.parm
+Embedding file default_params/copter-ppp-periph.parm:Tools/autotest/default_params/copter-ppp-periph.parm
+Embedding file default_params/copter-ppp.parm:Tools/autotest/default_params/copter-ppp.parm
+Embedding file default_params/copter-rangefinder.parm:Tools/autotest/default_params/copter-rangefinder.parm
+Embedding file default_params/copter-single.parm:Tools/autotest/default_params/copter-single.parm
+Embedding file default_params/copter-tri.parm:Tools/autotest/default_params/copter-tri.parm
+Embedding file default_params/copter-vicon.parm:Tools/autotest/default_params/copter-vicon.parm
+Embedding file default_params/copter-winch.parm:Tools/autotest/default_params/copter-winch.parm
+Embedding file default_params/copter-wind-estimates.parm:Tools/autotest/default_params/copter-wind-estimates.parm
+Embedding file default_params/copter-y6.parm:Tools/autotest/default_params/copter-y6.parm
+Embedding file default_params/copter.parm:Tools/autotest/default_params/copter.parm
+Embedding file default_params/firefly.parm:Tools/autotest/default_params/firefly.parm
+Embedding file default_params/gazebo-iris.parm:Tools/autotest/default_params/gazebo-iris.parm
+Embedding file default_params/gazebo-zephyr.parm:Tools/autotest/default_params/gazebo-zephyr.parm
+Embedding file default_params/glider.parm:Tools/autotest/default_params/glider.parm
+Embedding file default_params/motorboat.parm:Tools/autotest/default_params/motorboat.parm
+Embedding file default_params/msposd.parm:Tools/autotest/default_params/msposd.parm
+Embedding file default_params/periph-ppp.parm:Tools/autotest/default_params/periph-ppp.parm
+Embedding file default_params/periph.parm:Tools/autotest/default_params/periph.parm
+Embedding file default_params/plane-dspoilers.parm:Tools/autotest/default_params/plane-dspoilers.parm
+Embedding file default_params/plane-elevons.parm:Tools/autotest/default_params/plane-elevons.parm
+Embedding file default_params/plane-ice.parm:Tools/autotest/default_params/plane-ice.parm
+Embedding file default_params/plane-jet.parm:Tools/autotest/default_params/plane-jet.parm
+Embedding file default_params/plane-jsbsim.parm:Tools/autotest/default_params/plane-jsbsim.parm
+Embedding file default_params/plane-redundant.parm:Tools/autotest/default_params/plane-redundant.parm
+Embedding file default_params/plane-soaring.parm:Tools/autotest/default_params/plane-soaring.parm
+Embedding file default_params/plane-tailsitter.parm:Tools/autotest/default_params/plane-tailsitter.parm
+Embedding file default_params/plane-vtail.parm:Tools/autotest/default_params/plane-vtail.parm
+Embedding file default_params/quad-can.parm:Tools/autotest/default_params/quad-can.parm
+Embedding file default_params/quad-periph.parm:Tools/autotest/default_params/quad-periph.parm
+Embedding file default_params/quadplane-can.parm:Tools/autotest/default_params/quadplane-can.parm
+Embedding file default_params/quadplane-cl84.parm:Tools/autotest/default_params/quadplane-cl84.parm
+Embedding file default_params/quadplane-copter_tailsitter.parm:Tools/autotest/default_params/quadplane-copter_tailsitter.parm
+Embedding file default_params/quadplane-ice.parm:Tools/autotest/default_params/quadplane-ice.parm
+Embedding file default_params/quadplane-periph.parm:Tools/autotest/default_params/quadplane-periph.parm
+Embedding file default_params/quadplane-ppp-periph.parm:Tools/autotest/default_params/quadplane-ppp-periph.parm
+Embedding file default_params/quadplane-ppp.parm:Tools/autotest/default_params/quadplane-ppp.parm
+Embedding file default_params/quadplane-tilt.parm:Tools/autotest/default_params/quadplane-tilt.parm
+Embedding file default_params/quadplane-tilthvec.parm:Tools/autotest/default_params/quadplane-tilthvec.parm
+Embedding file default_params/quadplane-tilttri.parm:Tools/autotest/default_params/quadplane-tilttri.parm
+Embedding file default_params/quadplane-tilttrivec.parm:Tools/autotest/default_params/quadplane-tilttrivec.parm
+Embedding file default_params/quadplane-tri.parm:Tools/autotest/default_params/quadplane-tri.parm
+Embedding file default_params/quadplane.parm:Tools/autotest/default_params/quadplane.parm
+Embedding file default_params/rover-omni3mecanum.parm:Tools/autotest/default_params/rover-omni3mecanum.parm
+Embedding file default_params/rover-skid.parm:Tools/autotest/default_params/rover-skid.parm
+Embedding file default_params/rover-vectored.parm:Tools/autotest/default_params/rover-vectored.parm
+Embedding file default_params/rover.parm:Tools/autotest/default_params/rover.parm
+Embedding file default_params/sailboat-motor.parm:Tools/autotest/default_params/sailboat-motor.parm
+Embedding file default_params/sailboat.parm:Tools/autotest/default_params/sailboat.parm
+Embedding file default_params/stratoblimp.parm:Tools/autotest/default_params/stratoblimp.parm
+Embedding file default_params/sub-6dof.parm:Tools/autotest/default_params/sub-6dof.parm
+Embedding file default_params/sub-gps-for-yaw-nmea.parm:Tools/autotest/default_params/sub-gps-for-yaw-nmea.parm
+Embedding file default_params/sub.parm:Tools/autotest/default_params/sub.parm
+Embedding file default_params/tracker-gps-for-yaw.parm:Tools/autotest/default_params/tracker-gps-for-yaw.parm
+Embedding file locations.txt:Tools/autotest/locations.txt
+Embedding file models/Callisto.json:Tools/autotest/models/Callisto.json
+Embedding file models/Callisto.parm:Tools/autotest/models/Callisto.parm
+Embedding file models/freestyle.json:Tools/autotest/models/freestyle.json
+Embedding file models/freestyle.parm:Tools/autotest/models/freestyle.parm
+Embedding file models/heliquad.json:Tools/autotest/models/heliquad.json
+Embedding file models/plane-3d.parm:Tools/autotest/models/plane-3d.parm
+Embedding file models/plane.parm:Tools/autotest/models/plane.parm
+Embedding file models/skywalker_2013.json:Tools/autotest/models/skywalker_2013.json
+Embedding file models/xplane_heli.json:Tools/autotest/models/xplane_heli.json
+Embedding file models/xplane_plane.json:Tools/autotest/models/xplane_plane.json
+Embedding file vehicleinfo.json:Tools/autotest/pysim/vehicleinfo.json
+Building /develop_ws/ardupilot/build/sitl/modules/Micro-XRCE-DDS-Client/include/uxr/client/config.h
+Building /develop_ws/ardupilot/build/sitl/modules/Micro-CDR/include/ucdr/config.h
+ fatal: detected dubious ownership in repository at '/develop_ws/ardupilot'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /develop_ws/ardupilot
+

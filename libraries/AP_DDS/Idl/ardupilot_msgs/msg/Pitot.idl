@@ -1,0 +1,41 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from ardupilot_msgs/msg/Pitot.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module ardupilot_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Raw pitot tube / airspeed sensor data." "\n"
+      "" "\n"
+      "Units:" "\n"
+      "  differential_pressure : Pa     (Measured pitot-static pressure difference, ΔP)" "\n"
+      "  dynamic_pressure      : Pa     (q = 0.5 * ρ * V²)" "\n"
+      "  calibrated_airspeed   : m/s    (CAS = sqrt(2q / ρ₀))" "\n"
+      "  true_airspeed         : m/s    (TAS = CAS * sqrt(ρ₀ / ρ))" "\n"
+      "  temperature           : °C     (Measured sensor or ambient air temperature)" "\n"
+      "  air_density           : kg/m³  (Local atmospheric air density)" "\n"
+      "" "\n"
+      "Notes:" "\n"
+      "- Values originate from AP_Airspeed before EKF fusion." "\n"
+      "- ρ₀ = 1.225 kg/m³ (ISA sea-level air density)" "\n"
+      "- ρ = local atmospheric air density" "\n"
+      "- q = dynamic pressure")
+    struct Pitot {
+      std_msgs::msg::Header header;
+
+      float differential_pressure;
+
+      float dynamic_pressure;
+
+      float calibrated_airspeed;
+
+      float true_airspeed;
+
+      float temperature;
+
+      float air_density;
+    };
+  };
+};

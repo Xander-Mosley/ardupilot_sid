@@ -1,0 +1,2 @@
+Invoking command in '/develop_ws/src/ros2/build/ardupilot_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /develop_ws/src/ros2/build/ardupilot_msgs -- -j8 -l8
+Invoked command in '/develop_ws/src/ros2/build/ardupilot_msgs' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /develop_ws/src/ros2/build/ardupilot_msgs -- -j8 -l8

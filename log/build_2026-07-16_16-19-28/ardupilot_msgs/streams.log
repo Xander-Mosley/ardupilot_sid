@@ -1,0 +1,43 @@
+[0.061s] Invoking command in '/home/cuav/ros2_trajectory_docker/ardupilot/build/ardupilot_msgs': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com VIRTUAL_ENV_PROMPT=(venv-ardupilot) /snap/bin/cmake /home/cuav/ros2_trajectory_docker/ardupilot/Tools/ros2/ardupilot_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/cuav/ros2_trajectory_docker/ardupilot/install/ardupilot_msgs
+[0.257s] [33mCMake Warning (deprecated) at CMakeLists.txt:1 (cmake_minimum_required):
+[0.257s]   Compatibility with CMake < 3.10 will be removed from a future version of
+[0.257s]   CMake.
+[0.257s] 
+[0.257s]   Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+[0.258s]   to tell CMake that the project requires at least <min> but has been updated
+[0.258s]   to work with policies introduced by <max> or earlier.
+[0.258s] This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+[0.258s] to suppress it.
+[0.258s] [0m
+[0.415s] -- The C compiler identification is GNU 13.3.0
+[0.876s] -- The CXX compiler identification is GNU 13.3.0
+[1.181s] -- Detecting C compiler ABI info
+[1.335s] -- Detecting C compiler ABI info - done
+[1.356s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.356s] -- Detecting C compile features
+[1.357s] -- Detecting C compile features - done
+[1.379s] -- Detecting CXX compiler ABI info
+[1.498s] -- Detecting CXX compiler ABI info - done
+[1.515s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.516s] -- Detecting CXX compile features
+[1.516s] -- Detecting CXX compile features - done
+[2.666s] [31mCMake Error at CMakeLists.txt:7 (find_package):
+[2.666s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[2.666s]   has asked CMake to find a package configuration file provided by
+[2.666s]   "ament_cmake", but CMake did not find one.
+[2.666s] 
+[2.667s]   Could not find a package configuration file provided by "ament_cmake" with
+[2.667s]   any of the following names:
+[2.667s] 
+[2.667s]     ament_cmake.cps
+[2.667s]     ament_cmakeConfig.cmake
+[2.667s]     ament_cmake-config.cmake
+[2.667s] 
+[2.667s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[2.667s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[2.667s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[2.667s]   has been installed.
+[2.667s] 
+[2.668s] [0m
+[2.668s] -- Configuring incomplete, errors occurred!
+[2.672s] Invoked command in '/home/cuav/ros2_trajectory_docker/ardupilot/build/ardupilot_msgs' returned '1': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com VIRTUAL_ENV_PROMPT=(venv-ardupilot) /snap/bin/cmake /home/cuav/ros2_trajectory_docker/ardupilot/Tools/ros2/ardupilot_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/cuav/ros2_trajectory_docker/ardupilot/install/ardupilot_msgs

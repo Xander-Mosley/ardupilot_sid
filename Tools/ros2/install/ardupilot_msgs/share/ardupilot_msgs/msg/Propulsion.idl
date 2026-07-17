@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from ardupilot_msgs/msg/Propulsion.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module ardupilot_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Propulsion system telemetry." "\n"
+      "" "\n"
+      "Units:" "\n"
+      "  rpm         : revolutions/minute" "\n"
+      "  voltage     : V" "\n"
+      "  current     : A" "\n"
+      "  temperature : °C" "\n"
+      "" "\n"
+      "Notes:" "\n"
+      "- Values originate from ESC or propulsion telemetry, AP_ESC_Telem (when available)." "\n"
+      "- Electrical power may be computed as:" "\n"
+      "    power = voltage × current (W)")
+    struct Propulsion {
+      std_msgs::msg::Header header;
+
+      float rpm;
+
+      float voltage;
+
+      float current;
+
+      float temperature;
+    };
+  };
+};

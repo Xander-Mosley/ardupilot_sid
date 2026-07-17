@@ -1,0 +1,6 @@
+[0.013s] Invoking command in '/develop_ws/src/ros2/build/ardupilot_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /develop_ws/src/ros2/build/ardupilot_msgs -- -j8 -l8
+[0.021s] [0mCMake Error: The current CMakeCache.txt directory /develop_ws/src/ros2/build/ardupilot_msgs/CMakeCache.txt is different than the directory /develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
+[0.034s] [0mCMake Error: The source directory "/develop_ws/ardupilot/Tools/ros2/ardupilot_msgs" does not exist.
+[0.034s] Specify --help for usage, or press the help button on the CMake GUI.[0m
+[0.035s] gmake: *** [Makefile:2273: cmake_check_build_system] Error 1
+[0.038s] Invoked command in '/develop_ws/src/ros2/build/ardupilot_msgs' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /develop_ws/src/ros2/build/ardupilot_msgs -- -j8 -l8

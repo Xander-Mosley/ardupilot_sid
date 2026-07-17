@@ -1,0 +1,33 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from ardupilot_msgs/msg/RcOut.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module ardupilot_msgs {
+  module msg {
+    typedef uint16 uint16__16[16];
+    @verbatim (language="comment", text=
+      "PWM values sent by the flight controller to the aircraft servos." "\n"
+      "" "\n"
+      "Units:" "\n"
+      "  values : µs (PWM pulse width)" "\n"
+      "" "\n"
+      "Notes:" "\n"
+      "- SRV_Channel output PWM values." "\n"
+      "- Bit i of valid_mask corresponds to values[i]." "\n"
+      "- A set bit indicates the corresponding PWM value is valid." "\n"
+      "- Clear bits indicate the corresponding array element should be ignored." "\n"
+      "- Example:" "\n"
+      "    valid_mask = 0x000F" "\n"
+      "    -> values[0]..values[3] are valid" "\n"
+      "    -> values[4]..values[15] should be ignored")
+    struct RcOut {
+      std_msgs::msg::Header header;
+
+      uint16 valid_mask;
+
+      uint16__16 values;
+    };
+  };
+};

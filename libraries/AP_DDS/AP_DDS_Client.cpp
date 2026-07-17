@@ -40,6 +40,9 @@
 #if AP_DDS_RC_PUB_ENABLED
 #include "AP_RSSI/AP_RSSI.h"
 #endif // AP_DDS_RC_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+#include <SRV_Channel/SRV_Channel.h>
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 
 #if AP_EXTERNAL_CONTROL_ENABLED
 #include "AP_DDS_ExternalControl.h"
@@ -76,6 +79,9 @@ static constexpr uint16_t DELAY_AIRSPEED_TOPIC_MS = AP_DDS_DELAY_AIRSPEED_TOPIC_
 #if AP_DDS_RC_PUB_ENABLED
 static constexpr uint16_t DELAY_RC_TOPIC_MS = AP_DDS_DELAY_RC_TOPIC_MS;
 #endif // AP_DDS_RC_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+static constexpr uint16_t DELAY_RCOUT_TOPIC_MS = AP_DDS_DELAY_RCOUT_TOPIC_MS;
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_GEOPOSE_PUB_ENABLED
 static constexpr uint16_t DELAY_GEO_POSE_TOPIC_MS = AP_DDS_DELAY_GEO_POSE_TOPIC_MS;
 #endif // AP_DDS_GEOPOSE_PUB_ENABLED
@@ -589,6 +595,29 @@ bool AP_DDS_Client::update_topic(ardupilot_msgs_msg_Rc& msg)
     return msg.is_connected ? true : (counter++ % 10 == 0);
 }
 #endif // AP_DDS_RC_PUB_ENABLED
+
+#if AP_DDS_RCOUT_PUB_ENABLED
+bool AP_DDS_Client::update_topic(ardupilot_msgs_msg_RcOut& msg)
+{
+    update_topic(msg.header.stamp);
+    // Clear previous data.
+    msg.valid_mask = 0;
+
+    for (uint8_t i = 0; i < 16; i++) {
+        uint16_t values = 0;
+        if (SRV_Channels::get_output_pwm_chan(i, values)) {
+            msg.values[i] = values;
+            // Mark this output as valid.
+            msg.valid_mask |= (1U << i);
+        } else {
+            // Ensure unused outputs are deterministic.
+            msg.values[i] = 0;
+        }
+    }
+
+    return true;
+}
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 
 #if AP_DDS_GEOPOSE_PUB_ENABLED
 void AP_DDS_Client::update_topic(geographic_msgs_msg_GeoPoseStamped& msg)
@@ -1767,6 +1796,22 @@ void AP_DDS_Client::write_tx_local_rc_topic()
     }
 }
 #endif // AP_DDS_RC_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+void AP_DDS_Client::write_tx_local_rcout_topic()
+{
+    WITH_SEMAPHORE(csem);
+    if (connected) {
+        ucdrBuffer ub {};
+        const uint32_t topic_size = ardupilot_msgs_msg_RcOut_size_of_topic(&tx_local_rcout_topic, 0);
+        uxr_prepare_output_stream(&session, reliable_out, topics[to_underlying(TopicIndex::LOCAL_RCOUT_PUB)].dw_id, &ub, topic_size);
+        const bool success = ardupilot_msgs_msg_RcOut_serialize_topic(&ub, &tx_local_rcout_topic);
+        if (!success) {
+            // TODO sometimes serialization fails on bootup. Determine why.
+            // AP_HAL::panic("FATAL: DDS_Client failed to serialize\n");
+        }
+    }
+}
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_IMU_PUB_ENABLED
 void AP_DDS_Client::write_imu_topic()
 {
@@ -1927,6 +1972,14 @@ void AP_DDS_Client::update()
         }
     }
 #endif // AP_DDS_RC_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+    if (cur_time_ms - last_rcout_time_ms > DELAY_RCOUT_TOPIC_MS) {
+        last_rcout_time_ms = cur_time_ms;
+        if (update_topic(tx_local_rcout_topic)) {
+            write_tx_local_rcout_topic();
+        }
+    }
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_IMU_PUB_ENABLED
     if (cur_time_ms - last_imu_time_ms > DELAY_IMU_TOPIC_MS) {
         update_topic(imu_topic);
