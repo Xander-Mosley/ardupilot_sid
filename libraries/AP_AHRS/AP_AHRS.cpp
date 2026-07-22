@@ -363,12 +363,13 @@ void AP_AHRS::init()
     }
 #endif
 
-    last_active_ekf_type = (EKFType)_ekf_type.get();
-
     // we may have updated ekf_type()'s results, so set the backend again:
     update_configured_ekf_type();
     update_active_EKF_type();
     update_secondary_backend_pointers();
+
+    // initialise this as no-change from the active type:
+    last_active_ekf_type = state.active_EKF_type;
 
 #if AP_CUSTOMROTATIONS_ENABLED
     // convert to new custom rotation
@@ -557,6 +558,28 @@ void AP_AHRS::try_set_common_origin(const AP_AHRS_Backend &source_backend, const
     done_common_origin = true;
 }
 
+// method responsible for updating the reset counters in the AHRS.
+// These can get bumped if we change backends or the count in the
+// current backend changes.
+void AP_AHRS::update_reset_counters()
+{
+    if (state.active_EKF_type != last_active_ekf_type) {
+        attitude_reset_tracker.fill(active_estimates->attitude_reset_count);
+        yaw_reset_tracker.fill(active_estimates->yaw_reset_count);
+        position_NE_reset_tracker.fill(active_estimates->position_NE_reset_count);
+        position_D_reset_tracker.fill(active_estimates->position_D_reset_count);
+        LOGGER_WRITE_EVENT(LogEvent::EKF_YAW_RESET);
+        return;
+    }
+
+    attitude_reset_tracker.update(active_estimates->attitude_reset_count);
+    if (yaw_reset_tracker.update(active_estimates->yaw_reset_count)) {
+        LOGGER_WRITE_EVENT(LogEvent::EKF_YAW_RESET);
+    }
+    position_NE_reset_tracker.update(active_estimates->position_NE_reset_count);
+    position_D_reset_tracker.update(active_estimates->position_D_reset_count);
+}
+
 // update run at loop rate
 void AP_AHRS::update(bool skip_ins_update)
 {
@@ -619,22 +642,15 @@ void AP_AHRS::update(bool skip_ins_update)
     // update blinking lights, buzzer etc bsaed on active EKF type:
     update_notify_from_filter_status(active_estimates->filter_status);
 
-    bool attitude_was_reset = false;
+    // update result reset counters.  Note that this *must* be called
+    // before assignment of state.active_EKF_type to
+    // last_active_ekf_type as it uses the difference between these
+    // two values to determine what sort of reset to do
+    update_reset_counters();
+
     if (state.active_EKF_type != last_active_ekf_type) {
         last_active_ekf_type = state.active_EKF_type;
         GCS_SEND_TEXT(MAV_SEVERITY_INFO, "AHRS: %s active", active_backend->shortname());
-        last_active_estimates_attitude_reset_count = active_estimates->attitude_reset_count;
-        attitude_was_reset = true;
-    } else {
-        // estimator has not changed - but perhaps the estimator's
-        // output might have reset:
-        if (active_estimates->attitude_reset_count != last_active_estimates_attitude_reset_count) {
-            last_active_estimates_attitude_reset_count = active_estimates->attitude_reset_count;
-            attitude_was_reset = true;
-        }
-    }
-    if (attitude_was_reset) {
-        state.attitude_reset_count++;
     }
 
     // update published state, including copying state from the active backend:
