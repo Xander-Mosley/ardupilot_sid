@@ -41,9 +41,18 @@ enum class TopicIndex: uint8_t {
 #if AP_DDS_AIRSPEED_PUB_ENABLED
     LOCAL_AIRSPEED_PUB,
 #endif // AP_DDS_AIRSPEED_PUB_ENABLED
+#if AP_DDS_PITOT_PUB_ENABLED
+    LOCAL_PITOT_PUB,
+#endif // AP_DDS_PITOT_PUB_ENABLED
+#if AP_DDS_PROPULSION_PUB_ENABLED
+    LOCAL_PROPULSION_PUB,
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
 #if AP_DDS_RC_PUB_ENABLED
     LOCAL_RC_PUB,
 #endif // AP_DDS_RC_PUB_ENABLED
+#if AP_DDS_RCIN_PUB_ENABLED
+    LOCAL_RCIN_PUB,
+#endif // AP_DDS_RCIN_PUB_ENABLED
 #if AP_DDS_RCOUT_PUB_ENABLED
     LOCAL_RCOUT_PUB,
 #endif // AP_DDS_RCOUT_PUB_ENABLED
@@ -231,6 +240,42 @@ constexpr struct AP_DDS_Client::Topic_table AP_DDS_Client::topics[] = {
         },
     },
 #endif // AP_DDS_AIRSPEED_PUB_ENABLED
+#if AP_DDS_PITOT_PUB_ENABLED
+    {
+        .topic_id = to_underlying(TopicIndex::LOCAL_PITOT_PUB),
+        .pub_id = to_underlying(TopicIndex::LOCAL_PITOT_PUB),
+        .sub_id = to_underlying(TopicIndex::LOCAL_PITOT_PUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::LOCAL_PITOT_PUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::LOCAL_PITOT_PUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataWriter,
+        .topic_name = "pitot",
+        .type_name = "ardupilot_msgs::msg::dds_::Pitot_",
+        .qos = {
+            .durability = UXR_DURABILITY_VOLATILE,
+            .reliability = UXR_RELIABILITY_BEST_EFFORT,
+            .history = UXR_HISTORY_KEEP_LAST,
+            .depth = 5,
+        },
+    },
+#endif // AP_DDS_PITOT_PUB_ENABLED
+#if AP_DDS_PROPULSION_PUB_ENABLED
+    {
+        .topic_id = to_underlying(TopicIndex::LOCAL_PROPULSION_PUB),
+        .pub_id = to_underlying(TopicIndex::LOCAL_PROPULSION_PUB),
+        .sub_id = to_underlying(TopicIndex::LOCAL_PROPULSION_PUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::LOCAL_PROPULSION_PUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::LOCAL_PROPULSION_PUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataWriter,
+        .topic_name = "propulsion",
+        .type_name = "ardupilot_msgs::msg::dds_::Propulsion_",
+        .qos = {
+            .durability = UXR_DURABILITY_VOLATILE,
+            .reliability = UXR_RELIABILITY_BEST_EFFORT,
+            .history = UXR_HISTORY_KEEP_LAST,
+            .depth = 5,
+        },
+    },
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
 #if AP_DDS_RC_PUB_ENABLED
     {
         .topic_id = to_underlying(TopicIndex::LOCAL_RC_PUB),
@@ -249,6 +294,24 @@ constexpr struct AP_DDS_Client::Topic_table AP_DDS_Client::topics[] = {
         },
     },
 #endif // AP_DDS_RC_PUB_ENABLED
+#if AP_DDS_RCIN_PUB_ENABLED
+    {
+        .topic_id = to_underlying(TopicIndex::LOCAL_RCIN_PUB),
+        .pub_id = to_underlying(TopicIndex::LOCAL_RCIN_PUB),
+        .sub_id = to_underlying(TopicIndex::LOCAL_RCIN_PUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::LOCAL_RCIN_PUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::LOCAL_RCIN_PUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataWriter,
+        .topic_name = "rcin",
+        .type_name = "ardupilot_msgs::msg::dds_::RcIn_",
+        .qos = {
+            .durability = UXR_DURABILITY_VOLATILE,
+            .reliability = UXR_RELIABILITY_BEST_EFFORT,
+            .history = UXR_HISTORY_KEEP_LAST,
+            .depth = 1,
+        },
+    },
+#endif // AP_DDS_RCIN_PUB_ENABLED
 #if AP_DDS_RCOUT_PUB_ENABLED
     {
         .topic_id = to_underlying(TopicIndex::LOCAL_RCOUT_PUB),

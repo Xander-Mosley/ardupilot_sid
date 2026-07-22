@@ -631,7 +631,7 @@ impl rosidl_runtime_rs::Message for RcIn {
 ///   air_density           : kg/m³  (Local atmospheric air density)
 ///
 /// Notes:
-/// - Values originate from AP_Airspeed before EKF fusion.
+/// - Values originate from AP_Airspeed and AP_Baro before EKF fusion.
 /// - ρ₀ = 1.225 kg/m³ (ISA sea-level air density)
 /// - ρ = local atmospheric air density
 /// - q = dynamic pressure

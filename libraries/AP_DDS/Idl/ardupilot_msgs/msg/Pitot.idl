@@ -18,7 +18,7 @@ module ardupilot_msgs {
       "  air_density           : kg/m³  (Local atmospheric air density)" "\n"
       "" "\n"
       "Notes:" "\n"
-      "- Values originate from AP_Airspeed before EKF fusion." "\n"
+      "- Values originate from AP_Airspeed and AP_Baro before EKF fusion." "\n"
       "- ρ₀ = 1.225 kg/m³ (ISA sea-level air density)" "\n"
       "- ρ = local atmospheric air density" "\n"
       "- q = dynamic pressure")

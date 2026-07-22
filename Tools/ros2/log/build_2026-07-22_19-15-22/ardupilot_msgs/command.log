@@ -1,0 +1,4 @@
+Invoking command in '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs -- -j8 -l8
+Invoked command in '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs -- -j8 -l8
+Invoking command in '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs
+Invoked command in '/develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /develop_ws/ardupilot/Tools/ros2/build/ardupilot_msgs
