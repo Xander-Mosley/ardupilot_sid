@@ -31,6 +31,19 @@
 #if AP_DDS_VTOL_TAKEOFF_SERVER_ENABLED
 #include "ardupilot_msgs/srv/Takeoff.h"
 #endif // AP_DDS_VTOL_TAKEOFF_SERVER_ENABLED
+#if AP_DDS_PITOT_PUB_ENABLED
+#include <AP_Airspeed/AP_Airspeed.h>
+#include <AP_Baro/AP_Baro.h>
+#endif // AP_DDS_PITOT_PUB_ENABLED
+#if AP_DDS_PROPULSION_PUB_ENABLED
+#include <AP_ESC_Telem/AP_ESC_Telem.h>
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
+#if AP_DDS_RCIN_PUB_ENABLED
+#include <RC_Channel/RC_Channel.h>
+#endif // AP_DDS_RCIN_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+#include <SRV_Channel/SRV_Channel.h>
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 
 #if AP_EXTERNAL_CONTROL_ENABLED
 #include "AP_DDS_ExternalControl.h"
@@ -64,6 +77,18 @@ static constexpr uint16_t DELAY_LOCAL_VELOCITY_TOPIC_MS = AP_DDS_DELAY_LOCAL_VEL
 #if AP_DDS_AIRSPEED_PUB_ENABLED
 static constexpr uint16_t DELAY_AIRSPEED_TOPIC_MS = AP_DDS_DELAY_AIRSPEED_TOPIC_MS;
 #endif // AP_DDS_AIRSPEED_PUB_ENABLED
+#if AP_DDS_PITOT_PUB_ENABLED
+static constexpr uint16_t DELAY_PITOT_TOPIC_MS = AP_DDS_DELAY_PITOT_TOPIC_MS;
+#endif // AP_DDS_PITOT_PUB_ENABLED
+#if AP_DDS_PROPULSION_PUB_ENABLED
+static constexpr uint16_t DELAY_PROPULSION_TOPIC_MS = AP_DDS_DELAY_PROPULSION_TOPIC_MS;
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
+#if AP_DDS_RCIN_PUB_ENABLED
+static constexpr uint16_t DELAY_RCIN_TOPIC_MS = AP_DDS_DELAY_RCIN_TOPIC_MS;
+#endif // AP_DDS_RCIN_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+static constexpr uint16_t DELAY_RCOUT_TOPIC_MS = AP_DDS_DELAY_RCOUT_TOPIC_MS;
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_GEOPOSE_PUB_ENABLED
 static constexpr uint16_t DELAY_GEO_POSE_TOPIC_MS = AP_DDS_DELAY_GEO_POSE_TOPIC_MS;
 #endif // AP_DDS_GEOPOSE_PUB_ENABLED
@@ -515,6 +540,111 @@ bool AP_DDS_Client::update_topic(geometry_msgs_msg_Vector3Stamped& msg)
 }
 #endif // AP_DDS_AIRSPEED_PUB_ENABLED
 
+#if AP_DDS_PITOT_PUB_ENABLED
+bool AP_DDS_Client::update_topic(ardupilot_msgs_msg_Pitot& msg)
+{
+    update_topic(msg.header.stamp);
+    auto *airspeed = AP_Airspeed::get_singleton();
+    auto *baro = AP_Baro::get_singleton();
+
+    if (airspeed == nullptr || baro == nullptr) {
+        return false;
+    }
+
+    msg.differential_pressure = airspeed->get_differential_pressure();
+    msg.dynamic_pressure = airspeed->get_corrected_pressure();
+
+    msg.temperature = baro->get_temperature();
+    constexpr float R = 287.05f;
+    float pressure = baro->get_pressure();
+    float temperatureK = baro->get_temperature() + 273.15f;
+    msg.air_density = pressure / (R * temperatureK);
+
+    msg.calibrated_airspeed = airspeed->get_raw_airspeed();
+    constexpr float rho0 = 1.225f;
+    msg.true_airspeed = sqrtf(rho0 / msg.air_density) * msg.calibrated_airspeed;
+
+    return true;
+}
+#endif // AP_DDS_PITOT_PUB_ENABLED
+
+#if AP_DDS_PROPULSION_PUB_ENABLED
+bool AP_DDS_Client::update_topic(ardupilot_msgs_msg_Propulsion& msg)
+{
+    update_topic(msg.header.stamp);
+    AP_ESC_Telem& esc_telem = AP::esc_telem();
+    // Clear previous message contents.
+    msg.rpm = 0;
+    msg.voltage = 0;
+    msg.current = 0;
+    msg.temperature = 0;
+
+    constexpr uint8_t esc_index = 0;
+
+    float rpm = 0;
+    float voltage = 0;
+    float current = 0;
+    int16_t temperature = 0;
+
+    esc_telem.get_rpm(esc_index, rpm);
+    esc_telem.get_voltage(esc_index, voltage);
+    esc_telem.get_current(esc_index, current);
+    esc_telem.get_temperature(esc_index, temperature);
+
+    msg.rpm = rpm;
+    msg.voltage = voltage;
+    msg.current = current;
+    msg.temperature = temperature;
+
+    return true;
+}
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
+
+#if AP_DDS_RCIN_PUB_ENABLED
+bool AP_DDS_Client::update_topic(ardupilot_msgs_msg_RcIn& msg)
+{
+    update_topic(msg.header.stamp);
+    auto rc = RC_Channels::get_singleton();
+    // Clear previous message contents.
+    msg.valid_mask = 0;
+    memset(msg.values, 0, sizeof(msg.values));
+
+    if (rc == nullptr) {
+        return false;
+    }
+
+    const uint8_t count = MIN(static_cast<uint8_t>(rc->get_valid_channel_count()),
+                            static_cast<uint8_t>(16));
+    for (uint8_t i = 0; i < count; i++) {
+        msg.values[i] = rc->channel(i)->get_radio_in();
+        msg.valid_mask |= (1U << i);
+    }
+
+    return true;
+}
+#endif // AP_DDS_RCIN_PUB_ENABLED
+
+#if AP_DDS_RCOUT_PUB_ENABLED
+bool AP_DDS_Client::update_topic(ardupilot_msgs_msg_RcOut& msg)
+{
+    update_topic(msg.header.stamp);
+    // Clear previous message contents.
+    msg.valid_mask = 0;
+    memset(msg.values, 0, sizeof(msg.values));
+
+    for (uint8_t i = 0; i < 16; i++) {
+        uint16_t values = 0;
+        if (SRV_Channels::get_output_pwm_chan(i, values)) {
+            msg.values[i] = values;
+            // Mark this output as valid.
+            msg.valid_mask |= (1U << i);
+        }
+    }
+
+    return true;
+}
+#endif // AP_DDS_RCOUT_PUB_ENABLED
+
 #if AP_DDS_GEOPOSE_PUB_ENABLED
 void AP_DDS_Client::update_topic(geographic_msgs_msg_GeoPoseStamped& msg)
 {
@@ -910,13 +1040,13 @@ void AP_DDS_Client::on_request(uxrSession* uxr_session, uxrObjectId object_id, u
             bool param_isinf = true;
             float param_value;
             switch (param.value.type) {
-            case PARAMETER_INTEGER: {
+            case ParameterType::PARAMETER_INTEGER: {
                 param_isnan = isnan(param.value.integer_value);
                 param_isinf = isinf(param.value.integer_value);
                 param_value = float(param.value.integer_value);
                 break;
             }
-            case PARAMETER_DOUBLE: {
+            case ParameterType::PARAMETER_DOUBLE: {
                 param_isnan = isnan(param.value.double_value);
                 param_isinf = isinf(param.value.double_value);
                 param_value = float(param.value.double_value);
@@ -1009,38 +1139,38 @@ void AP_DDS_Client::on_request(uxrSession* uxr_session, uxrObjectId object_id, u
 
             vp = AP_Param::find(param_key, &var_type);
             if (vp == nullptr) {
-                get_parameters_response.values[i].type = PARAMETER_NOT_SET;
+                get_parameters_response.values[i].type = ParameterType::PARAMETER_NOT_SET;
                 successful_read &= false;
                 continue;
             }
 
             switch (var_type) {
             case AP_PARAM_INT8: {
-                get_parameters_response.values[i].type = PARAMETER_INTEGER;
+                get_parameters_response.values[i].type = ParameterType::PARAMETER_INTEGER;
                 get_parameters_response.values[i].integer_value = ((AP_Int8 *)vp)->get();
                 successful_read &= true;
                 break;
             }
             case AP_PARAM_INT16: {
-                get_parameters_response.values[i].type = PARAMETER_INTEGER;
+                get_parameters_response.values[i].type = ParameterType::PARAMETER_INTEGER;
                 get_parameters_response.values[i].integer_value = ((AP_Int16 *)vp)->get();
                 successful_read &= true;
                 break;
             }
             case AP_PARAM_INT32: {
-                get_parameters_response.values[i].type = PARAMETER_INTEGER;
+                get_parameters_response.values[i].type = ParameterType::PARAMETER_INTEGER;
                 get_parameters_response.values[i].integer_value = ((AP_Int32 *)vp)->get();
                 successful_read &= true;
                 break;
             }
             case AP_PARAM_FLOAT: {
-                get_parameters_response.values[i].type = PARAMETER_DOUBLE;
+                get_parameters_response.values[i].type = ParameterType::PARAMETER_DOUBLE;
                 get_parameters_response.values[i].double_value = vp->cast_to_float(var_type);
                 successful_read &= true;
                 break;
             }
             default: {
-                get_parameters_response.values[i].type = PARAMETER_NOT_SET;
+                get_parameters_response.values[i].type = ParameterType::PARAMETER_NOT_SET;
                 successful_read &= false;
                 break;
             }
@@ -1465,6 +1595,70 @@ void AP_DDS_Client::write_tx_local_airspeed_topic()
     }
 }
 #endif // AP_DDS_AIRSPEED_PUB_ENABLED
+#if AP_DDS_PITOT_PUB_ENABLED
+void AP_DDS_Client::write_tx_local_pitot_topic()
+{
+    WITH_SEMAPHORE(csem);
+    if (connected) {
+        ucdrBuffer ub {};
+        const uint32_t topic_size = ardupilot_msgs_msg_Pitot_size_of_topic(&tx_local_pitot_topic, 0);
+        uxr_prepare_output_stream(&session, reliable_out, topics[to_underlying(TopicIndex::LOCAL_PITOT_PUB)].dw_id, &ub, topic_size);
+        const bool success = ardupilot_msgs_msg_Pitot_serialize_topic(&ub, &tx_local_pitot_topic);
+        if (!success) {
+            // TODO sometimes serialization fails on bootup. Determine why.
+            // AP_HAL::panic("FATAL: DDS_Client failed to serialize");
+        }
+    }
+}
+#endif // AP_DDS_PITOT_PUB_ENABLED
+#if AP_DDS_PROPULSION_PUB_ENABLED
+void AP_DDS_Client::write_tx_local_propulsion_topic()
+{
+    WITH_SEMAPHORE(csem);
+    if (connected) {
+        ucdrBuffer ub {};
+        const uint32_t topic_size = ardupilot_msgs_msg_Propulsion_size_of_topic(&tx_local_propulsion_topic, 0);
+        uxr_prepare_output_stream(&session, reliable_out, topics[to_underlying(TopicIndex::LOCAL_PROPULSION_PUB)].dw_id, &ub, topic_size);
+        const bool success = ardupilot_msgs_msg_Propulsion_serialize_topic(&ub, &tx_local_propulsion_topic);
+        if (!success) {
+            // TODO sometimes serialization fails on bootup. Determine why.
+            // AP_HAL::panic("FATAL: DDS_Client failed to serialize");
+        }
+    }
+}
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
+#if AP_DDS_RCIN_PUB_ENABLED
+void AP_DDS_Client::write_tx_local_rcin_topic()
+{
+    WITH_SEMAPHORE(csem);
+    if (connected) {
+        ucdrBuffer ub {};
+        const uint32_t topic_size = ardupilot_msgs_msg_RcIn_size_of_topic(&tx_local_rcin_topic, 0);
+        uxr_prepare_output_stream(&session, reliable_out, topics[to_underlying(TopicIndex::LOCAL_RCIN_PUB)].dw_id, &ub, topic_size);
+        const bool success = ardupilot_msgs_msg_RcIn_serialize_topic(&ub, &tx_local_rcin_topic);
+        if (!success) {
+            // TODO sometimes serialization fails on bootup. Determine why.
+            // AP_HAL::panic("FATAL: DDS_Client failed to serialize\n");
+        }
+    }
+}
+#endif // AP_DDS_RCIN_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+void AP_DDS_Client::write_tx_local_rcout_topic()
+{
+    WITH_SEMAPHORE(csem);
+    if (connected) {
+        ucdrBuffer ub {};
+        const uint32_t topic_size = ardupilot_msgs_msg_RcOut_size_of_topic(&tx_local_rcout_topic, 0);
+        uxr_prepare_output_stream(&session, reliable_out, topics[to_underlying(TopicIndex::LOCAL_RCOUT_PUB)].dw_id, &ub, topic_size);
+        const bool success = ardupilot_msgs_msg_RcOut_serialize_topic(&ub, &tx_local_rcout_topic);
+        if (!success) {
+            // TODO sometimes serialization fails on bootup. Determine why.
+            // AP_HAL::panic("FATAL: DDS_Client failed to serialize\n");
+        }
+    }
+}
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_IMU_PUB_ENABLED
 void AP_DDS_Client::write_imu_topic()
 {
@@ -1583,6 +1777,38 @@ void AP_DDS_Client::update()
         }
     }
 #endif // AP_DDS_AIRSPEED_PUB_ENABLED
+#if AP_DDS_PITOT_PUB_ENABLED
+    if (cur_time_ms - last_pitot_time_ms > DELAY_PITOT_TOPIC_MS) {
+        last_pitot_time_ms = cur_time_ms;
+        if (update_topic(tx_local_pitot_topic)) {
+            write_tx_local_pitot_topic();
+        }
+    }
+#endif // AP_DDS_PITOT_PUB_ENABLED
+#if AP_DDS_PROPULSION_PUB_ENABLED
+    if (cur_time_ms - last_propulsion_time_ms > DELAY_PROPULSION_TOPIC_MS) {
+        last_propulsion_time_ms = cur_time_ms;
+        if (update_topic(tx_local_propulsion_topic)) {
+            write_tx_local_propulsion_topic();
+        }
+    }
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
+#if AP_DDS_RCIN_PUB_ENABLED
+    if (cur_time_ms - last_rcin_time_ms > DELAY_RCIN_TOPIC_MS) {
+        last_rcin_time_ms = cur_time_ms;
+        if (update_topic(tx_local_rcin_topic)) {
+            write_tx_local_rcin_topic();
+        }
+    }
+#endif // AP_DDS_RCIN_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+    if (cur_time_ms - last_rcout_time_ms > DELAY_RCOUT_TOPIC_MS) {
+        last_rcout_time_ms = cur_time_ms;
+        if (update_topic(tx_local_rcout_topic)) {
+            write_tx_local_rcout_topic();
+        }
+    }
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_IMU_PUB_ENABLED
     if (cur_time_ms - last_imu_time_ms > DELAY_IMU_TOPIC_MS) {
         update_topic(imu_topic);

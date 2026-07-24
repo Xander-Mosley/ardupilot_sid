@@ -40,6 +40,18 @@
 #if AP_DDS_AIRSPEED_PUB_ENABLED
 #include "geometry_msgs/msg/Vector3Stamped.h"
 #endif // AP_DDS_AIRSPEED_PUB_ENABLED
+#if AP_DDS_PITOT_PUB_ENABLED
+#include "ardupilot_msgs/msg/Pitot.h"
+#endif // AP_DDS_PITOT_PUB_ENABLED
+#if AP_DDS_PROPULSION_PUB_ENABLED
+#include "ardupilot_msgs/msg/Propulsion.h"
+#endif // AP_DDS_PROPULSION_PUB_ENABLED
+#if AP_DDS_RCIN_PUB_ENABLED
+#include "ardupilot_msgs/msg/RcIn.h"
+#endif // AP_DDS_RCIN_PUB_ENABLED
+#if AP_DDS_RCOUT_PUB_ENABLED
+#include "ardupilot_msgs/msg/RcOut.h"
+#endif // AP_DDS_RCOUT_PUB_ENABLED
 #if AP_DDS_GEOPOSE_PUB_ENABLED
 #include "geographic_msgs/msg/GeoPoseStamped.h"
 #endif // AP_DDS_GEOPOSE_PUB_ENABLED
@@ -146,6 +158,42 @@ private:
     void write_tx_local_airspeed_topic();
     static bool update_topic(geometry_msgs_msg_Vector3Stamped& msg);
 #endif //AP_DDS_AIRSPEED_PUB_ENABLED
+
+#if AP_DDS_PITOT_PUB_ENABLED
+    ardupilot_msgs_msg_Pitot tx_local_pitot_topic;
+    // The last ms timestamp AP_DDS wrote a pitot message
+    uint64_t last_pitot_time_ms;
+    //! @brief Serialize the current local pitot and publish to the IO stream(s)
+    void write_tx_local_pitot_topic();
+    static bool update_topic(ardupilot_msgs_msg_Pitot& msg);
+#endif //AP_DDS_PITOT_PUB_ENABLED
+
+#if AP_DDS_PROPULSION_PUB_ENABLED
+    ardupilot_msgs_msg_Propulsion tx_local_propulsion_topic;
+    // The last ms timestamp AP_DDS wrote a propulsion message
+    uint64_t last_propulsion_time_ms;
+    //! @brief Serialize the current local propulsion and publish to the IO stream(s)
+    void write_tx_local_propulsion_topic();
+    static bool update_topic(ardupilot_msgs_msg_Propulsion& msg);
+#endif //AP_DDS_PROPULSION_PUB_ENABLED
+
+#if AP_DDS_RCIN_PUB_ENABLED
+    ardupilot_msgs_msg_RcIn tx_local_rcin_topic;
+    // The last ms timestamp AP_DDS wrote a rcin message
+    uint64_t last_rcin_time_ms;
+    //! @brief Serialize the current local rcin and publish to the IO stream(s)
+    void write_tx_local_rcin_topic();
+    static bool update_topic(ardupilot_msgs_msg_RcIn& msg);
+#endif //AP_DDS_RCIN_PUB_ENABLED
+
+#if AP_DDS_RCOUT_PUB_ENABLED
+    ardupilot_msgs_msg_RcOut tx_local_rcout_topic;
+    // The last ms timestamp AP_DDS wrote a rcout message
+    uint64_t last_rcout_time_ms;
+    //! @brief Serialize the current local rcout and publish to the IO stream(s)
+    void write_tx_local_rcout_topic();
+    static bool update_topic(ardupilot_msgs_msg_RcOut& msg);
+#endif //AP_DDS_RCOUT_PUB_ENABLED
 
 #if AP_DDS_BATTERY_STATE_PUB_ENABLED
     sensor_msgs_msg_BatteryState battery_state_topic;
