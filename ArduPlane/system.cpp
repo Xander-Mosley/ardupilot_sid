@@ -71,8 +71,10 @@ void Plane::init_ardupilot()
 #endif
 
     // GPS Initialization
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "BOOT DEBUG: before GPS");
     gps.set_log_gps_bit(MASK_LOG_GPS);
     gps.init();
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "BOOT DEBUG: after GPS");
 
     init_rc_in();               // sets up rc channels from radio
 
@@ -120,7 +122,9 @@ void Plane::init_ardupilot()
     //INS ground start
     //------------------------
     //
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "BOOT DEBUG: before startup_INS");
     startup_INS();
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "BOOT DEBUG: after startup_INS");
 
     // Save the settings for in-air restart
     // ------------------------------------
@@ -175,6 +179,7 @@ void Plane::init_ardupilot()
     g2.ice_control.init();
 #endif
 
+GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "BOOT DEBUG: Plane init_ardupilot complete");
 }
 
 #if AP_FENCE_ENABLED

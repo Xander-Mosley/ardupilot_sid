@@ -1207,6 +1207,19 @@ void AP_DDS_Client::on_request(uxrSession* uxr_session, uxrObjectId object_id, u
 void AP_DDS_Client::main_loop(void)
 {
     GCS_SEND_TEXT(MAV_SEVERITY_INFO, "%s initializing...", msg_prefix);
+
+    // Allow other peripherals to initialize first.
+    constexpr uint16_t DDS_STARTUP_DELAY_MS = 60000;
+    GCS_SEND_TEXT(
+        MAV_SEVERITY_NOTICE,
+        "%s waiting %u seconds before transport initialization",
+        msg_prefix,
+        DDS_STARTUP_DELAY_MS / 1000
+    );
+    hal.scheduler->delay(DDS_STARTUP_DELAY_MS);
+    hal.scheduler->delay(DDS_STARTUP_DELAY_MS);
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "%s startup delay complete", msg_prefix);
+
     if (!init_transport()) {
         return;
     }
@@ -1219,6 +1232,7 @@ void AP_DDS_Client::main_loop(void)
         }
 
         // check ping
+        GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: before ping", msg_prefix);
         if (ping_max_retry == 0) {
             if (!uxr_ping_agent(comm, ping_timeout_ms)) {
                 GCS_SEND_TEXT(MAV_SEVERITY_WARNING, "%s No ping response, retrying", msg_prefix);
@@ -1230,12 +1244,15 @@ void AP_DDS_Client::main_loop(void)
                 continue;
             }
         }
+        GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: after ping: %d", msg_prefix, (int)ping_max_retry.get());
 
         // create session
+        GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: before init_session and create", msg_prefix);
         if (!init_session() || !create()) {
             GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s Creation Requests failed", msg_prefix);
             return;
         }
+        GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: after init_session and create", msg_prefix);
         connected = true;
         GCS_SEND_TEXT(MAV_SEVERITY_INFO, "%s Initialization passed", msg_prefix);
 
@@ -1293,14 +1310,18 @@ void AP_DDS_Client::main_loop(void)
 bool AP_DDS_Client::init_transport()
 {
     // serial init will fail if the SERIALn_PROTOCOL is not setup
+    GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: before ddsSerialInit", msg_prefix);
     bool initTransportStatus = ddsSerialInit();
     is_using_serial = initTransportStatus;
+    GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: after ddsSerialInit: %u", msg_prefix, initTransportStatus);
 
 #if AP_DDS_UDP_ENABLED
     // fallback to UDP if available
+    GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: before ddsUdpInit", msg_prefix);
     if (!initTransportStatus) {
         initTransportStatus = ddsUdpInit();
     }
+    GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: after ddsUdpInit: %u", msg_prefix, initTransportStatus);
 #endif
 
     if (!initTransportStatus) {
@@ -1308,6 +1329,7 @@ bool AP_DDS_Client::init_transport()
         return false;
     }
 
+    GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s DEBUG: transport initialized", msg_prefix);
     return true;
 }
 

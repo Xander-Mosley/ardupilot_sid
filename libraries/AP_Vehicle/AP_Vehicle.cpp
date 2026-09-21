@@ -527,10 +527,13 @@ void AP_Vehicle::setup()
 
     GCS_SEND_TEXT(MAV_SEVERITY_INFO, "ArduPilot Ready");
 
+GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "BOOT DEBUG: AP_Vehicle setup complete");
 #if AP_DDS_ENABLED
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "DDS DEBUG: calling init_dds_client");
     if (!init_dds_client()) {
         GCS_SEND_TEXT(MAV_SEVERITY_ERROR, "%s Failed to Initialize", AP_DDS_Client::msg_prefix);
     }
+    GCS_SEND_TEXT(MAV_SEVERITY_NOTICE, "DDS DEBUG: init_dds_client returned");
 #endif
 
 #if AP_IBUS_TELEM_ENABLED
