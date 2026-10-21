@@ -18,6 +18,7 @@
 # endif // AP_DDS_ARM_SERVER_ENABLED
 #include <AP_Vehicle/AP_Vehicle.h>
 #include <AP_ExternalControl/AP_ExternalControl_config.h>
+#include <AP_ExternalControl/AP_ExternalControl.h>
 
 #if AP_DDS_ARM_SERVER_ENABLED
 #include "ardupilot_msgs/srv/ArmMotors.h"
@@ -794,6 +795,22 @@ void AP_DDS_Client::on_topic(uxrSession* uxr_session, uxrObjectId object_id, uin
     (void) stream_id;
     (void) length;
     switch (object_id.id) {
+#if AP_DDS_SURFACE_EXCITATION_ENABLED && AP_EXTERNAL_CONTROL_ENABLED
+    case topics[to_underlying(TopicIndex::SURFACE_EXCITATION_SUB)].dr_id.id: {
+        if (!ardupilot_msgs_msg_ControlSurfaceExcitation_deserialize_topic(ub, &rx_surface_excitation)) { break; }
+        const auto &msg=rx_surface_excitation;
+        if (msg.stamp.sec<0 || msg.stamp.nanosec>=1000000000U) { break; }
+        if (auto *control=AP::externalcontrol()) {
+            SurfaceExcitation::Command cmd{};
+            cmd.sequence=msg.sequence_id; cmd.enable=msg.enable;
+            cmd.stamp_us=uint64_t(msg.stamp.sec)*1000000ULL+msg.stamp.nanosec/1000;
+            cmd.axis[0]=msg.roll; cmd.axis[1]=msg.pitch; cmd.axis[2]=msg.yaw;
+            control->surface_excitation_submit(cmd);
+        }
+        break;
+    }
+#endif
+
 #if AP_DDS_JOY_SUB_ENABLED
     case topics[to_underlying(TopicIndex::JOY_SUB)].dr_id.id: {
         const bool success = sensor_msgs_msg_Joy_deserialize_topic(ub, &rx_joy_topic);
@@ -1297,6 +1314,9 @@ void AP_DDS_Client::main_loop(void)
                 GCS_SEND_TEXT(MAV_SEVERITY_ERROR,
                               "%s No ping response, disconnecting", msg_prefix);
                 connected = false;
+#if AP_DDS_SURFACE_EXCITATION_ENABLED && AP_EXTERNAL_CONTROL_ENABLED
+                if (auto *control=AP::externalcontrol()) { control->surface_excitation_disconnect(); }
+#endif
             }
         }
 
@@ -1748,8 +1768,77 @@ void AP_DDS_Client::write_gps_global_origin_topic()
 }
 #endif // AP_DDS_GPS_GLOBAL_ORIGIN_PUB_ENABLED
 
+#if AP_DDS_SURFACE_EXCITATION_ENABLED
+void AP_DDS_Client::write_surface_output()
+{
+#if AP_EXTERNAL_CONTROL_ENABLED
+    auto *control=AP::externalcontrol();
+    if (!control) { return; }
+    const auto out=control->surface_excitation_output();
+    if (!out.time_us || out.time_us==last_surface_sample_us) { return; }
+    last_surface_sample_us=out.time_us;
+    auto &msg=tx_surface_output;
+    msg.time_us=out.time_us; msg.clock_us=out.clock_us; msg.sequence_id=out.status.sequence;
+    msg.configuration_revision=out.status.revision; msg.clipping_flags=out.status.clips;
+    msg.state=out.status.state; msg.reason=out.status.reason; msg.mode=out.mode; msg.count=out.count;
+    msg.accepted=out.accepted; msg.mixing_gain=out.gain; msg.mixing_offset=out.offset; msg.airspeed=out.airspeed;
+    memcpy(msg.requested,out.status.requested,sizeof(msg.requested));
+    memcpy(msg.applied,out.status.applied,sizeof(msg.applied));
+    memcpy(msg.attitude,out.attitude,sizeof(msg.attitude)); memcpy(msg.rates,out.rates,sizeof(msg.rates));
+    memcpy(msg.function,out.function,sizeof(msg.function));
+    memcpy(msg.minimum,out.minimum,sizeof(msg.minimum));
+    memcpy(msg.trim,out.trim,sizeof(msg.trim));
+    memcpy(msg.maximum,out.maximum,sizeof(msg.maximum));
+    memcpy(msg.reversed,out.reversed,sizeof(msg.reversed));
+    memcpy(msg.excitation,out.excitation,sizeof(msg.excitation));
+    memcpy(msg.baseline,out.baseline,sizeof(msg.baseline));
+    memcpy(msg.pwm,out.pwm,sizeof(msg.pwm));
+    memcpy(msg.delta,out.delta,sizeof(msg.delta));
+    memcpy(msg.clipped,out.clipped,sizeof(msg.clipped));
+    WITH_SEMAPHORE(csem);
+    if (!connected) { return; }
+    ucdrBuffer ub{};
+    if (uxr_prepare_output_stream(&session, reliable_out,
+            topics[to_underlying(TopicIndex::SURFACE_OUTPUT_PUB)].dw_id, &ub,
+            ardupilot_msgs_msg_ControlSurfaceOutput_size_of_topic(&msg,0))) {
+        ardupilot_msgs_msg_ControlSurfaceOutput_serialize_topic(&ub,&msg);
+    }
+#endif
+}
+void AP_DDS_Client::write_surface_status()
+{
+#if AP_EXTERNAL_CONTROL_ENABLED
+    auto *control=AP::externalcontrol();
+    if (!control) { return; }
+    const auto st=control->surface_excitation_status();
+    ardupilot_msgs_msg_ControlSurfaceStatus msg{};
+    msg.state=st.state; msg.reason=st.reason; msg.sequence_id=st.sequence;
+    msg.configuration_revision=st.revision; msg.clipping_flags=st.clips;
+    msg.requested_roll=st.requested[0]; msg.requested_pitch=st.requested[1]; msg.requested_yaw=st.requested[2];
+    msg.applied_roll=st.applied[0]; msg.applied_pitch=st.applied[1]; msg.applied_yaw=st.applied[2];
+    WITH_SEMAPHORE(csem);
+    if (!connected) { return; }
+    ucdrBuffer ub{};
+    if (uxr_prepare_output_stream(&session, reliable_out,
+            topics[to_underlying(TopicIndex::SURFACE_STATUS_PUB)].dw_id, &ub,
+            ardupilot_msgs_msg_ControlSurfaceStatus_size_of_topic(&msg, 0))) {
+        ardupilot_msgs_msg_ControlSurfaceStatus_serialize_topic(&ub, &msg);
+    }
+#endif
+}
+#endif
+
 void AP_DDS_Client::update()
 {
+#if AP_DDS_SURFACE_EXCITATION_ENABLED
+    if (AP_HAL::millis()-last_surface_output_ms >= 20) {
+        last_surface_output_ms=AP_HAL::millis(); write_surface_output();
+    }
+    if (AP_HAL::millis()-last_surface_status_ms >= 50) {
+        last_surface_status_ms=AP_HAL::millis();
+        write_surface_status();
+    }
+#endif
     WITH_SEMAPHORE(csem);
     const auto cur_time_ms = AP_HAL::millis64();
 

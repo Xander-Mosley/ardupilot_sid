@@ -398,7 +398,7 @@ void SRV_Channels::setup_failsafe_trim_all_non_motors(void)
 /*
   run calc_pwm for all channels
  */
-void SRV_Channels::calc_pwm(void)
+bool SRV_Channels::calc_pwm(const float *excitation)
 {
     // slew rate limit functions
     for (slew_list *slew = _slew; slew; slew = slew->next) {
@@ -420,10 +420,18 @@ void SRV_Channels::calc_pwm(void)
             channels[i].set_override(true);
             override_counter[i]--;
         }
+    }
+    bool accepted = !emergency_stop;
+    for (uint8_t i=0; excitation && i<NUM_SERVO_CHANNELS; i++) {
+        if (!is_zero(excitation[i]) && !channels[i].accepts_excitation()) { accepted = false; }
+    }
+    for (uint8_t i=0; i<NUM_SERVO_CHANNELS; i++) {
         if (channels[i].valid_function()) {
-            channels[i].calc_pwm(functions[channels[i].function.get()].output_scaled);
+            channels[i].calc_pwm(functions[channels[i].function.get()].output_scaled,
+                                 excitation && accepted ? excitation[i] : 0);
         }
     }
+    return accepted;
 }
 
 // set output value for a specific function channel as a pwm value

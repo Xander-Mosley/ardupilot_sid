@@ -208,6 +208,15 @@ public:
         ZERO_PWM
     };
 
+    struct ExcitationResult {
+        uint16_t baseline{}, final_pwm{};
+        int16_t requested_delta{}, applied_delta{};
+        bool clipped{};
+    } excitation_result;
+    bool accepts_excitation() const {
+        return !(have_pwm_mask & (1U<<ch_num)) && !override_active && type_angle && high_out == 4500;
+    }
+
     // set the output value as a pwm value
     void set_output_pwm(uint16_t pwm, bool force = false);
 
@@ -318,7 +327,7 @@ private:
     uint16_t pwm_from_angle(float scaled_value) const;
 
     // convert a scaled output to a pwm value
-    void calc_pwm(float output_scaled);
+    void calc_pwm(float output_scaled, float excitation = 0);
 
     // output value based on function
     void output_ch(void);
@@ -514,7 +523,7 @@ public:
     static void constrain_pwm(SRV_Channel::Aux_servo_function_t function);
 
     // calculate PWM for all channels
-    static void calc_pwm(void);
+    static bool calc_pwm(const float *excitation = nullptr);
 
     // return the ESC type for dshot commands
     static AP_HAL::RCOutput::DshotEscType get_dshot_esc_type() { return AP_HAL::RCOutput::DshotEscType(_singleton->dshot_esc_type.get()); }

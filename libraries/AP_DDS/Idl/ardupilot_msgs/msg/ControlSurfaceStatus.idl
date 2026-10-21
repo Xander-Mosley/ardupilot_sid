@@ -1,0 +1,13 @@
+module ardupilot_msgs { module msg { struct ControlSurfaceStatus {
+  octet state;
+  octet reason;
+  unsigned long sequence_id;
+  unsigned long configuration_revision;
+  unsigned long clipping_flags;
+  float requested_roll;
+  float requested_pitch;
+  float requested_yaw;
+  float applied_roll;
+  float applied_pitch;
+  float applied_yaw;
+}; }; };

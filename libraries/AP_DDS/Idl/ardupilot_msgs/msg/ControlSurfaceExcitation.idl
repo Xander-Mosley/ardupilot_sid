@@ -1,0 +1,9 @@
+#include "builtin_interfaces/msg/Time.idl"
+module ardupilot_msgs { module msg { struct ControlSurfaceExcitation {
+  unsigned long sequence_id;
+  boolean enable;
+  builtin_interfaces::msg::Time stamp;
+  float roll;
+  float pitch;
+  float yaw;
+}; }; };

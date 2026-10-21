@@ -1295,6 +1295,10 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     AP_GROUPINFO("RNGFND_LND_ORNT", 36, ParametersG2, rangefinder_land_orient, ROTATION_PITCH_270),
 #endif
 
+    // @Group: SX_
+    // @Path: surface_excitation.cpp
+    AP_SUBGROUPINFO(surface_excitation, "SX_", 39, ParametersG2, PlaneSurfaceExcitation),
+
     // index 37 saved for 4.7-dev param FWD_BAT_THR_CUT
 
 #if AP_PLANE_SYSTEMID_ENABLED

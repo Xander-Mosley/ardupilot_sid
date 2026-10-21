@@ -7,12 +7,16 @@ project(ardupilot_msgs)
 find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 # --------------------------------------------------------------------------- #
 # Generate and export message interfaces.
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/ControlSurfaceExcitation.msg"
+  "msg/ControlSurfaceStatus.msg"
+  "msg/ControlSurfaceOutput.msg"
   "msg/GlobalPosition.msg"
   "msg/Pitot.msg"
   "msg/Propulsion.msg"
@@ -21,7 +25,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/ArmMotors.srv"
   "srv/ModeSwitch.srv"
   "srv/Takeoff.srv"
-  DEPENDENCIES geometry_msgs std_msgs
+  DEPENDENCIES geometry_msgs std_msgs builtin_interfaces
   ADD_LINTER_TESTS
 )
 

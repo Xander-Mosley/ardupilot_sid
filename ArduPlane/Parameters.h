@@ -3,6 +3,7 @@
 #define AP_PARAM_VEHICLE_NAME plane
 
 #include <AP_Common/AP_Common.h>
+#include "surface_excitation.h"
 
 // Global parameter class.
 //
@@ -591,6 +592,8 @@ public:
 #if AP_PLANE_SYSTEMID_ENABLED
     AP_SystemID systemid;
 #endif
+    PlaneSurfaceExcitation surface_excitation;
+
 };
 
 extern const AP_Param::Info var_info[];

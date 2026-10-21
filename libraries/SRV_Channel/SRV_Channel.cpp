@@ -210,8 +210,11 @@ uint16_t SRV_Channel::pwm_from_scaled_value(float scaled_value) const
     }
 }
 
-void SRV_Channel::calc_pwm(float output_scaled)
+void SRV_Channel::calc_pwm(float output_scaled, float excitation)
 {
+    excitation_result = {};
+    excitation_result.baseline = output_pwm;
+    excitation_result.final_pwm = output_pwm;
     if (have_pwm_mask & (1U<<ch_num)) {
         // Note that this allows a set_output_pwm call to override E-Stop!!
         // tricky to fix because we would endup E-stoping to individual SEROVx_MIN not MOT_PWM_MIN on copter
@@ -231,6 +234,18 @@ void SRV_Channel::calc_pwm(float output_scaled)
     }
 
     output_pwm = pwm_from_scaled_value(output_scaled);
+    excitation_result = {};
+    excitation_result.baseline = output_pwm;
+    if (!force && !is_zero(excitation) && type_angle && high_out == 4500 &&
+        servo_min < servo_trim && servo_trim < servo_max && !SRV_Channels::get_emergency_stop()) {
+        const int32_t delta = int32_t(pwm_from_scaled_value(excitation)) - servo_trim;
+        const int32_t wanted = int32_t(output_pwm) + delta;
+        output_pwm = constrain_int32(wanted, servo_min, servo_max);
+        excitation_result.requested_delta = delta;
+        excitation_result.applied_delta = int32_t(output_pwm) - excitation_result.baseline;
+        excitation_result.clipped = wanted != output_pwm;
+    }
+    excitation_result.final_pwm = output_pwm;
 }
 
 void SRV_Channel::set_output_pwm(uint16_t pwm, bool force)
