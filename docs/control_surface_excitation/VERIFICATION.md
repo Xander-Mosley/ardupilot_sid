@@ -525,3 +525,13 @@ no additional SITL or physical flight was run. Tests cover packaged defaults,
 custom paths, opt-out, missing configuration, mutually exclusive flags, and the
 existing coordination/exit behavior. The unit-test fixture now uses fixed test
 speed settings rather than assuming the operator's configuration remains unchanged.
+
+## HITL entrypoint / legacy RC gate — 2026-10-22
+
+See the [HITL verification report](../../../ros2_sid/ros2_sid/docs/hitl_verification.md)
+for six recorded per-axis chirp/multisine plots and RC timing evidence. These
+runs use the HITL ROS entrypoint with simulated channel-8 input against isolated
+PC SITL, not the physical Cube. The full runs passed command/output, calibrated
+PWM (maximum error 1 µs), navigation recovery and safety-probe checks. The
+relevant final unit/ROS suite passed 51 tests. The report separately describes
+the dedicated RC-low interruption and the initial mode-channel conflict.

@@ -17,13 +17,13 @@ class Flight:
     def __init__(self, connection):
         self.mav=mavutil.mavlink_connection(connection,source_system=255)
         self.last_heartbeat=0.;self.alt=0.;self.armed=False;self.mode=None;self.rc_throttle=1000
-        self.messages=[]
+        self.messages=[];self.rc_switch=1500;self.rc_period=.5
     def pump(self, seconds=.1):
         end=time.monotonic()+seconds
         while time.monotonic()<end:
-            if time.monotonic()-self.last_heartbeat>=.5:
+            if time.monotonic()-self.last_heartbeat>=self.rc_period:
                 self.mav.mav.heartbeat_send(mavutil.mavlink.MAV_TYPE_GCS,mavutil.mavlink.MAV_AUTOPILOT_INVALID,0,0,0)
-                self.mav.mav.rc_channels_override_send(1,1,1500,1500,self.rc_throttle,1500,1500,1500,1000,1500)
+                self.mav.mav.rc_channels_override_send(1,1,1500,1500,self.rc_throttle,1500,1500,1500,1000,self.rc_switch)
                 self.last_heartbeat=time.monotonic()
             m=self.mav.recv_match(blocking=True,timeout=.05)
             if m is None:continue
@@ -71,12 +71,16 @@ def main():
     p.add_argument('--individual-axes',action='store_true',help='Run chirp and multisine separately on roll, pitch and yaw')
     p.add_argument('--interactive-library',action='store_true',help='Exercise the default CSV mission library through console stdin')
     p.add_argument('--straight-flight',action='store_true')
+    p.add_argument('--hitl-rc',action='store_true',help='Run HITL entrypoint with simulated RC channel 8; never connects to hardware')
     p.add_argument('--only-experiment')
-    p.add_argument('--exit-active',choices=['quit','stop','sigint','sigterm','cycle'],help='Interrupt after two seconds of ACTIVE for recovery verification')
+    p.add_argument('--exit-active',choices=['quit','stop','sigint','sigterm','cycle','rc-low'],help='Interrupt after two seconds of ACTIVE for recovery verification')
     p.add_argument('--dds-domain',type=int,default=0)
     p.add_argument('--dds-port',type=int,default=2021)
     p.add_argument('--binary',default=str(ROOT/'build/sitl/bin/arduplane'))
     a=p.parse_args();out=Path(a.output).resolve();out.mkdir(parents=True,exist_ok=True)
+    if a.hitl_rc:
+        a.interactive_library=True; a.straight_flight=True
+    if a.exit_active == 'rc-low' and not a.hitl_rc:p.error('rc-low requires --hitl-rc')
     if a.exit_active and not (a.interactive_library and a.straight_flight):p.error('--exit-active requires --interactive-library --straight-flight')
     if a.rate is not None and not 10<=a.rate<=400:p.error('rate must be in [10,400] Hz')
     if a.interactive_library:
@@ -102,7 +106,11 @@ def main():
             if fields:params[fields[0]]=' '.join(fields[1:])
     if a.straight_flight:
         params['SR1_POSITION']='10'
+        params['SR1_RC_CHAN']='10'
         params['SERIAL2_PROTOCOL']='2'
+    if a.hitl_rc:
+        params['FLTMODE_CH']='5'
+        params['RC8_OPTION']='0'
     params['DDS_DOMAIN_ID']=str(a.dds_domain)
     params['DDS_UDP_PORT']=str(a.dds_port)
     combined=out/'defaults.parm'
@@ -120,6 +128,7 @@ def main():
     bag=subprocess.Popen(['docker','exec','-e',f'ROS_DOMAIN_ID={a.dds_domain}','-e','FASTRTPS_DEFAULT_PROFILES_FILE=/work/ros2_sid/ros2_sid/config/surface_excitation/fastdds_udp.xml',a.container,'bash','-c',bag_command],stdout=bag_log,stderr=subprocess.STDOUT)
     try:
         time.sleep(3);flight=Flight('tcp:127.0.0.1:5780');flight.takeoff()
+        if a.hitl_rc:flight.rc_period=.1;flight.rc_switch=1000
         if a.straight_flight:
             mavros_log=(out/'mavros.txt').open('w')
             mavros=subprocess.Popen(['docker','exec','-e',f'ROS_DOMAIN_ID={a.dds_domain}',a.container,'bash','-c',
@@ -153,10 +162,15 @@ def main():
             if a.interactive_library:
                 launch.insert(2, '-i')
                 launch[-1]=launch[-1].replace('--autostart ', '').replace(f'--experiment {shlex.quote(container_experiment)} ', '')
+            if a.hitl_rc:
+                launch[-1]=launch[-1].replace('run_mission_SITL.py','run_mission_HITL.py')
+                flight.rc_switch=1000;flight.pump(1)
             proc=subprocess.Popen(launch,stdout=logfile,stderr=subprocess.STDOUT,
                                   stdin=subprocess.PIPE if a.interactive_library else None, text=True)
             if a.interactive_library:
                 proc.stdin.write(f'list\nselect {experiment_index}\nstart\n');proc.stdin.flush()
+            if a.hitl_rc:
+                flight.pump(4);flight.rc_switch=1900
             quit_sent=False;active_at=None
             end=time.monotonic()+300
             while proc.poll() is None and time.monotonic()<end:
@@ -164,8 +178,12 @@ def main():
                 console_text=(out/(experiment+'.txt')).read_text()
                 if a.exit_active and 'Straight flight: ACTIVE:' in console_text and active_at is None:active_at=time.monotonic()
                 if a.exit_active and active_at is not None and time.monotonic()-active_at>2 and not quit_sent:
-                    if exit_action in ('sigint','sigterm'):
+                    if exit_action == 'rc-low':
+                        flight.rc_switch=1000;flight.pump(.3)
+                        proc.stdin.write('quit\n');proc.stdin.flush()
+                    elif exit_action in ('sigint','sigterm'):
                         script="import os,signal; from pathlib import Path; me=os.getpid(); target=b'/tmp/"+experiment+"-commands.csv'; "+"\nfor p in Path('/proc').iterdir():\n if p.name.isdigit() and int(p.name)!=me:\n  try: args=(p/'cmdline').read_bytes().split(bytes([0]))\n  except OSError: continue\n  if target in args and any(x.endswith(b'/run_mission_SITL.py') for x in args[:2]): os.kill(int(p.name),signal.SIGINT)"
+                        if a.hitl_rc:script=script.replace('run_mission_SITL.py','run_mission_HITL.py')
                         if exit_action=='sigterm':script=script.replace('signal.SIGINT','signal.SIGTERM')
                         subprocess.run(['docker','exec',a.container,'python3','-c',script],check=True)
                     else:
@@ -176,6 +194,9 @@ def main():
                     proc.stdin.write('stop\nquit\n');proc.stdin.flush();quit_sent=True
             if proc.poll() is None:proc.terminate();raise TimeoutError('publisher')
             logfile.close();results[experiment]=proc.returncode==0
+            if exit_action == 'rc-low':
+                results[experiment+'_rc_stop']='RC switch off, invalid, or stale' in (out/(experiment+'.txt')).read_text()
+                if not results[experiment+'_rc_stop']:raise RuntimeError('RC-low stop was not observed')
             subprocess.run(['docker','cp',f'{a.container}:/tmp/{experiment}-commands.csv',str(out/(experiment+'-commands.csv'))],check=True)
             if a.straight_flight:
                 subprocess.run(['docker','cp',f'{a.container}:/tmp/{experiment}-commands.csv.straight.jsonl',str(out/(experiment+'.straight.jsonl'))],check=True)
@@ -183,6 +204,7 @@ def main():
                 results[experiment+'_recovery']=flight.mode==flight.mav.mode_mapping()['LOITER']
                 if not results[experiment+'_recovery']:raise RuntimeError('LOITER recovery not confirmed')
             if proc.returncode:raise RuntimeError(f'{experiment} publisher failed')
+            if a.hitl_rc:flight.rc_switch=1000
             flight.pump(2)
         if a.straight_flight:
             flight.mode_set('GUIDED');flight.pump(5)
