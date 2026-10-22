@@ -1,0 +1,162 @@
+{
+  "raw_command_samples": 2281,
+  "source_kind": "rosbag2",
+  "samples": 21382,
+  "missing_configuration": 0,
+  "commands_using_receipt_time": 0,
+  "max_pwm_error": 1,
+  "nonzero_applied_samples": 1244,
+  "attitude_samples": 7062,
+  "rate_samples": 7062,
+  "airspeed_samples": 7062,
+  "spectral_channels": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "passed": true,
+  "straight_flight": {
+    "passed": true,
+    "segments": [
+      {
+        "passed": true,
+        "active_events": 20,
+        "entry_dwell_verified": true,
+        "fixed_targets": true,
+        "zero_before_turn": true,
+        "loiter_confirmed": true,
+        "final_reason": "LOITER confirmed"
+      },
+      {
+        "passed": true,
+        "active_events": 20,
+        "entry_dwell_verified": true,
+        "fixed_targets": true,
+        "zero_before_turn": true,
+        "loiter_confirmed": true,
+        "final_reason": "LOITER confirmed"
+      },
+      {
+        "passed": true,
+        "active_events": 24,
+        "entry_dwell_verified": true,
+        "fixed_targets": true,
+        "zero_before_turn": true,
+        "loiter_confirmed": true,
+        "final_reason": "LOITER confirmed"
+      },
+      {
+        "passed": true,
+        "active_events": 23,
+        "entry_dwell_verified": true,
+        "fixed_targets": true,
+        "zero_before_turn": true,
+        "loiter_confirmed": true,
+        "final_reason": "LOITER confirmed"
+      },
+      {
+        "passed": true,
+        "active_events": 21,
+        "entry_dwell_verified": true,
+        "fixed_targets": true,
+        "zero_before_turn": true,
+        "loiter_confirmed": true,
+        "final_reason": "LOITER confirmed"
+      },
+      {
+        "passed": true,
+        "active_events": 21,
+        "entry_dwell_verified": true,
+        "fixed_targets": true,
+        "zero_before_turn": true,
+        "loiter_confirmed": true,
+        "final_reason": "LOITER confirmed"
+      }
+    ],
+    "event_count": 809,
+    "active_event_count": 129,
+    "phases": [
+      "WAITING",
+      "COMMANDING",
+      "SETTLING",
+      "READY",
+      "ACTIVE",
+      "RETURNING",
+      "RECOVERY",
+      "DONE"
+    ],
+    "final_reason": "LOITER confirmed",
+    "max_active_bank_deg": 3.4302469327932257,
+    "max_active_course_error_deg": 1.0211240486472661,
+    "note": "Navigation evidence only; actuator validation is reported separately. Does not certify physical flight readiness."
+  },
+  "dataflash_comparison": {
+    "matched": 21382,
+    "missing": 0,
+    "mismatched": 0,
+    "passed": true
+  },
+  "maneuvers": [
+    {
+      "command_log": "/work/sid_results/straight_exit_verified_20261021/chirp_roll-commands.csv",
+      "duration": 2.1132748126983643,
+      "active_span": 2.080001,
+      "active_fraction": 0.9891304347826086,
+      "max_gap": 0.039984,
+      "frames": 92,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/straight_exit_verified_20261021/multisine_roll-commands.csv",
+      "duration": 2.070448875427246,
+      "active_span": 2.040017,
+      "active_fraction": 0.9887640449438202,
+      "max_gap": 0.040817,
+      "frames": 89,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/straight_exit_verified_20261021/chirp_pitch-commands.csv",
+      "duration": 2.5340731143951416,
+      "active_span": 2.519825,
+      "active_fraction": 1.0,
+      "max_gap": 0.040817,
+      "frames": 107,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/straight_exit_verified_20261021/multisine_pitch-commands.csv",
+      "duration": 2.410504102706909,
+      "active_span": 2.379881,
+      "active_fraction": 1.0,
+      "max_gap": 0.039984,
+      "frames": 102,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/straight_exit_verified_20261021/chirp_yaw-commands.csv",
+      "duration": 2.162200450897217,
+      "active_span": 2.139977,
+      "active_fraction": 1.0,
+      "max_gap": 0.039984,
+      "frames": 93,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/straight_exit_verified_20261021/multisine_yaw-commands.csv",
+      "duration": 2.134571075439453,
+      "active_span": 2.099993,
+      "active_fraction": 1.0,
+      "max_gap": 0.039984,
+      "frames": 92,
+      "mismatched": 0,
+      "passed": true
+    }
+  ]
+}

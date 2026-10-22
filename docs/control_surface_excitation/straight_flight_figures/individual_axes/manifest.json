@@ -1,0 +1,65 @@
+{
+  "bag": "/work/sid_results/straight_verified_20261021/rosbag",
+  "maneuvers": [
+    {
+      "maneuver": "chirp_roll",
+      "commanded_duration_s": 9.9841485,
+      "output_frames": 493,
+      "physical_channels": [
+        1
+      ],
+      "png": "chirp_roll.png",
+      "pdf": "chirp_roll.pdf"
+    },
+    {
+      "maneuver": "multisine_roll",
+      "commanded_duration_s": 11.9875295,
+      "output_frames": 575,
+      "physical_channels": [
+        1
+      ],
+      "png": "multisine_roll.png",
+      "pdf": "multisine_roll.pdf"
+    },
+    {
+      "maneuver": "chirp_pitch",
+      "commanded_duration_s": 9.98698525,
+      "output_frames": 493,
+      "physical_channels": [
+        2
+      ],
+      "png": "chirp_pitch.png",
+      "pdf": "chirp_pitch.pdf"
+    },
+    {
+      "maneuver": "multisine_pitch",
+      "commanded_duration_s": 11.9889345,
+      "output_frames": 571,
+      "physical_channels": [
+        2
+      ],
+      "png": "multisine_pitch.png",
+      "pdf": "multisine_pitch.pdf"
+    },
+    {
+      "maneuver": "chirp_yaw",
+      "commanded_duration_s": 9.978839,
+      "output_frames": 489,
+      "physical_channels": [
+        4
+      ],
+      "png": "chirp_yaw.png",
+      "pdf": "chirp_yaw.pdf"
+    },
+    {
+      "maneuver": "multisine_yaw",
+      "commanded_duration_s": 11.98892675,
+      "output_frames": 575,
+      "physical_channels": [
+        4
+      ],
+      "png": "multisine_yaw.png",
+      "pdf": "multisine_yaw.pdf"
+    }
+  ]
+}

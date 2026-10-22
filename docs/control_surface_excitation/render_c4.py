@@ -44,7 +44,7 @@ def main():
         'sim':(13,2,'Plane simulator\nBuilt-in SITL model','Container'),
         'plots':(13,8,'ROS bag → surface_analysis\nCSV + PNG/PDF + report','Container')},[
         ('user','mission','Console or fresh RC switch'),('mission','agent','/ap/sid/control_surface'),
-        ('agent','ap','UDP 2021; domain 41'),('ap','mission','/ap/time; /ap/sid/status'),
+        ('agent','ap','UDP 2021; domain 0'),('ap','mission','/ap/time; /ap/sid/status'),
         ('ap','sim','Actuator output / sensor feedback'),('ap','plots','DDS output → rosbag2; DataFlash cross-check'),('mission','plots','Sequence-stamped command CSV')])
     diagram('c4_components','C4 Level 3 — ArduPlane additive output path',{
         'dds':(2,8,'AP_DDS subscriber\nDeserialize sample','Component'),

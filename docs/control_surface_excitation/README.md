@@ -62,7 +62,7 @@ For two containers sharing host networking, use the supplied UDP-only Fast DDS
 profile to avoid shared-memory discovery succeeding while data delivery fails:
 
 ```bash
-export ROS_DOMAIN_ID=41
+export ROS_DOMAIN_ID=0
 export FASTRTPS_DEFAULT_PROFILES_FILE=/work/ros2_sid/ros2_sid/config/surface_excitation/fastdds_udp.xml
 ```
 

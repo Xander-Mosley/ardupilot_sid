@@ -6,11 +6,11 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-21T00:26:32.731905</dc:date>
+    <dc:date>2026-10-21T12:14:18.650870</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>
@@ -41,7 +41,7 @@ L 17.865 682.4112
 Q 17.865 689.1084 24.93 689.1084 
 L 24.93 689.1084 
 z
-" clip-path="url(#pc64bf32640)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #64748b; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #64748b; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 35.5275 215.61636 
@@ -54,7 +54,7 @@ Q 29.8755 131.23164 29.8755 136.5894
 L 29.8755 210.2586 
 Q 29.8755 215.61636 35.5275 215.61636 
 z
-" clip-path="url(#pc64bf32640)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 388.7775 215.61636 
@@ -67,7 +67,7 @@ Q 383.1255 131.23164 383.1255 136.5894
 L 383.1255 210.2586 
 Q 383.1255 215.61636 388.7775 215.61636 
 z
-" clip-path="url(#pc64bf32640)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 742.0275 215.61636 
@@ -80,7 +80,7 @@ Q 736.3755 131.23164 736.3755 136.5894
 L 736.3755 210.2586 
 Q 736.3755 215.61636 742.0275 215.61636 
 z
-" clip-path="url(#pc64bf32640)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 35.5275 483.50436 
@@ -93,7 +93,7 @@ Q 29.8755 399.11964 29.8755 404.4774
 L 29.8755 478.1466 
 Q 29.8755 483.50436 35.5275 483.50436 
 z
-" clip-path="url(#pc64bf32640)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 388.7775 483.50436 
@@ -106,7 +106,7 @@ Q 383.1255 399.11964 383.1255 404.4774
 L 383.1255 478.1466 
 Q 383.1255 483.50436 388.7775 483.50436 
 z
-" clip-path="url(#pc64bf32640)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 742.0275 483.50436 
@@ -119,7 +119,7 @@ Q 736.3755 399.11964 736.3755 404.4774
 L 736.3755 478.1466 
 Q 736.3755 483.50436 742.0275 483.50436 
 z
-" clip-path="url(#pc64bf32640)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 388.7775 684.42036 
@@ -132,7 +132,7 @@ Q 383.1255 600.03564 383.1255 605.3934
 L 383.1255 679.0626 
 Q 383.1255 684.42036 388.7775 684.42036 
 z
-" clip-path="url(#pc64bf32640)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pcac105efe2)" style="fill: #2563eb; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- ArduPlane firmware boundary -->
@@ -2244,7 +2244,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pc64bf32640">
+  <clipPath id="pcac105efe2">
    <rect x="10.8" y="39.48" width="1130.4" height="669.72"/>
   </clipPath>
  </defs>

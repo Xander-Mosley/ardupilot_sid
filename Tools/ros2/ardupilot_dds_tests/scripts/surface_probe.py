@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Live DDS safeguards/output assertions against an already airborne SITL instance."""
+import argparse
 import json
 import math
 import time
@@ -58,6 +59,9 @@ class Probe(Node):
         assert nonzero,'No physical PWM perturbation'
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--mavlink",default="tcp:127.0.0.1:5782")
+    args=parser.parse_args()
     rclpy.init();p=Probe();results={}
     try:
         p.spin(3);assert p.clock and p.frame,'No DDS clock/output'
@@ -69,8 +73,12 @@ def main():
         p.handshake();p.stream(.2);p.stream(.3,enabled=False);p.zero();results['explicit_disable']=True
         p.handshake();p.stream(.2);p.spin(.5);p.zero();results['silence_timeout']=True
         # Mode transitions and calibration changes are commanded over a separate SITL MAVLink connection.
-        mav=mavutil.mavlink_connection('tcp:127.0.0.1:5782',source_system=254)
-        mav.wait_heartbeat(timeout=5)
+        mav=mavutil.mavlink_connection(args.mavlink,source_system=254)
+        deadline=time.monotonic()+5
+        while time.monotonic()<deadline:
+            heartbeat=mav.recv_match(type='HEARTBEAT',blocking=True,timeout=.5)
+            if heartbeat is not None and heartbeat.get_srcSystem()==1 and heartbeat.get_srcComponent()==1:break
+        else:raise TimeoutError('No autopilot heartbeat on probe link')
         def mode(name):
             mav.mav.set_mode_send(1,mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED,mav.mode_mapping()[name]);p.spin(1)
         def param(name,value):

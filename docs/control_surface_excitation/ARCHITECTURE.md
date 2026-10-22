@@ -56,3 +56,41 @@ reads bags directly and does not replay control commands onto a live network.
 DataFlash remains a separate cross-check and records every enabled flight-loop cycle;
 DDS telemetry is latest-sample, up to 50 Hz, and can drop samples. A bag cannot prove
 that every flight-loop output was delivered over DDS.
+
+## Optional straight-flight ROS coordinator
+
+`ros2_sid.straight_flight.StraightFlight` is a component of the existing mission
+process, enabled by default for DDS missions. `--straight-flight PATH` overrides the
+packaged settings and `--no-straight-flight` explicitly disables coordination. It sends acknowledged fixed course,
+relative-altitude, and airspeed targets through MAVROS. It gates waveform start
+on fresh telemetry and a continuous settling dwell, then leaves those targets
+unchanged while the DDS perturbation runs. This does not change the firmware
+injection path or replace ArduPlane guidance/stabilization.
+
+```mermaid
+flowchart LR
+  Operator[Operator: select/start/stop/quit] --> Mission[ros2_sid mission process]
+  subgraph MissionComponents[Components inside mission process]
+    Coordinator[StraightFlight: settle and recover]
+    Sampler[Existing CSV / waveform sampler]
+    Coordinator -->|READY gate| Sampler
+  end
+  Mission --> Coordinator
+  Coordinator -->|Targets and recovery mode| MAVROS[MAVROS command services]
+  MAVROS -->|MAVLink| Guidance[ArduPlane normal GUIDED controller]
+  Sampler -->|Normalized perturbations| DDS[AP_DDS through XRCE agent]
+  Guidance --> Outputs[Existing mixer and calibrated additive outputs]
+  DDS --> Outputs
+  Outputs -->|Applied output and response| Coordinator
+  Coordinator --> Events[/sid/straight_flight events]
+  Events --> Bag[rosbag2 and offline validation]
+  Outputs --> Bag
+```
+
+On exit the sampler is revoked, DDS disable is repeated, and fresh zero applied
+contribution is observed before requesting LOITER. Actual vehicle mode confirms
+recovery. Operator/failsafe modes and disarm take precedence; a missing handoff
+confirmation is reported rather than assumed. Process/host failure can prevent
+navigation recovery even though firmware command timeout removes excitation.
+See the [operator guide](../../../ros2_sid/ros2_sid/docs/straight_flight_plan.md)
+and [executed verification](VERIFICATION.md) for settings, exact limits, and tests.

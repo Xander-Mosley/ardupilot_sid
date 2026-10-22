@@ -168,7 +168,7 @@ used the checked-in 100 Hz examples. Build and ROS-test logs are retained in
 `sid_results/verification/`.
 
 The README supplies exact Waf, colcon, launch, bag-record and replot commands.
-Tests used ROS Humble, domain 41, UDP agent port 2021 and the UDP-only Fast DDS
+The recorded tests used ROS Humble, domain 41, UDP agent port 2021 and the UDP-only Fast DDS
 profile. Simulation speed was 1. No physical devices were mapped or aircraft flown.
 
 Earlier runs are retained as failed/diagnostic evidence. A publisher-restart race
@@ -201,3 +201,327 @@ avoid this fork's deferred DDS-parameter loading issue.
   in Docker instead. The fork retains two existing 60-second DDS startup delays.
 - The broad original verification matrix is therefore not fully closed. Only checks
   listed as executed above are claimed as passed.
+
+The current Compose setup, SITL parameter examples, and usage guides now use domain
+0. Archived runs retain their original domain 41 configuration; the flight experiments
+have not been rerun solely for this domain change.
+
+## Shared legacy-layout library and interactive console verification
+
+The DDS and trajectory entrypoints now share
+`ros2_sid/setup/mission_library/current_mission.json` → `subfolder` →
+`mission_plan.json` → CSV files ordered by `order`. The selected `dds_surface`
+mission contains six normalized-surface chirp/multisine CSVs. Backend unit checks
+reject use of surface plans in trajectory mode and attitude plans in DDS mode.
+Explicit DDS JSON overrides remain available.
+
+Executed the real `run_mission_SITL.py --interface dds` console via stdin with
+`list`, `select N`, `start`, `stop`, and `quit`, without a source argument or
+`--autostart`. All six roll/pitch/yaw chirp/multisine maneuvers completed airborne
+in GUIDED at 50 Hz. The safety probe and mode-change checks also passed.
+
+The saved bag passed calibrated-output, full-maneuver, and exact DataFlash checks:
+15,360 actuator samples, maximum reconstruction error 1 microsecond, zero missing
+configuration, and 15,360 exact DataFlash matches with zero missing/mismatched rows.
+See [numeric validation](interactive_library_validation.json).
+The package build, 27 Python regression tests, and new-code lint checks passed.
+
+Artifacts are retained at `sid_results/interactive_library_20261021_retry/`:
+all-topic ROS bag, `.BIN`, command CSVs, the selected mission-library snapshot,
+console transcripts, execution results, `plots/`, and `analysis-rerun.txt`.
+The initial offline analysis lacked matplotlib; it was installed in the test
+container and analysis was successfully rerun on the same recordings. Preserve
+analysis dependencies in your ROS image when recreating the environment.
+
+Earlier attempts are retained under `interactive_library_20261021*`: the first
+encountered another simulator's serial-port conflict; later attempts exposed a
+console shutdown bug (fixed by avoiding buffered stdin locks) and a two-period
+publication-jitter abort. The jitter safeguard was not relaxed. The final run
+used a dedicated DDS agent at UDP 2022/domain 42 to coexist with the existing
+simulator; normal configuration remains domain 0/UDP 2021. No physical flight
+was performed. The test agent was stopped after verification.
+
+Reproduction (with a matching dedicated agent already running):
+
+```bash
+python3 ardupilot_sid/Tools/ros2/ardupilot_dds_tests/scripts/surface_sitl.py \
+  --container surface-excitation-sitl-ros-1 --interactive-library --rate 50 \
+  --dds-domain 42 --dds-port 2022 --output sid_results/NEW_console_run
+```
+
+## Straight-flight coordination and safe exit (2026-10-21)
+
+Implemented the optional ROS-only `--straight-flight` coordinator. MAVROS sets a
+fixed ground course, relative altitude, and airspeed; DDS remains the additive
+surface-excitation transport. The operator must already have taken off and entered
+GUIDED. The coordinator waits for a continuous settling dwell before enabling the
+selected CSV, and does not refresh navigation targets during ACTIVE.
+
+Legacy `maneuver_stop()` stopped publishing and reset the maneuver; it did not
+explicitly request LOITER. The new option preserves revocation of publishing and
+adds repeated disable, fresh zero-contribution observation, and confirmed LOITER
+recovery while the vehicle remains armed and authorized in GUIDED. Operator mode
+changes, disarm, and critical vehicle status take precedence. Unconfirmed recovery
+is a reported failure. A process/host kill or lost communication cannot guarantee
+a navigation handoff; firmware timeout still removes stale excitation.
+
+### Executed normal maneuvers
+
+`sid_results/straight_verified_20261021/` retains all six complete CSV maneuvers:
+10-second chirps and 12-second multisines separately on roll, pitch, and yaw,
+through the actual manual console at 50 Hz and simulation speed 1. Each completed
+settling, ACTIVE, return-to-zero, and confirmed LOITER.
+
+Offline ROS bag analysis passed:
+
+- 27,705 actuator samples; maximum calibrated PWM reconstruction error 1 µs.
+- 27,705 exact DataFlash matches; no missing or mismatched samples.
+- All six full-maneuver command/application checks passed.
+- All six event-based settling-dwell, fixed-target, zero-before-turn, and LOITER
+  checks passed. Event evidence is sampled at 10 Hz; the live gate runs at mission cadence.
+- Maximum ACTIVE bank magnitude 3.72 degrees; maximum course error 0.84 degrees
+  across these runs. These are observed SITL results, not universal thresholds.
+
+See [numeric results](straight_flight_validation.json). The artifacts include
+all-topic rosbag2, `.BIN`, command CSVs, coordinator JSONL, mission-library snapshot,
+console/MAVROS logs, and `plots/`. `analysis-rerun.txt` records the successful offline
+analysis. The run's overall `execution.json` retains a failed **separate safety
+probe**: it attempted to share MAVROS's TCP endpoint. Do not interpret that entry
+as a passing safety-probe test. The harness now provides the probe its own SERIAL2
+MAVLink port; its rerun is reported separately below.
+
+![Straight-flight navigation targets and response](straight_flight_figures/straight_navigation.png)
+
+Green windows mark ACTIVE excitation. Plot gaps separate mission processes and
+unobserved recovery intervals; they do not imply zero altitude or instantaneous
+flight paths. The recovery turns are excluded from the identification windows.
+
+![Ground track by coordinator phase](straight_flight_figures/straight_track.png)
+
+![Requested and applied excitation during straight-flight tests](straight_flight_figures/excitation_tracking.png)
+
+![Aircraft response during straight-flight tests](straight_flight_figures/aircraft_response.png)
+
+[Baseline/final PWM and reconstruction errors](straight_flight_figures/actuator_validation.png)
+are also saved with this report. Use the phase-marked navigation plot to select
+settled ACTIVE windows; the complete recordings also contain the separate safety
+probe, which must be excluded from coefficient estimation.
+
+### Build, automated tests, and earlier attempts
+
+The ROS package built successfully in the Humble container. The final installed
+package passed 39 relevant Python/ROS tests: waveform generation, mission-library
+loading, bag/parser validation, existing no-option DDS behavior, command ACKs,
+settling, stale telemetry/clock, stop/quit, cancellation, critical-state precedence,
+service failure, ROS NumPy-array event serialization, and recovery despite a
+recording failure. Ruff passed for the new coordinator/analyzer and modified
+publisher; shell syntax and the mocked live-launcher test passed. Firmware control
+code was unchanged and the existing DDS-enabled SITL binary was reused.
+
+Failed attempts are retained:
+
+- `straight_initial_20261021`: default MAVROS parameter/mission downloads and stale
+  telemetry; no excitation accepted, recovery unconfirmed.
+- `straight_minimal_20261021`: minimal MAVROS plugins; 1 Hz position data violated
+  the one-second freshness limit. Excitation withheld; ROS observed LOITER, but the
+  original harness misread a companion heartbeat as aircraft mode. The harness
+  now filters system/component IDs and requests 10 Hz position data.
+- `straight_six_20261021`: nonzero altitude slew in this fork advanced the interim
+  target from current altitude each cycle, causing slow settling. Setup timed out
+  without excitation and confirmed LOITER. The SITL example now uses the supported
+  zero/max-target-slew setting with normal TECS limits retained.
+- `straight_fixed_20261021`: real ROS array scalars exposed a JSON serialization
+  failure. Native scalar conversion and recovery-independent recording-error
+  handling were added and regression-tested before the successful run.
+
+No physical-aircraft or hardware-in-loop flight was performed. HITL RC gating is
+covered by ROS tests, not a physical test. The setup contains no test-area/corridor
+planner, automatic takeoff, landing, or coefficient estimator. The example
+configuration is specific to this simulated airframe. MAVROS position-rate and
+ACK behavior must be verified on any different connection/firmware setup.
+
+### Reproduce
+
+Use the manual's normal domain-0 services, or an isolated agent matching the test
+ports/domain below. Do not run two simulators on the same serial ports.
+
+```bash
+python3 ardupilot_sid/Tools/ros2/ardupilot_dds_tests/scripts/surface_sitl.py \
+  --container surface-excitation-sitl-ros-1 --interactive-library \
+  --straight-flight --rate 50 --dds-domain 42 --dds-port 2022 \
+  --output sid_results/NEW_straight_run
+
+# Deliberately interrupt each maneuver after about two ACTIVE seconds.
+# Cycles through quit, stop, SIGINT, SIGTERM, quit, stop.
+python3 ardupilot_sid/Tools/ros2/ardupilot_dds_tests/scripts/surface_sitl.py \
+  --container surface-excitation-sitl-ros-1 --interactive-library \
+  --straight-flight --exit-active cycle --rate 50 \
+  --dds-domain 42 --dds-port 2022 --output sid_results/NEW_exit_run
+```
+
+The user workflow, build assumptions, and offline replot command are in
+[the straight-flight guide](../../../ros2_sid/ros2_sid/docs/straight_flight_plan.md).
+The all-topic recorder captures `/sid/straight_flight`, DDS input/output, and
+MAVROS telemetry, so navigation plots can be regenerated directly from rosbag2.
+
+### Files changed for straight-flight coordination
+
+- `ros2_sid/ros2_sid/ros2_sid/straight_flight.py`: typed MAVROS coordinator,
+  settling/authority gates, event recording, bounded recovery.
+- `ros2_sid/ros2_sid/ros2_sid/surface_mission.py`: optional configuration, waveform
+  gating, console cancellation, SIGINT/SIGTERM shutdown with ROS kept alive.
+- `ros2_sid/ros2_sid/ros2_sid/straight_analysis.py` and `surface_analysis.py`:
+  offline bag events, validation, navigation and ground-track plots.
+- `ros2_sid/ros2_sid/config/surface_excitation/{straight_flight_sitl.json,mavros_straight.yaml}`:
+  explicit SITL settings and minimal MAVROS plugins.
+- `ros2_sid/ros2_sid/tests/{test_straight_flight.py,test_surface_mission_ros.py}`,
+  `CMakeLists.txt`, and `package.xml`: tests and ROS/runtime dependencies.
+- `useful_shell_scripts/run_live.sh`, `tools/sid/{start_ros.sh,test_live_launcher.py}`:
+  optional MAVROS YAML, startup tests, launcher verification.
+- `ardupilot_sid/Tools/ros2/ardupilot_dds_tests/scripts/{surface_sitl.py,surface_probe.py}`:
+  manual straight-segment/interrupt experiments, aircraft-heartbeat filtering,
+  dedicated MAVROS/probe serial endpoints.
+- `ros2_sid/ros2_sid/docs/{straight_flight_plan.md,manual_surface_excitation_sitl.md,manual_container_waveforms.md}`
+  and `README_surface_excitation.md`: configuration, procedure, exit semantics,
+  and offline analysis.
+- This verification report, `straight_flight_validation.json`, and
+  `straight_flight_figures/`: retained numeric results and plots.
+
+ROS package build used in this verification (inside the sourced container):
+
+```bash
+cd /tmp
+colcon build --base-paths /work/ardupilot_sid/Tools/ros2/ardupilot_msgs \
+  /work/ardupilot_sid/Tools/ros2/ardupilot_sitl /work/ros2_sid/ros2_sid \
+  --packages-select ros2_sid \
+  --cmake-args -DARDUPILOT_PLANE_ONLY=ON -DARDUPILOT_SKIP_BUILD=ON
+source /tmp/install/setup.bash
+```
+
+The interface and SITL packages had already been built by Compose startup. The
+existing image lacked Matplotlib; it was installed for analysis. Runtime plotting
+dependencies are declared in `package.xml` and need to be present when rebuilding
+the image. `ARCHITECTURE.md` also describes the optional coordinator component and
+its separate MAVROS navigation / DDS excitation paths.
+
+### Active exit and corrected safety-probe results
+
+`sid_results/straight_exit_verified_20261021/` passed end to end, including bag
+validation and the safety probe on its separate SERIAL2 connection. The actual
+manual publisher was interrupted while applying nonzero excitation:
+
+| Maneuver | Exit trigger | Zero-before-turn | Confirmed LOITER |
+|---|---|---|---|
+| Roll chirp | Console `quit` | Passed | Passed |
+| Roll multisine | Console `stop`, then `quit` | Passed | Passed |
+| Pitch chirp | SIGINT to mission process | Passed | Passed |
+| Pitch multisine | SIGTERM to mission process | Passed | Passed |
+| Yaw chirp | Console `quit` | Passed | Passed |
+| Yaw multisine | Console `stop`, then `quit` | Passed | Passed |
+
+These were deliberately shortened maneuvers, not full-frequency-coverage tests.
+All six event-based checks passed, and all publisher processes exited successfully.
+Observed monotonic stop-to-zero-confirmation intervals were 0.254–0.287 seconds;
+stop-to-confirmed-LOITER intervals were 0.275–0.338 seconds. These measurements apply
+to this SITL environment, not a guaranteed physical-aircraft response time.
+
+The firmware probe passed simultaneous calibrated outputs, duplicate-command
+and silence timeouts, stale timestamps, nonfinite/out-of-range rejection, explicit
+disable, mode loss, live mapping/calibration/reversal changes, and invalid
+calibration rejection. The bag's independently reconstructed outputs and DataFlash
+comparison passed; see [exit-run numeric results](straight_exit_validation.json).
+All-topic bag, `.BIN`, selected CSVs, command/event logs, execution options,
+console transcripts, and plots are retained in the run directory.
+
+The earlier `straight_exit_20261021/` attempt passed console quit and stop, then
+encountered a harness error before sending SIGINT (an embedded null in the Python
+command argument). Its cleanup removed telemetry before the publisher recovered,
+so that attempt is not claimed as a passing interrupt test. Both the signal string
+and cleanup ordering were corrected before the successful rerun: owned publishers
+now get a bounded chance to quit while telemetry/navigation remain available.
+
+Only the dedicated domain-42/UDP-2022 test agent was stopped after verification;
+the user's normal Compose services and pre-existing simulator were left running.
+
+
+## Individual-axis straight-flight chirp and multisine plots
+
+Generated offline from the complete six-maneuver ROS bag in
+`sid_results/straight_verified_20261021/rosbag`; these are recorded SITL responses,
+not synthetic response curves or a new flight run. Each figure includes DDS
+requested/applied logical excitation, the selected physical servo's baseline and
+final PWM, all three angular rates, attitude changes relative to maneuver start,
+and airspeed. Conventional mapping in this recording is roll → SERVO1, pitch →
+SERVO2, yaw → SERVO4. PWM is commanded output, not measured surface position.
+
+The shaded interval covers enabled waveform commands. One second before and half
+a second after are shown for context; the tail includes return-to-baseline and
+may include the beginning of LOITER recovery. Exclude that tail from aerodynamic
+identification. Attitude angles are unwrapped before subtracting their start
+values. Normal controllers remain active throughout the maneuver.
+
+| Axis | Frequency sweep (chirp) | Multisine |
+|---|---|---|
+| Roll | [PNG](straight_flight_figures/individual_axes/chirp_roll.png) · [PDF](straight_flight_figures/individual_axes/chirp_roll.pdf) | [PNG](straight_flight_figures/individual_axes/multisine_roll.png) · [PDF](straight_flight_figures/individual_axes/multisine_roll.pdf) |
+| Pitch | [PNG](straight_flight_figures/individual_axes/chirp_pitch.png) · [PDF](straight_flight_figures/individual_axes/chirp_pitch.pdf) | [PNG](straight_flight_figures/individual_axes/multisine_pitch.png) · [PDF](straight_flight_figures/individual_axes/multisine_pitch.pdf) |
+| Yaw | [PNG](straight_flight_figures/individual_axes/chirp_yaw.png) · [PDF](straight_flight_figures/individual_axes/chirp_yaw.pdf) | [PNG](straight_flight_figures/individual_axes/multisine_yaw.png) · [PDF](straight_flight_figures/individual_axes/multisine_yaw.pdf) |
+
+### Roll frequency sweep
+
+![Roll frequency sweep: commands and recorded response](straight_flight_figures/individual_axes/chirp_roll.png)
+
+### Roll multisine
+
+![Roll multisine: commands and recorded response](straight_flight_figures/individual_axes/multisine_roll.png)
+
+### Pitch frequency sweep
+
+![Pitch frequency sweep: commands and recorded response](straight_flight_figures/individual_axes/chirp_pitch.png)
+
+### Pitch multisine
+
+![Pitch multisine: commands and recorded response](straight_flight_figures/individual_axes/multisine_pitch.png)
+
+### Yaw frequency sweep
+
+![Yaw frequency sweep: commands and recorded response](straight_flight_figures/individual_axes/chirp_yaw.png)
+
+### Yaw multisine
+
+![Yaw multisine: commands and recorded response](straight_flight_figures/individual_axes/multisine_yaw.png)
+
+Regenerate from a sourced ROS container after rebuilding `ros2_sid`:
+
+```bash
+python3 -m ros2_sid.surface_axis_plots \
+  /work/sid_results/straight_verified_20261021/rosbag \
+  --command-directory /work/sid_results/straight_verified_20261021 \
+  --output /work/sid_results/straight_verified_20261021/individual_axis_plots
+```
+
+The command directory must contain the six `chirp_AXIS-commands.csv` and
+`multisine_AXIS-commands.csv` logs from the same bag. Windows are aligned through
+the publisher's AP-clock timestamps and the bag's firmware clock/boot-time pairs.
+The helper currently selects conventional aileron/elevator/rudder functions; it
+does not claim mixed-surface coverage. `manifest.json` records figure names,
+observed command durations, frame counts, and channel selections. All six PNG/PDF
+pairs were generated successfully; the source recording's calibrated-output and
+DataFlash checks are documented above.
+
+## DDS straight-flight default update
+
+The shared SITL/HITL DDS CLI now resolves packaged straight-flight settings by
+default. `--straight-flight PATH` overrides them; `--no-straight-flight` explicitly
+selects excitation-only operation without navigation targets or LOITER recovery.
+The legacy trajectory interface is unchanged. The automated SITL harness explicitly
+opts out when its own straight-flight switch is absent, so existing test modes keep
+their intended scope.
+
+The operator-edited configuration was preserved: it currently targets 23 m/s with
+an active airspeed envelope of 20–30 m/s. The earlier flight results above used
+18 m/s and are historical evidence, not verification of the changed airspeed.
+The ROS package build and 21 CLI/coordinator tests passed for this default change;
+no additional SITL or physical flight was run. Tests cover packaged defaults,
+custom paths, opt-out, missing configuration, mutually exclusive flags, and the
+existing coordination/exit behavior. The unit-test fixture now uses fixed test
+speed settings rather than assuming the operator's configuration remains unchanged.
