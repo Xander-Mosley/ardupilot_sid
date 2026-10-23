@@ -6,7 +6,7 @@ using namespace SurfaceExcitation;
 const AP_Param::GroupInfo PlaneSurfaceExcitation::var_info[] = {
     // @Param: ENABLE
     // @DisplayName: External surface excitation enable
-    // @Description: Allow explicitly authorized airborne GUIDED surface experiments. A fresh disable then enable command is still required.
+    // @Description: Allow explicitly authorized GUIDED surface experiments. Airborne operation is required unless GND_TEST is enabled. A fresh disable then enable command is still required.
     // @Values: 0:Disabled,1:Enabled
     // @User: Advanced
     AP_GROUPINFO_FLAGS("ENABLE", 1, PlaneSurfaceExcitation, enabled, 0, AP_PARAM_FLAG_ENABLE),
@@ -52,6 +52,12 @@ const AP_Param::GroupInfo PlaneSurfaceExcitation::var_info[] = {
     // @Range: 0 100
     // @User: Advanced
     AP_GROUPINFO("SLEW", 8, PlaneSurfaceExcitation, slew, 0),
+    // @Param: GND_TEST
+    // @DisplayName: Surface excitation ground test
+    // @Description: Permit grounded excitation instead of airborne normal-flight excitation. Requires ENABLE, GUIDED, armed and safety off; all failsafe and output limits remain enforced. Isolate propulsion before use and restore zero before flight.
+    // @Values: 0:Airborne only,1:Ground only
+    // @User: Advanced
+    AP_GROUPINFO("GND_TEST", 9, PlaneSurfaceExcitation, ground_test, 0),
     AP_GROUPEND
 };
 Settings PlaneSurfaceExcitation::settings() const
@@ -99,9 +105,12 @@ void PlaneSurfaceExcitation::prepare(float *outputs)
         received=have_pending; command=pending; lost=disconnected;
         have_pending=false; disable_pending=false; disconnected=false;
     }
+    const bool flying=plane.is_flying();
+    const bool flight_ready=(ground_test.get()==1 && !flying) ||
+        (ground_test.get()==0 && flying &&
+         plane.flight_stage==AP_FixedWing::FlightStage::NORMAL);
     bool authorized=enabled.get()==1 && plane.control_mode==&plane.mode_guided &&
-        plane.arming.is_armed_and_safety_off() && plane.is_flying() &&
-        plane.flight_stage==AP_FixedWing::FlightStage::NORMAL &&
+        plane.arming.is_armed_and_safety_off() && flight_ready &&
         !plane.any_failsafe_triggered() && !plane.rc_failsafe_active() &&
         !SRV_Channels::get_emergency_stop() && !plane.g2.servo_channels.auto_trim_enabled();
 #if HAL_QUADPLANE_ENABLED

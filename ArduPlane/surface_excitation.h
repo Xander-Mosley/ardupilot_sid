@@ -14,7 +14,7 @@ public:
     void prepare(float *outputs);
     void finish(const float *outputs, bool accepted);
 private:
-    AP_Int8 enabled;
+    AP_Int8 enabled, ground_test;
     AP_Float max_roll, max_pitch, max_yaw, max_surface, slew;
     AP_Int16 timeout_ms, return_ms;
     HAL_Semaphore sem;

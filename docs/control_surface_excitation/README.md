@@ -102,7 +102,8 @@ ros2 run ros2_sid run_mission_SITL.py --interface dds \
 ```
 
 Use console `start`, `stop`, or `quit`. Add `--autostart` for automated SITL runs.
-The feature must already be enabled, normally armed, airborne, and in GUIDED.
+The feature must already be enabled, normally armed, airborne, and in GUIDED
+(see `SX_GND_TEST` below for ground-only testing).
 The publisher waits for firmware authorization and synchronized AP time. Each
 publisher starts a new randomized sequence epoch and waits for acknowledgment of
 one of its own disable samples before enabling. A previous publisher's ARMED status
@@ -185,6 +186,7 @@ anti-windup is unchanged and does not directly observe this added saturation.
 | Parameter | Default | Meaning |
 |---|---:|---|
 | SX_ENABLE | 0 | Feature opt-in; startup still requires disable then enable |
+| SX_GND_TEST | 0 | 0 requires airborne normal flight; 1 requires grounded detection; other values reject excitation |
 | SX_R_MAX / SX_P_MAX / SX_Y_MAX | 0.10 | Per-axis normalized bounds, range 0–1 |
 | SX_S_MAX | 0.20 | Mixed per-surface normalized bound, range (0,1] |
 | SX_TIMEOUT | 200 | Command freshness in ms, range 20–2000 |
@@ -195,7 +197,14 @@ States: 0 DISABLED, 1 ARMED (experiment-ready, distinct from vehicle arming),
 2 ACTIVE, 3 TIMEOUT, 4 FAULT. Reasons: 0 NONE, 1 UNAUTHORIZED, 2 INVALID,
 3 STALE, 4 ORDER, 5 CONFIG, 6 CLOCK, 7 DISCONNECTED, 8 OVERRIDE.
 
-Normal-flight GUIDED, armed/safety-off, flying, and no failsafe are required. This
+Normal-flight GUIDED, armed/safety-off, flying, and no failsafe are required by default.
+`SX_GND_TEST=1` replaces only the flying/normal-flight-stage requirement with
+grounded detection. Use it with the ROS `--no-straight-flight` flag to skip
+navigation preparation and LOITER recovery. All other authorization checks,
+watchdogs and surface limits remain active. Isolate propulsion before arming;
+restore `SX_GND_TEST=0` before flight. See the
+[ground-test procedure](../../../ros2_sid/ros2_sid/docs/manual_surface_excitation_hitl.md#ground-tests-with-physical-control-surfaces).
+This
 implementation conservatively excludes all QuadPlane configurations, servo auto-trim,
 active navigation scripting, unsupported surface functions, and configured scripting
 outputs. Conventional, repeated aileron/elevator/rudder, flaperon, V-tail and elevon
