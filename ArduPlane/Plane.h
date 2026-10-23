@@ -132,6 +132,7 @@ public:
     friend class GCS_MAVLINK_Plane;
     friend class Parameters;
     friend class ParametersG2;
+    friend class PlaneSurfaceExcitation;
     friend class AP_Arming_Plane;
     friend class QuadPlane;
     friend class QAutoTune;

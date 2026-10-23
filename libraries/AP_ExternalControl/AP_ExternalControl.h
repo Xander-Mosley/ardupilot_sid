@@ -9,6 +9,7 @@
 #if AP_EXTERNAL_CONTROL_ENABLED
 
 #include <AP_Common/Location.h>
+#include <AP_SurfaceExcitation/SurfaceExcitation.h>
 #include <AP_Math/AP_Math.h>
 
 class AP_ExternalControl
@@ -16,6 +17,11 @@ class AP_ExternalControl
 public:
 
     AP_ExternalControl();
+    virtual void surface_excitation_submit(const SurfaceExcitation::Command &) {}
+    virtual void surface_excitation_disconnect() {}
+    virtual SurfaceExcitation::Output surface_excitation_output() { return {}; }
+    virtual SurfaceExcitation::Status surface_excitation_status() { return {}; }
+
     /*
       Set linear velocity and yaw rate. Pass NaN for yaw_rate_rads to not control yaw.
       Velocity is in earth frame, NED [m/s].

@@ -1,0 +1,29 @@
+# Firmware sample: boot/clock microseconds; attitude radians, rates rad/s, airspeed m/s.
+# PWM and calibration in microseconds. Arrays indexed by physical channel (zero-based).
+uint64 time_us
+uint64 clock_us
+uint32 sequence_id
+uint32 configuration_revision
+uint32 clipping_flags
+uint8 state
+uint8 reason
+uint8 mode
+uint8 count
+bool accepted
+float32 mixing_gain
+float32 mixing_offset
+float32 airspeed
+float32[3] requested
+float32[3] applied
+float32[3] attitude
+float32[3] rates
+int16[32] function
+uint16[32] minimum
+uint16[32] trim
+uint16[32] maximum
+uint8[32] reversed
+float32[32] excitation
+uint16[32] baseline
+uint16[32] pwm
+int16[32] delta
+uint8[32] clipped

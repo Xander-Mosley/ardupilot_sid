@@ -17,6 +17,7 @@
  */
 
 #include "Plane.h"
+#include <AP_SurfaceExcitation/SurfaceExcitation.h>
 #include <utility>
 
 /*****************************************
@@ -178,15 +179,8 @@ void Plane::channel_function_mixer(SRV_Channel::Aux_servo_function_t func1_in, S
     float in1 = SRV_Channels::get_output_scaled(func1_in);
     float in2 = SRV_Channels::get_output_scaled(func2_in);
 
-    // apply MIXING_OFFSET to input channels
-    if (g.mixing_offset < 0) {
-        in2 *= (100 - g.mixing_offset) * 0.01;
-    } else if (g.mixing_offset > 0) {
-        in1 *= (100 + g.mixing_offset) * 0.01;
-    }
-    
-    float out1 = constrain_float((in2 - in1) * g.mixing_gain, -4500, 4500);
-    float out2 = constrain_float((in2 + in1) * g.mixing_gain, -4500, 4500);
+    float out1, out2;
+    SurfaceExcitation::mix(in1, in2, g.mixing_offset, g.mixing_gain, out1, out2);
     SRV_Channels::set_output_scaled(func1_out, out1);
     SRV_Channels::set_output_scaled(func2_out, out2);
 }
@@ -1019,7 +1013,10 @@ void Plane::servos_output(void)
         SRV_Channels::copy_radio_in_out_mask(uint32_t(g2.manual_rc_mask.get()));
     }
 
-    SRV_Channels::calc_pwm();
+    float excitation[NUM_SERVO_CHANNELS] {};
+    g2.surface_excitation.prepare(excitation);
+    const bool excitation_accepted = SRV_Channels::calc_pwm(excitation);
+    g2.surface_excitation.finish(excitation, excitation_accepted);
 
     SRV_Channels::output_ch_all();
 

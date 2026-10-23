@@ -12,6 +12,9 @@ find_package(ament_cmake_python REQUIRED)
 # TODO(srmainwaring): add cache variables for vehicle type, debug etc.
 # set(ARDUPILOT_VEHICLE "copter" CACHE STRING "Vehicle type")
 
+option(ARDUPILOT_PLANE_ONLY "Build and install ArduPlane only" OFF)
+option(ARDUPILOT_SKIP_BUILD "Install existing SITL artifacts without invoking Waf" OFF)
+
 option(ARDUPILOT_DISABLE_NETWORKING "Disable the networking API code" OFF)
 option(ARDUPILOT_DISABLE_SCRIPTING "Disable the scripting API code" OFF)
 option(ARDUPILOT_DISABLE_WATCHDOG "Build with watchdog disabled" OFF)
@@ -39,6 +42,13 @@ set(WAF_ENABLE_DDS $<$<BOOL:${ARDUPILOT_ENABLE_DDS}>:"--enable-dds">)
 set(WAF_ENABLE_NETWORKING_TESTS $<$<BOOL:${ARDUPILOT_ENABLE_NETWORKING_TESTS}>:"--enable-networking-tests">)
 set(WAF_ENABLE_PPP $<$<BOOL:${ARDUPILOT_ENABLE_PPP}>:"--enable-PPP">)
 
+if(ARDUPILOT_PLANE_ONLY)
+  set(ARDUPILOT_BUILD_TARGET plane)
+else()
+  set(ARDUPILOT_BUILD_TARGET build)
+endif()
+
+if(NOT ARDUPILOT_SKIP_BUILD)
 add_custom_target(ardupilot_configure ALL
   ${WAF_COMMAND} configure --board sitl
     ${WAF_CONFIG}
@@ -53,15 +63,19 @@ add_custom_target(ardupilot_configure ALL
 )
 
 add_custom_target(ardupilot_build ALL
-  ${WAF_COMMAND} build --enable-dds ${WAF_CONFIG} ${ARDUPILOT_WAF_BUILD_ARGS}
+  ${WAF_COMMAND} ${ARDUPILOT_BUILD_TARGET} ${WAF_CONFIG} ${ARDUPILOT_WAF_BUILD_ARGS}
   WORKING_DIRECTORY ${ARDUPILOT_ROOT}
 )
 add_dependencies(ardupilot_build ardupilot_configure)
+endif()
 
 # --------------------------------------------------------------------------- #
 #  Install.
 
 # Install executables.
+if(ARDUPILOT_PLANE_ONLY)
+install(PROGRAMS ${ARDUPILOT_ROOT}/build/sitl/bin/arduplane DESTINATION bin/)
+else()
 install(PROGRAMS
   ${ARDUPILOT_ROOT}/build/sitl/bin/antennatracker
   ${ARDUPILOT_ROOT}/build/sitl/bin/arducopter
@@ -72,6 +86,8 @@ install(PROGRAMS
   ${ARDUPILOT_ROOT}/build/sitl/bin/blimp
   DESTINATION bin/
 )
+
+endif()
 
 # Install libs.
 install(DIRECTORY
@@ -88,6 +104,7 @@ install(DIRECTORY
 # Install additional default params.
 install(DIRECTORY
   config/default_params
+  config/surface_excitation
   DESTINATION share/${PROJECT_NAME}/config
 )
 

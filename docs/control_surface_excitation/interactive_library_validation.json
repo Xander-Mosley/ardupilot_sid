@@ -1,0 +1,87 @@
+{
+  "raw_command_samples": 3700,
+  "source_kind": "rosbag2",
+  "samples": 15360,
+  "missing_configuration": 0,
+  "commands_using_receipt_time": 0,
+  "max_pwm_error": 1,
+  "nonzero_applied_samples": 3413,
+  "attitude_samples": 5055,
+  "rate_samples": 5055,
+  "airspeed_samples": 5055,
+  "spectral_channels": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "passed": true,
+  "dataflash_comparison": {
+    "matched": 15360,
+    "missing": 0,
+    "mismatched": 0,
+    "passed": true
+  },
+  "maneuvers": [
+    {
+      "command_log": "/work/sid_results/interactive_library_20261021_retry/chirp_pitch-commands.csv",
+      "duration": 9.995062112808228,
+      "active_span": 9.940189,
+      "active_fraction": 0.9953161592505855,
+      "max_gap": 0.040817,
+      "frames": 427,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/interactive_library_20261021_retry/chirp_roll-commands.csv",
+      "duration": 9.996317863464355,
+      "active_span": 9.960181,
+      "active_fraction": 0.9976525821596244,
+      "max_gap": 0.040817,
+      "frames": 426,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/interactive_library_20261021_retry/chirp_yaw-commands.csv",
+      "duration": 9.982463598251343,
+      "active_span": 9.899372,
+      "active_fraction": 0.9952941176470588,
+      "max_gap": 0.040817,
+      "frames": 425,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/interactive_library_20261021_retry/multisine_pitch-commands.csv",
+      "duration": 11.981194734573364,
+      "active_span": 11.940222,
+      "active_fraction": 1.0,
+      "max_gap": 0.040817,
+      "frames": 509,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/interactive_library_20261021_retry/multisine_roll-commands.csv",
+      "duration": 11.980669975280762,
+      "active_span": 11.919397,
+      "active_fraction": 0.9980506822612085,
+      "max_gap": 0.040817,
+      "frames": 513,
+      "mismatched": 0,
+      "passed": true
+    },
+    {
+      "command_log": "/work/sid_results/interactive_library_20261021_retry/multisine_yaw-commands.csv",
+      "duration": 11.987898349761963,
+      "active_span": 11.92023,
+      "active_fraction": 0.99609375,
+      "max_gap": 0.040817,
+      "frames": 512,
+      "mismatched": 0,
+      "passed": true
+    }
+  ]
+}

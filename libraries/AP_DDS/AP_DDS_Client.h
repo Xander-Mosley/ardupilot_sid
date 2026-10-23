@@ -6,6 +6,12 @@
 
 #include "uxr/client/client.h"
 #include "ucdr/microcdr.h"
+#if AP_DDS_SURFACE_EXCITATION_ENABLED
+#include "ardupilot_msgs/msg/ControlSurfaceExcitation.h"
+#include "ardupilot_msgs/msg/ControlSurfaceStatus.h"
+#include "ardupilot_msgs/msg/ControlSurfaceOutput.h"
+#include "ardupilot_msgs/msg/AirData.h"
+#endif
 
 #if AP_DDS_GLOBAL_POS_CTRL_ENABLED
 #include "ardupilot_msgs/msg/GlobalPosition.h"
@@ -90,6 +96,18 @@ class AP_DDS_Client
 {
 
 private:
+#if AP_DDS_SURFACE_EXCITATION_ENABLED
+    ardupilot_msgs_msg_ControlSurfaceExcitation rx_surface_excitation{};
+    uint32_t last_surface_status_ms{};
+    void write_surface_status();
+    void write_air_data();
+    uint32_t last_air_sequence{};
+    void write_surface_output();
+    uint32_t last_surface_output_ms{};
+    uint64_t last_surface_sample_us{};
+    ardupilot_msgs_msg_ControlSurfaceOutput tx_surface_output{};
+#endif
+
 
     AP_Int8 enabled;
 

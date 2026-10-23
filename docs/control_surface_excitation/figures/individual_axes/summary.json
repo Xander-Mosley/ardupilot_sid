@@ -1,0 +1,59 @@
+{
+  "source_bag": "/work/sid_results/individual_axes/rosbag",
+  "experiments": [
+    {
+      "name": "chirp_roll",
+      "rate": 50.0,
+      "duration": 9.984201669692993,
+      "output_frames": 423,
+      "other_axis_max": 0.0,
+      "other_surface_delta_max": 0,
+      "figure": "chirp_roll.png"
+    },
+    {
+      "name": "multisine_roll",
+      "rate": 50.0,
+      "duration": 11.996556282043457,
+      "output_frames": 510,
+      "other_axis_max": 0.0,
+      "other_surface_delta_max": 0,
+      "figure": "multisine_roll.png"
+    },
+    {
+      "name": "chirp_pitch",
+      "rate": 50.0,
+      "duration": 9.984424352645874,
+      "output_frames": 423,
+      "other_axis_max": 0.0,
+      "other_surface_delta_max": 0,
+      "figure": "chirp_pitch.png"
+    },
+    {
+      "name": "multisine_pitch",
+      "rate": 50.0,
+      "duration": 11.997434854507446,
+      "output_frames": 513,
+      "other_axis_max": 0.0,
+      "other_surface_delta_max": 0,
+      "figure": "multisine_pitch.png"
+    },
+    {
+      "name": "chirp_yaw",
+      "rate": 50.0,
+      "duration": 9.983896493911743,
+      "output_frames": 425,
+      "other_axis_max": 0.0,
+      "other_surface_delta_max": 0,
+      "figure": "chirp_yaw.png"
+    },
+    {
+      "name": "multisine_yaw",
+      "rate": 50.0,
+      "duration": 11.981855392456055,
+      "output_frames": 511,
+      "other_axis_max": 0.0,
+      "other_surface_delta_max": 0,
+      "figure": "multisine_yaw.png"
+    }
+  ]
+}

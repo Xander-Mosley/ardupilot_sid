@@ -16,6 +16,10 @@
 */
 #include "AP_AHRS.h"
 #include "AP_AHRS_View.h"
+#include "AirData.h"
+#if AP_AHRS_SIM_ENABLED
+#include <SITL/SITL.h>
+#endif
 
 #include <AP_Common/Location.h>
 #include <AP_HAL/AP_HAL.h>
@@ -189,45 +193,61 @@ void AP_AHRS::update_AOA_SSA(void)
 {
 #if APM_BUILD_TYPE(APM_BUILD_ArduPlane)
     const uint32_t now = AP_HAL::millis();
-    if (now - _last_AOA_update_ms < 50) {
-        // don't update at more than 20Hz
+    const uint16_t rate = AP_AirData::rate_hz(_aoa_rate.get());
+    if (!AP_AirData::due(now, _last_AOA_update_ms, rate)) {
         return;
     }
     _last_AOA_update_ms = now;
-    
-    Vector3f aoa_velocity, aoa_wind;
-
-    // get velocity and wind
-    if (get_velocity_NED(aoa_velocity) == false) {
-        return;
+    AirDataSample sample{};
+    sample.time_us = AP_HAL::micros64();
+    sample.sequence = _air_data.sequence + 1;
+    sample.rate_hz = rate;
+    sample.alpha = sample.beta = nanf("");
+    sample.velocity = Vector3f(nanf(""), nanf(""), nanf(""));
+    Vector3f velocity;
+    if (get_velocity_NED(velocity)) {
+        sample.flags |= 1;
+        sample.velocity = get_rotation_body_to_ned().mul_transpose(velocity - wind_estimate());
+        const auto &v = sample.velocity;
+        if (!v.is_nan() && !v.is_inf()) {
+            sample.flags |= AP_AirData::flow_flags(v.x, v.y, v.z);
+            const float speed = v.length();
+            // Preserve legacy degree-valued getter behavior and formulas.
+            if (speed < 2.0f) {
+                _AOA = _SSA = 0;
+            } else {
+                _AOA = degrees(AP_AirData::alpha(v.x, v.z));
+                _SSA = degrees(AP_AirData::beta(v.x, v.y, v.z));
+            }
+        }
     }
-
-    aoa_wind = wind_estimate();
-
-    // Rotate vectors to the body frame and calculate velocity and wind
-    const Matrix3f &rot = get_rotation_body_to_ned();
-    aoa_velocity = rot.mul_transpose(aoa_velocity);
-    aoa_wind = rot.mul_transpose(aoa_wind);
-
-    // calculate relative velocity in body coordinates
-    aoa_velocity = aoa_velocity - aoa_wind;
-    const float vel_len = aoa_velocity.length();
-
-    // do not calculate if speed is too low
-    if (vel_len < 2.0) {
-        _AOA = 0;
-        _SSA = 0;
-        return;
+    if (healthy()) { sample.flags |= 16; }
+    if (sample.flags == 31) {
+        sample.alpha = radians(_AOA);
+        sample.beta = radians(_SSA);
     }
-
-    // Calculate AOA and SSA
-    if (aoa_velocity.x > 0) {
-        _AOA = degrees(atanf(aoa_velocity.z / aoa_velocity.x));
-    } else {
-        _AOA = 0;
+#if AP_AHRS_SIM_ENABLED
+    const auto *simulator = AP::sitl();
+    if (simulator != nullptr) {
+        sample.truth_velocity = simulator->state.velocity_air_bf;
+        sample.truth_available = true;
     }
-
-    _SSA = degrees(safe_asin(aoa_velocity.y / vel_len));
+#endif
+    {
+        WITH_SEMAPHORE(_air_data_sem);
+        _air_data = sample;
+    }
+#if HAL_LOGGING_ENABLED
+    AP::logger().Write("AIRD", "TimeUS,Seq,Flags,Rate,Alpha,Beta,U,V,W",
+                       "QIHHfffff",
+                       sample.time_us, sample.sequence, sample.flags, sample.rate_hz,
+                       sample.alpha, sample.beta, sample.velocity.x, sample.velocity.y, sample.velocity.z);
+    if (sample.truth_available) {
+        const auto &v = sample.truth_velocity;
+        AP::logger().Write("AIRQ", "TimeUS,Seq,U,V,W", "QIfff",
+                           sample.time_us, sample.sequence, v.x, v.y, v.z);
+    }
+#endif
 #endif
 }
 

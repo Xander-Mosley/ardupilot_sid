@@ -12,6 +12,11 @@
 
 class AP_ExternalControl_Plane : public AP_ExternalControl {
 public:
+    SurfaceExcitation::Output surface_excitation_output() override;
+    void surface_excitation_submit(const SurfaceExcitation::Command &cmd) override;
+    void surface_excitation_disconnect() override;
+    SurfaceExcitation::Status surface_excitation_status() override;
+
     /*
         Sets the target global position for a loiter point.
     */

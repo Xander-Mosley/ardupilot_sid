@@ -15,6 +15,13 @@
 // Can use jinja to template (like Flask)
 
 enum class TopicIndex: uint8_t {
+#if AP_DDS_SURFACE_EXCITATION_ENABLED
+    SURFACE_EXCITATION_SUB,
+    SURFACE_STATUS_PUB,
+    SURFACE_OUTPUT_PUB,
+    AIR_DATA_PUB,
+    AIR_TRUTH_PUB,
+#endif
 #if AP_DDS_TIME_PUB_ENABLED
     TIME_PUB,
 #endif // AP_DDS_TIME_PUB_ENABLED
@@ -82,6 +89,68 @@ static inline constexpr uint8_t to_underlying(const TopicIndex index)
 
 
 constexpr struct AP_DDS_Client::Topic_table AP_DDS_Client::topics[] = {
+#if AP_DDS_SURFACE_EXCITATION_ENABLED
+    {
+        .topic_id = to_underlying(TopicIndex::SURFACE_EXCITATION_SUB),
+        .pub_id = to_underlying(TopicIndex::SURFACE_EXCITATION_SUB),
+        .sub_id = to_underlying(TopicIndex::SURFACE_EXCITATION_SUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::SURFACE_EXCITATION_SUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::SURFACE_EXCITATION_SUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataReader,
+        .topic_name = "rt/ap/sid/control_surface",
+        .type_name = "ardupilot_msgs::msg::dds_::ControlSurfaceExcitation_",
+        .qos = {.durability=UXR_DURABILITY_VOLATILE, .reliability=UXR_RELIABILITY_BEST_EFFORT,
+                .history=UXR_HISTORY_KEEP_LAST, .depth=1},
+    },
+    {
+        .topic_id = to_underlying(TopicIndex::SURFACE_STATUS_PUB),
+        .pub_id = to_underlying(TopicIndex::SURFACE_STATUS_PUB),
+        .sub_id = to_underlying(TopicIndex::SURFACE_STATUS_PUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::SURFACE_STATUS_PUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::SURFACE_STATUS_PUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataWriter,
+        .topic_name = "rt/ap/sid/status",
+        .type_name = "ardupilot_msgs::msg::dds_::ControlSurfaceStatus_",
+        .qos = {.durability=UXR_DURABILITY_VOLATILE, .reliability=UXR_RELIABILITY_BEST_EFFORT,
+                .history=UXR_HISTORY_KEEP_LAST, .depth=1},
+    },
+    {
+        .topic_id = to_underlying(TopicIndex::SURFACE_OUTPUT_PUB),
+        .pub_id = to_underlying(TopicIndex::SURFACE_OUTPUT_PUB),
+        .sub_id = to_underlying(TopicIndex::SURFACE_OUTPUT_PUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::SURFACE_OUTPUT_PUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::SURFACE_OUTPUT_PUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataWriter,
+        .topic_name = "rt/ap/sid/output",
+        .type_name = "ardupilot_msgs::msg::dds_::ControlSurfaceOutput_",
+        .qos = {.durability=UXR_DURABILITY_VOLATILE, .reliability=UXR_RELIABILITY_BEST_EFFORT,
+                .history=UXR_HISTORY_KEEP_LAST, .depth=1},
+    },
+    {
+        .topic_id = to_underlying(TopicIndex::AIR_DATA_PUB),
+        .pub_id = to_underlying(TopicIndex::AIR_DATA_PUB),
+        .sub_id = to_underlying(TopicIndex::AIR_DATA_PUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::AIR_DATA_PUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::AIR_DATA_PUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataWriter,
+        .topic_name = "rt/ap/air_data",
+        .type_name = "ardupilot_msgs::msg::dds_::AirData_",
+        .qos = {.durability=UXR_DURABILITY_VOLATILE, .reliability=UXR_RELIABILITY_BEST_EFFORT,
+                .history=UXR_HISTORY_KEEP_LAST, .depth=1},
+    },
+    {
+        .topic_id = to_underlying(TopicIndex::AIR_TRUTH_PUB),
+        .pub_id = to_underlying(TopicIndex::AIR_TRUTH_PUB),
+        .sub_id = to_underlying(TopicIndex::AIR_TRUTH_PUB),
+        .dw_id = uxrObjectId{.id=to_underlying(TopicIndex::AIR_TRUTH_PUB), .type=UXR_DATAWRITER_ID},
+        .dr_id = uxrObjectId{.id=to_underlying(TopicIndex::AIR_TRUTH_PUB), .type=UXR_DATAREADER_ID},
+        .topic_rw = Topic_rw::DataWriter,
+        .topic_name = "rt/ap/air_data/truth",
+        .type_name = "ardupilot_msgs::msg::dds_::AirData_",
+        .qos = {.durability=UXR_DURABILITY_VOLATILE, .reliability=UXR_RELIABILITY_BEST_EFFORT,
+                .history=UXR_HISTORY_KEEP_LAST, .depth=1},
+    },
+#endif
 #if AP_DDS_TIME_PUB_ENABLED
     {
         .topic_id = to_underlying(TopicIndex::TIME_PUB),

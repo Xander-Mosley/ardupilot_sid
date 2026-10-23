@@ -1,0 +1,11 @@
+uint8 state
+uint8 reason
+uint32 sequence_id
+uint32 configuration_revision
+uint32 clipping_flags
+float32 requested_roll
+float32 requested_pitch
+float32 requested_yaw
+float32 applied_roll
+float32 applied_pitch
+float32 applied_yaw
