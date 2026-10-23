@@ -2,6 +2,8 @@
 #include <AP_RTC/AP_RTC.h>
 #include "surface_excitation.h"
 
+extern const AP_HAL::HAL& hal;
+
 using namespace SurfaceExcitation;
 const AP_Param::GroupInfo PlaneSurfaceExcitation::var_info[] = {
     // @Param: ENABLE
@@ -54,7 +56,7 @@ const AP_Param::GroupInfo PlaneSurfaceExcitation::var_info[] = {
     AP_GROUPINFO("SLEW", 8, PlaneSurfaceExcitation, slew, 0),
     // @Param: GND_TEST
     // @DisplayName: Surface excitation ground test
-    // @Description: Permit grounded excitation instead of airborne normal-flight excitation. Requires ENABLE, GUIDED, armed and safety off; all failsafe and output limits remain enforced. Isolate propulsion before use and restore zero before flight.
+    // @Description: Permit grounded excitation while disarmed or armed instead of airborne normal-flight excitation. Requires ENABLE, GUIDED and safety off; all failsafe and output limits remain enforced. Isolate propulsion before use and restore zero before flight.
     // @Values: 0:Airborne only,1:Ground only
     // @User: Advanced
     AP_GROUPINFO("GND_TEST", 9, PlaneSurfaceExcitation, ground_test, 0),
@@ -109,8 +111,12 @@ void PlaneSurfaceExcitation::prepare(float *outputs)
     const bool flight_ready=(ground_test.get()==1 && !flying) ||
         (ground_test.get()==0 && flying &&
          plane.flight_stage==AP_FixedWing::FlightStage::NORMAL);
+    // Excitation is independent of arming. Never bypass hardware safety;
+    // the normal servo path retains its separate disarmed throttle handling.
+    const bool safety_ready=
+        hal.util->safety_switch_state()!=AP_HAL::Util::SAFETY_DISARMED;
     bool authorized=enabled.get()==1 && plane.control_mode==&plane.mode_guided &&
-        plane.arming.is_armed_and_safety_off() && flight_ready &&
+        safety_ready && flight_ready &&
         !plane.any_failsafe_triggered() && !plane.rc_failsafe_active() &&
         !SRV_Channels::get_emergency_stop() && !plane.g2.servo_channels.auto_trim_enabled();
 #if HAL_QUADPLANE_ENABLED

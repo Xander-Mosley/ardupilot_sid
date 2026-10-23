@@ -102,7 +102,7 @@ ros2 run ros2_sid run_mission_SITL.py --interface dds \
 ```
 
 Use console `start`, `stop`, or `quit`. Add `--autostart` for automated SITL runs.
-The feature must already be enabled, normally armed, airborne, and in GUIDED
+The feature must already be enabled, airborne, safety-off, and in GUIDED
 (see `SX_GND_TEST` below for ground-only testing).
 The publisher waits for firmware authorization and synchronized AP time. Each
 publisher starts a new randomized sequence epoch and waits for acknowledgment of
@@ -197,11 +197,14 @@ States: 0 DISABLED, 1 ARMED (experiment-ready, distinct from vehicle arming),
 2 ACTIVE, 3 TIMEOUT, 4 FAULT. Reasons: 0 NONE, 1 UNAUTHORIZED, 2 INVALID,
 3 STALE, 4 ORDER, 5 CONFIG, 6 CLOCK, 7 DISCONNECTED, 8 OVERRIDE.
 
-Normal-flight GUIDED, armed/safety-off, flying, and no failsafe are required by default.
-`SX_GND_TEST=1` replaces only the flying/normal-flight-stage requirement with
-grounded detection. Use it with the ROS `--no-straight-flight` flag to skip
+Normal-flight GUIDED, safety-off, flying, and no failsafe are required by default.
+Excitation is independent of vehicle arming in both ground and flight modes.
+Disarming alone does not stop excitation; use RC LOW, mission stop, hardware
+safety or a mode change. Normal disarmed throttle handling is unchanged.
+`SX_GND_TEST=1` requires grounded detection instead of airborne normal flight
+and permits surface excitation while disarmed. Hardware safety must still be off. Use it with the ROS `--no-straight-flight` flag to skip
 navigation preparation and LOITER recovery. All other authorization checks,
-watchdogs and surface limits remain active. Isolate propulsion before arming;
+watchdogs and surface limits remain active. Keep bench tests disarmed and isolate propulsion;
 restore `SX_GND_TEST=0` before flight. See the
 [ground-test procedure](../../../ros2_sid/ros2_sid/docs/manual_surface_excitation_hitl.md#ground-tests-with-physical-control-surfaces).
 This
