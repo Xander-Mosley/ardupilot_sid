@@ -1805,6 +1805,51 @@ void AP_DDS_Client::write_surface_output()
     }
 #endif
 }
+void AP_DDS_Client::write_air_data()
+{
+    const auto sample = AP::ahrs().air_data_sample();
+    if (!sample.sequence || sample.sequence == last_air_sequence) { return; }
+    ardupilot_msgs_msg_AirData msg{};
+    msg.time_us = sample.time_us;
+    // Match the clock used by /ap/time and surface-output telemetry.
+    uint64_t clock_now;
+    const uint64_t boot_now = AP_HAL::micros64();
+    if (!AP::rtc().get_utc_usec(clock_now)) { clock_now = boot_now; }
+    msg.clock_us = clock_now - (boot_now - sample.time_us);
+    msg.sequence_id = sample.sequence;
+    msg.flags = sample.flags;
+    msg.rate_hz = sample.rate_hz;
+    msg.alpha = sample.alpha; msg.beta = sample.beta;
+    msg.u = sample.velocity.x; msg.v = sample.velocity.y; msg.w = sample.velocity.z;
+    WITH_SEMAPHORE(csem);
+    if (!connected) { return; }
+    ucdrBuffer ub{};
+    if (!uxr_prepare_output_stream(&session, reliable_out,
+            topics[to_underlying(TopicIndex::AIR_DATA_PUB)].dw_id, &ub,
+            ardupilot_msgs_msg_AirData_size_of_topic(&msg, 0))) { return; }
+    ardupilot_msgs_msg_AirData_serialize_topic(&ub, &msg);
+    last_air_sequence = sample.sequence;
+    if (!sample.truth_available) { return; }
+    const auto &v = sample.truth_velocity;
+    msg.source = 1; msg.flags = 0;
+    msg.u = v.x; msg.v = v.y; msg.w = v.z;
+    msg.alpha = msg.beta = nanf("");
+    if (!v.is_nan() && !v.is_inf()) {
+        msg.flags = 19;
+        if (v.length() >= 2) { msg.flags |= 4; }
+        if (v.x > 0) { msg.flags |= 8; }
+        if (msg.flags == 31) {
+            msg.alpha = atanf(v.z / v.x);
+            msg.beta = safe_asin(v.y / v.length());
+        }
+    }
+    if (uxr_prepare_output_stream(&session, reliable_out,
+            topics[to_underlying(TopicIndex::AIR_TRUTH_PUB)].dw_id, &ub,
+            ardupilot_msgs_msg_AirData_size_of_topic(&msg, 0))) {
+        ardupilot_msgs_msg_AirData_serialize_topic(&ub, &msg);
+    }
+}
+
 void AP_DDS_Client::write_surface_status()
 {
 #if AP_EXTERNAL_CONTROL_ENABLED
@@ -1831,6 +1876,7 @@ void AP_DDS_Client::write_surface_status()
 void AP_DDS_Client::update()
 {
 #if AP_DDS_SURFACE_EXCITATION_ENABLED
+    write_air_data();
     if (AP_HAL::millis()-last_surface_output_ms >= 20) {
         last_surface_output_ms=AP_HAL::millis(); write_surface_output();
     }

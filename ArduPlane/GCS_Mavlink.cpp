@@ -1114,9 +1114,39 @@ MAV_RESULT GCS_MAVLINK_Plane::handle_command_int_packet(const mavlink_command_in
         plane.set_mode(plane.mode_auto, ModeReason::GCS_COMMAND);
         return MAV_RESULT_ACCEPTED;
 
-    case MAV_CMD_NAV_LOITER_UNLIM:
-        plane.set_mode(plane.mode_loiter, ModeReason::GCS_COMMAND);
+    case MAV_CMD_NAV_LOITER_UNLIM: {
+        // Preserve the traditional zero-coordinate "loiter here" command.
+        const bool explicit_location = packet.x != 0 || packet.y != 0;
+        Location target;
+        if (explicit_location) {
+            // Reuse reposition's location encoding without changing legacy
+            // COMMAND_LONG LOITER conversion (which has no explicit frame).
+            mavlink_command_int_t location_packet = packet;
+            location_packet.command = MAV_CMD_DO_REPOSITION;
+            if (!check_latlng(packet.x, packet.y) ||
+                !location_from_command_t(location_packet, target) ||
+                target.sanitize(plane.current_loc)) {
+                return MAV_RESULT_DENIED;
+            }
+            plane.fix_terrain_WP(target, __LINE__);
+#if AP_FENCE_ENABLED
+            if (!plane.fence.check_destination_within_fence(target)) {
+                return MAV_RESULT_DENIED;
+            }
+#endif
+        }
+        if (!plane.set_mode(plane.mode_loiter, ModeReason::GCS_COMMAND)) {
+            return MAV_RESULT_FAILED;
+        }
+        if (explicit_location) {
+            // Set after mode entry, which otherwise chooses the current position.
+            plane.prev_WP_loc = plane.current_loc;
+            plane.next_WP_loc = target;
+            plane.setup_terrain_target_alt(target);
+            plane.set_target_altitude_location(target);
+        }
         return MAV_RESULT_ACCEPTED;
+    }
 
     case MAV_CMD_NAV_RETURN_TO_LAUNCH:
         plane.set_mode(plane.mode_rtl, ModeReason::GCS_COMMAND);

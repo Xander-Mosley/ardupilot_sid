@@ -2,6 +2,7 @@
 """Owned-process SITL experiment. Requires isolated ROS container + agent from README."""
 import argparse
 import json
+import math
 import os
 import shlex
 import shutil
@@ -17,7 +18,7 @@ class Flight:
     def __init__(self, connection):
         self.mav=mavutil.mavlink_connection(connection,source_system=255)
         self.last_heartbeat=0.;self.alt=0.;self.armed=False;self.mode=None;self.rc_throttle=1000
-        self.messages=[];self.rc_switch=1500;self.rc_period=.5
+        self.global_position=None;self.messages=[];self.rc_switch=1500;self.rc_period=.5
     def pump(self, seconds=.1):
         end=time.monotonic()+seconds
         while time.monotonic()<end:
@@ -30,7 +31,8 @@ class Flight:
             if m.get_srcSystem()!=1 or m.get_srcComponent()!=1:continue
             if m.get_type()=='HEARTBEAT':
                 self.armed=bool(m.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED);self.mode=m.custom_mode
-            elif m.get_type()=='GLOBAL_POSITION_INT':self.alt=m.relative_alt/1000
+            elif m.get_type()=='GLOBAL_POSITION_INT':
+                self.alt=m.relative_alt/1000;self.global_position=(m.lat/1e7,m.lon/1e7)
             elif m.get_type()=='STATUSTEXT':
                 print(m.text,flush=True);self.messages.append(m.text)
     def wait(self,predicate,timeout,label):
@@ -68,18 +70,27 @@ def main():
     p.add_argument('--airframe',choices=['conventional','vtail','elevon'],default='conventional')
     p.add_argument('--container',default='sid-validation');p.add_argument('--output',required=True)
     p.add_argument('--rate',type=float,help='Override example publication rate; preserve safety deadlines')
+    p.add_argument('--waveform-config-dir',type=Path,help='Directory containing chirp.json and multisine.json overrides')
     p.add_argument('--individual-axes',action='store_true',help='Run chirp and multisine separately on roll, pitch and yaw')
     p.add_argument('--interactive-library',action='store_true',help='Exercise the default CSV mission library through console stdin')
     p.add_argument('--straight-flight',action='store_true')
+    p.add_argument('--verify-start-return',action='store_true',help='Observe the return track for up to 120 seconds after recovery')
     p.add_argument('--hitl-rc',action='store_true',help='Run HITL entrypoint with simulated RC channel 8; never connects to hardware')
     p.add_argument('--only-experiment')
+    p.add_argument('--air-data-rate', type=int, choices=(20,50,100), default=20)
+    p.add_argument('--wind-speed', type=float, default=0)
+    p.add_argument('--wind-direction', type=float, default=90)
+    p.add_argument('--doublets-only',action='store_true',help='Exercise all three appended CSV doublets through the interactive menu')
     p.add_argument('--exit-active',choices=['quit','stop','sigint','sigterm','cycle','rc-low'],help='Interrupt after two seconds of ACTIVE for recovery verification')
+    p.add_argument('--exit-after',type=float,default=2.0,help='Seconds after ACTIVE before an exit-active action')
     p.add_argument('--dds-domain',type=int,default=0)
     p.add_argument('--dds-port',type=int,default=2021)
     p.add_argument('--binary',default=str(ROOT/'build/sitl/bin/arduplane'))
     a=p.parse_args();out=Path(a.output).resolve();out.mkdir(parents=True,exist_ok=True)
+    if a.verify_start_return and not (a.straight_flight or a.hitl_rc):p.error('--verify-start-return requires straight flight')
     if a.hitl_rc:
         a.interactive_library=True; a.straight_flight=True
+    if a.exit_after <= 0:p.error('--exit-after must be positive')
     if a.exit_active == 'rc-low' and not a.hitl_rc:p.error('rc-low requires --hitl-rc')
     if a.exit_active and not (a.interactive_library and a.straight_flight):p.error('--exit-active requires --interactive-library --straight-flight')
     if a.rate is not None and not 10<=a.rate<=400:p.error('rate must be in [10,400] Hz')
@@ -91,9 +102,13 @@ def main():
         shutil.copy2(library/'current_mission.json',out/'current_mission.json')
     experiments=([f'{signal}_{axis}' for axis in ('roll','pitch','yaw') for signal in ('chirp','multisine')]
                  if a.individual_axes else ['chirp','multisine','multisine_all_axes'])
+    if a.interactive_library:experiments += [f'doublet_{axis}' for axis in ('roll','pitch','yaw')]
     all_experiments=list(experiments)
+    if a.doublets_only:
+        if not a.interactive_library:p.error('--doublets-only requires --interactive-library or --hitl-rc')
+        experiments=[name for name in experiments if name.startswith('doublet_')]
     if a.only_experiment:experiments=[a.only_experiment] if a.only_experiment in experiments else p.error('unknown experiment')
-    (out/'test_options.json').write_text(json.dumps(vars(a),indent=2))
+    (out/'test_options.json').write_text(json.dumps(vars(a),indent=2,default=str))
     configs=ROOT/'Tools/ros2/ardupilot_sitl/config/surface_excitation'
     defaults=[ROOT/'Tools/autotest/models/plane.parm',configs/'conventional.parm']
     if a.airframe!='conventional':defaults.append(configs/(a.airframe+'.parm'))
@@ -111,6 +126,10 @@ def main():
     if a.hitl_rc:
         params['FLTMODE_CH']='5'
         params['RC8_OPTION']='0'
+    if a.verify_start_return:params['WP_LOITER_RAD']='80'
+    params['AHRS_AOA_RATE']=str(a.air_data_rate)
+    params['SIM_WIND_SPD']=str(a.wind_speed)
+    params['SIM_WIND_DIR']=str(a.wind_direction)
     params['DDS_DOMAIN_ID']=str(a.dds_domain)
     params['DDS_UDP_PORT']=str(a.dds_port)
     combined=out/'defaults.parm'
@@ -141,10 +160,15 @@ def main():
                 flight.mode_set('GUIDED');flight.pump(3)
             # /work is the repository mount in the isolated ROS container.
             source=experiment.split('_')[0] if a.individual_axes else experiment
-            spec=json.loads((WORKSPACE/'ros2_sid/ros2_sid/config/surface_excitation'/(source+'.json')).read_text())
-            if a.individual_axes:
-                axis=experiment.split('_')[1]
-                spec['axes']={axis:spec['axes']['roll']}
+            if source == 'doublet':
+                spec=dict(units='normalized_surface', rate=50, duration=15,
+                          csv='mission_library/'+experiment+'.csv')
+            else:
+                waveform_dir=a.waveform_config_dir or WORKSPACE/'ros2_sid/ros2_sid/config/surface_excitation'
+                spec=json.loads((waveform_dir/(source+'.json')).read_text())
+                if a.individual_axes:
+                    axis=experiment.split('_')[1]
+                    spec['axes']={axis:spec['axes']['roll']}
             if a.rate is not None:spec['rate']=a.rate
             experiment_path=out/(experiment+'.json')
             experiment_path.write_text(json.dumps(spec,indent=2)+'\n')
@@ -177,7 +201,7 @@ def main():
                 flight.pump()
                 console_text=(out/(experiment+'.txt')).read_text()
                 if a.exit_active and 'Straight flight: ACTIVE:' in console_text and active_at is None:active_at=time.monotonic()
-                if a.exit_active and active_at is not None and time.monotonic()-active_at>2 and not quit_sent:
+                if a.exit_active and active_at is not None and time.monotonic()-active_at>a.exit_after and not quit_sent:
                     if exit_action == 'rc-low':
                         flight.rc_switch=1000;flight.pump(.3)
                         proc.stdin.write('quit\n');proc.stdin.flush()
@@ -203,6 +227,24 @@ def main():
                 flight.pump(1)
                 results[experiment+'_recovery']=flight.mode==flight.mav.mode_mapping()['LOITER']
                 if not results[experiment+'_recovery']:raise RuntimeError('LOITER recovery not confirmed')
+                if a.verify_start_return:
+                    events=[json.loads(line) for line in (out/(experiment+'.straight.jsonl')).read_text().splitlines()]
+                    completed=next(row for row in reversed(events) if row['phase']=='DONE' and row.get('recovery_start_location'))
+                    center=completed['recovery_start_location'][:2]
+                    if 'target confirmed' not in completed['reason']:raise RuntimeError('Start target not confirmed')
+                    track=[];deadline=time.monotonic()+120;inside_since=None
+                    while time.monotonic()<deadline:
+                        flight.pump(.2)
+                        if flight.global_position is None:continue
+                        lat,lon=flight.global_position
+                        distance=6371000*math.hypot(math.radians(lat-center[0]),math.radians(lon-center[1])*math.cos(math.radians(center[0])))
+                        track.append(dict(monotonic_s=time.monotonic(),latitude=lat,longitude=lon,distance_m=distance,mode=flight.mode))
+                        inside=distance<130 and flight.mode==flight.mav.mode_mapping()['LOITER']
+                        inside_since=(inside_since or time.monotonic()) if inside else None
+                        if inside_since and time.monotonic()-inside_since>=15:break
+                    (out/(experiment+'-return-track.json')).write_text(json.dumps(dict(center=center,track=track),indent=2))
+                    results[experiment+'_start_return']=bool(inside_since and time.monotonic()-inside_since>=15)
+                    if not results[experiment+'_start_return']:raise RuntimeError('Did not remain near saved start in LOITER')
             if proc.returncode:raise RuntimeError(f'{experiment} publisher failed')
             if a.hitl_rc:flight.rc_switch=1000
             flight.pump(2)

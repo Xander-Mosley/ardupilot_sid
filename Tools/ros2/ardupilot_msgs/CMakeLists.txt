@@ -17,6 +17,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/ControlSurfaceExcitation.msg"
   "msg/ControlSurfaceStatus.msg"
   "msg/ControlSurfaceOutput.msg"
+  "msg/AirData.msg"
   "msg/GlobalPosition.msg"
   "msg/Pitot.msg"
   "msg/Propulsion.msg"

@@ -30,3 +30,6 @@ SERVO_AUTO_TRIM 0
 LOG_DISARMED 1
 LOG_BITMASK 65535
 SIM_RC_FAIL 0
+
+# Identification telemetry; firmware default remains 20 Hz.
+AHRS_AOA_RATE 50

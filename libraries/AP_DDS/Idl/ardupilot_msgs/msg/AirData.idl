@@ -1,0 +1,13 @@
+module ardupilot_msgs { module msg { struct AirData {
+    unsigned long long time_us;
+    unsigned long long clock_us;
+    unsigned long sequence_id;
+    unsigned short flags;
+    unsigned short rate_hz;
+    octet source;
+    float alpha;
+    float beta;
+    float u;
+    float v;
+    float w;
+}; }; };

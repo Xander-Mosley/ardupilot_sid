@@ -478,6 +478,24 @@ public:
     // write AOA and SSA information to dataflash logs:
     void Write_AOA_SSA(void) const;
 
+    // Telemetry-only snapshot. Angles are radians, airflow is body FRD m/s.
+    // Flags: 1=velocity available, 2=finite flow, 4=speed >=2, 8=forward,
+    // 16=AHRS healthy. Valid estimated angles require all five flags.
+    struct AirDataSample {
+        uint64_t time_us;
+        uint32_t sequence;
+        uint16_t flags;
+        uint16_t rate_hz;
+        float alpha, beta;
+        Vector3f velocity;
+        Vector3f truth_velocity;
+        bool truth_available;
+    };
+    AirDataSample air_data_sample() {
+        WITH_SEMAPHORE(_air_data_sem);
+        return _air_data;
+    }
+
     // return AOA
     float getAOA(void) const { return _AOA; }
 
@@ -800,6 +818,9 @@ private:
      */
     float _AOA, _SSA;
     uint32_t _last_AOA_update_ms;
+    AP_Int16 _aoa_rate;
+    HAL_Semaphore _air_data_sem;
+    AirDataSample _air_data{};
     void update_AOA_SSA(void);
 
     EKFType last_active_ekf_type;

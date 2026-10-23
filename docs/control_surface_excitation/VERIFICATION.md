@@ -535,3 +535,14 @@ PC SITL, not the physical Cube. The full runs passed command/output, calibrated
 PWM (maximum error 1 µs), navigation recovery and safety-probe checks. The
 relevant final unit/ROS suite passed 51 tests. The report separately describes
 the dedicated RC-low interruption and the initial mode-channel conflict.
+
+## Return to the test-start LOITER center — 2026-10-22
+
+The updated shared coordinator and Plane LOITER command handler were built and
+verified in isolated PC SITL for normal chirp completion and the HITL entrypoint's
+simulated RC-low stop. Both return tracks reached the saved center's vicinity and
+remained within 130 m for 15 seconds with an 80 m configured loiter radius.
+The final ROS package suite passed 57 tests; both bags passed validation (the HITL
+bag was reanalyzed after fixing event ordering by embedded monotonic timestamps).
+See [the detailed report and plots](../../../ros2_sid/ros2_sid/docs/return_to_start_verification.md).
+The Cube has not been reflashed or tested for this revision.

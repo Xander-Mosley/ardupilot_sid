@@ -194,6 +194,13 @@ const AP_Param::GroupInfo AP_AHRS::var_info[] = {
     // @User: Advanced
     AP_GROUPINFO("OPTIONS",  18, AP_AHRS, _options, 0),
     
+    // @Param: AOA_RATE
+    // @DisplayName: Aerodynamic angle calculation rate
+    // @Description: Maximum AOA/SSA acquisition rate, limited by the AHRS loop. Unsupported values use 20 Hz. Does not increase sensor bandwidth or change legacy MAVLink stream/log rates.
+    // @Values: 20:20 Hz,50:50 Hz,100:100 Hz
+    // @User: Advanced
+    AP_GROUPINFO("AOA_RATE", 19, AP_AHRS, _aoa_rate, 20),
+
     AP_GROUPEND
 };
 
